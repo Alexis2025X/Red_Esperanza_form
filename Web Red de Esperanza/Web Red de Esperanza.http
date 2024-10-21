@@ -1,0 +1,6 @@
+@Web_Red_de_Esperanza_HostAddress = http://localhost:5226
+
+GET {{Web_Red_de_Esperanza_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
