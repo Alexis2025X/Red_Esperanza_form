@@ -6,9 +6,9 @@ namespace Web_Red_de_Esperanza.Models
     {
         [Key]
         public int Id_publicacion { get; set; }
-        public string nombre { get; set; }
-        public string apellido { get; set; }
-        public int edad { get; set; }
+        public string Nombre { get; set; }
+        public string Apellido { get; set; }
+        public int Edad { get; set; }
         public string dirección { get; set; }
         public int distrito_id { get; set; }
         public int ayuda_id { get; set; }
