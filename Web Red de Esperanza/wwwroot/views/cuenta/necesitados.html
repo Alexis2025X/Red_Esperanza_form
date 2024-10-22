@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="styles.css">
+   <!--<link rel="stylesheet" href="styles.css">--> 
     <title>Document</title>
 </head>
 <body class="m-0 border-0 bd-example m-0 border-0" style="background-color: #015a95;">
@@ -12,32 +12,33 @@
 
     <ul class="nav justify-content-center menu-nav" style="background-color: rgb(4, 4, 117);">
         <li class="nav-item">
-            <a class="nav-link" style="background-color:rgb(4, 4, 117); color: white; margin:0 10px;" href="#">Desaparecidos</a>
+            <a class="nav-link" style="background-color:rgb(4, 4, 117); color: white; margin:0 10px;" href="https://localhost:7253/views/cuenta/desaparecidos.html">Desaparecidos</a>
+
         </li>
         <li class="nav-item">
-            <a class="nav-link" style="background-color: blue; color: white; margin:0 10px;" href="#">Necesitados</a>
+            <a class="nav-link" style="background-color:blue; color: white; margin:0 10px;" href="https://localhost:7253/views/cuenta/necesitados.html">Necesitados</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" style="background-color: rgb(4, 4, 117); color: white; margin:0 10px;" href="#">Mi cuenta</a>
+            <a class="nav-link" style="background-color: rgb(4, 4, 117); color: white; margin:0 10px;" href="https://localhost:7253/views/cuenta/mi_cuenta.html">Mi cuenta</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" style="background-color: rgb(4, 4, 117); color: white; margin:0 10px;" href="#">Mis anuncios</a>
+            <a class="nav-link" style="background-color: rgb(4, 4, 117); color: white; margin:0 10px;" href="https://localhost:7253/views/cuenta/mis_anuncios.html">Mis anuncios</a>
         </li>
+        
+        <li class="nav-item">
+            <a class="nav-link" style="background-color: rgb(4, 4, 117); color: white; margin:0 10px;" href="https://localhost:7253/views/cuenta/crear_cuenta.html">Crear cuenta</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" style="background-color: rgb(4, 4, 117); color: white; margin:0 10px;" href="#">Crear cuenta</a>
-        </li>
-        <li class="nav-item">
-            <form class="d-flex" role="search" style="border: 3px solid;">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit" style="background-color: blue; color: white;">Search</button>
+            <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="Buscar necesitado" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit" style="background-color: blue; color: white;">Buscar</button>
             </form>
         </li>
     </ul>
 
-    <!-- targetas -->
+    <!-- tarjetas -->
 
-    <div class="row m-0 border-0 bd-example m-0 border-0 justify-content-center">
+    <div class="row m-0 border-0 bd-example m-0 border-0 justify-content-center" id="bodyNecesitados">
         <div class="col-sm-6 col-md-4 ">
             <div class="card" style="width: 18rem; background-color: #072145; color: white; margin: 0.5rem auto;">
                 <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"></rect><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
@@ -105,6 +106,26 @@
         </div>
     </div>
 
+    <script>
+        let bodyNecesitados = document.getElementById("bodyNecesitados");
+
+        mostrarNecesitados();
+
+        async function mostrarNecesitados() {
+            bodyNecesitados.innerHTML = '';
+            const respuesta = await fetch('https://localhost:7253/api/necesitados', {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            });
+            const necesitados = await respuesta.json();
+
+            necesitados.forEach(necesitados => {
+                bodyNecesitados.innerHTML += "<div class='col-sm-6 col-md-4' > <div class='card' style='width: 18rem; background-color: #072145; color: white; margin: 0.5rem auto;'> <svg class='bd-placeholder-img card-img-top' width='100%' height='180' xmlns='http://www.w3.org/2000/svg' role='img' aria-label='Placeholder: Image cap' preserveAspectRatio='xMidYMid slice' focusable='false'><title>Placeholder</title><rect width='100%'' height='100%'' fill='#868e96'></rect><text x='50%' y='50%' fill='#dee2e6' dy='.3em'>Image cap</text></svg><div class='card-body'><h5 class='card-title' style='background-color: #038587; color: white;'>Ayudemos a: </h5><h5 class='card-title' style='background-color: #038587; color: white;'>Nombre persona necesitada </h5>  </div><div class='card-body'><p>Descripción:</p><p class='card-text'>Some quick example text to build on the card title and make up the bulk of the card's content.</p><p>Creacion del anuncio: </p> <span id='Fecha_Creacion'></span><p>Estado: </p> <span id='Fecha_Creacion'></span><p>publicacido por: </p> <span id='Fecha_Creacion'></span></div></div></div>"
+            });
+        }
+    </script>
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

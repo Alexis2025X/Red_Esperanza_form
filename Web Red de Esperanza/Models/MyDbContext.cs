@@ -17,7 +17,7 @@ namespace Web_Red_de_Esperanza.Models
 
         public MyDbContext(DbContextOptions<MyDbContext> options) : base(options) { }
         //NECESITADOS
-        public DbSet<necesitados> necesitados { get; set; }
+        public DbSet<Necesitados> necesitados { get; set; }
         //DESAPARECIDOS
         public DbSet<desaparecidos> desaparecidos { get; set; }
         //CUENTAS
@@ -26,7 +26,7 @@ namespace Web_Red_de_Esperanza.Models
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {  //NECESITADOS
             base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<necesitados>().HasKey(e => e.Id_publicacion);
+            modelBuilder.Entity<Necesitados>().HasKey(e => e.Id_publicacion);
            //DESAPARECIDOS
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<desaparecidos>().HasKey(e => e.Id_publicacion);

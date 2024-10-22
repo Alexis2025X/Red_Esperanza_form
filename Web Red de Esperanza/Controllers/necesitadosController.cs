@@ -22,14 +22,14 @@ namespace Web_Red_de_Esperanza.Controllers
 
         // GET: api/necesitados
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<necesitados>>> Getnecesitados()
+        public async Task<ActionResult<IEnumerable<Necesitados>>> Getnecesitados()
         {
             return await _context.necesitados.ToListAsync();
         }
 
         // GET: api/necesitados/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<necesitados>> Getnecesitados(int id)
+        public async Task<ActionResult<Necesitados>> Getnecesitados(int id)
         {
             var necesitados = await _context.necesitados.FindAsync(id);
 
@@ -44,7 +44,7 @@ namespace Web_Red_de_Esperanza.Controllers
         // PUT: api/necesitados/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> Putnecesitados(int id, necesitados necesitados)
+        public async Task<IActionResult> Putnecesitados(int id, Necesitados necesitados)
         {
             if (id != necesitados.Id_publicacion)
             {
@@ -75,7 +75,7 @@ namespace Web_Red_de_Esperanza.Controllers
         // POST: api/necesitados
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<necesitados>> Postnecesitados(necesitados necesitados)
+        public async Task<ActionResult<Necesitados>> Postnecesitados(Necesitados necesitados)
         {
             _context.necesitados.Add(necesitados);
             await _context.SaveChangesAsync();
