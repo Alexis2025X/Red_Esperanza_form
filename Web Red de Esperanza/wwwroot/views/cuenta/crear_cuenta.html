@@ -10,50 +10,77 @@
 <body class="m-0 border-0 bd-example m-0 border-0" style="background-color: #015a95;">
     <ul class="nav justify-content-center menu-nav" style="background-color: rgb(4, 4, 117);">
         <li class="nav-item">
-          <a class="nav-link" style="background-color:rgb(4, 4, 117); color: white; margin:0 10px;" href="#">Desaparecidos</a>
+            <a class="nav-link" style="background-color:rgb(4, 4, 117); color: white; margin:0 10px;" href="#">Desaparecidos</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" style="background-color: rgb(4, 4, 117); color: white; margin:0 10px;" href="#">Necesidades</a>
+            <a class="nav-link" style="background-color: rgb(4, 4, 117); color: white; margin:0 10px;" href="#">Necesidades</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" style="background-color: rgb(4, 4, 117); color: white; margin:0 10px;" href="#">Mi cuenta</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link"style="background-color: rgb(4, 4, 117); color: white; margin:0 10px;" href="#">Mis anuncios</a>
-          </li>
-      
-        <li class="nav-item">
-          <a class="nav-link" style="background-color: blue; color: white; margin:0 10px;" href="#">Crear cuenta</a>
         </li>
-      </ul>
-  
- <!-- tarjetas -->
+        <li class="nav-item">
+            <a class="nav-link" style="background-color: rgb(4, 4, 117); color: white; margin:0 10px;" href="#">Mis anuncios</a>
+        </li>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" style="background-color: blue; color: white; margin:0 10px;" href="#">Crear cuenta</a>
+        </li>
+    </ul>
+
+    <!-- tarjetas -->
 
 
-<div class="container col-md-4 col-sm-6">
+    <div class="container col-md-4 col-sm-6">
 
-    <div class="card" style="width: 20rem; margin-top: 25vh; margin: 25% auto; background-color: rgb(7, 33, 69); color: white; ">
-        <div class="card-body"  style="display: grid; justify-content: center; align-items: center;">
+        <div class="card" style="width: 20rem; margin-top: 25vh; margin: 25% auto; background-color: rgb(7, 33, 69); color: white; ">
+            <div class="card-body" style="display: grid; justify-content: center; align-items: center;">
 
-          <h5 class=" nombre card-title">Ingrese su nombre:</h5>
-          <Input type="text" style="background-color: rgb(3, 133, 135);">
+                <h5 class=" nombre card-title">Ingrese su nombre:</h5>
+                <Input type="text" style="background-color: rgb(3, 133, 135);" id="txtNombreCuenta" name="txtNombreCuenta"></Input>
 
-          <h5 class=" user card-title">Cree un usuario:</h5>
-          <Input type="text" style="background-color:  rgb(3, 133, 135);">
+                <h5 class=" user card-title">Cree un usuario:</h5>
+                <Input type="text" style="background-color:  rgb(3, 133, 135);" id="txtUsuarioCuenta" name="txtUsuarioCuenta"></Input>
 
-          <h5 class=" contraseña card-title">Cree una contraseña:</h5>
-          <Input type="text" style="background-color: rgb(3, 133, 135);">
-<br>
-<br>
-           <button type="button" class="btn-primary" style="background-color: rgb(4, 111, 212); color: white; justify-items: center;">   Crear   </button>
-         
-          </div>
+                <h5 class=" contraseña card-title">Cree una contraseña:</h5>
+                <Input type="text" style="background-color: rgb(3, 133, 135);" id="txtContraseñaCuenta" name="txtContraseñaCuenta"></Input>
+                <br>
+                <br>
+                <button type="button" id="btnCrear_cuenta" name="btnCrear_cuenta" class="btn-primary" style="background-color: rgb(4, 111, 212); color: white; justify-items: center;">   Crear   </button>
+
+            </div>
         </div>
-      </div>
+    </div>
 
-        
-      
+    </div>
 
-   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script>
+        let crear = document.getElementById("btnCrear_cuenta");
+
+        async function guardarCuenta() {
+            let datos = {
+                nombre: txtNombreCuenta.value,
+                usuario: txtUsuarioCuenta.value,
+                contraseña: txtContraseñaCuenta.value,
+            },
+                method = "POST",
+                url = "https://localhost:7041/api/crear_cuenta";
+        }
+        const respuesta = await fetch(url, {
+            method,
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(datos)
+        }), crear_cuenta = await respuesta.json();
+        if (crear_cuenta && crear_cuenta?.Id_cuenta > 0) {
+            alert("La cuenta se ha creado exitosamente")
+        } else {
+            conosle.log(crear_cuenta);
+            console.error("Error al crear cuenta");
+        }
+
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>
