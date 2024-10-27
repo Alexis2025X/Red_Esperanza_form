@@ -6,7 +6,7 @@ namespace Web_Red_de_Esperanza.Models
     public class desaparecidos
     {
         [Key]
-        public int Id_publicacion { get; set; }
+        public int Id_publicacionDesa { get; set; }
         public string Nombre { get; set; }
         public string Apellido { get; set; }
         public int Edad { get; set; }

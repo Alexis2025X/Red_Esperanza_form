@@ -22,16 +22,16 @@ namespace Web_Red_de_Esperanza.Controllers
 
         // GET: api/necesitados
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Necesitados>>> Getnecesitados()
+        public async Task<ActionResult<IEnumerable<Necesitado>>> Getnecesitados()
         {
-            return await _context.necesitado.ToListAsync();
+            return await _context.necesitados.ToListAsync();
         }
 
         // GET: api/necesitados/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Necesitados>> Getnecesitados(int id)
+        public async Task<ActionResult<Necesitado>> Getnecesitados(int id)
         {
-            var necesitados = await _context.necesitado.FindAsync(id);
+            var necesitados = await _context.necesitados.FindAsync(id);
 
             if (necesitados == null)
             {
@@ -40,13 +40,12 @@ namespace Web_Red_de_Esperanza.Controllers
 
             return necesitados;
         }
-
         // PUT: api/necesitados/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> Putnecesitados(int id, Necesitados necesitados)
+        public async Task<IActionResult> Putnecesitados(int id, Necesitado necesitados)
         {
-            if (id != necesitados.Id_publicacion)
+            if (id != necesitados.Id_publicacionNese)
             {
                 return BadRequest();
             }
@@ -75,25 +74,25 @@ namespace Web_Red_de_Esperanza.Controllers
         // POST: api/necesitados
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Necesitados>> Postnecesitados(Necesitados necesitados)
+        public async Task<ActionResult<Necesitado>> Postnecesitados(Necesitado necesitados)
         {
-            _context.necesitado.Add(necesitados);
+            _context.necesitados.Add(necesitados);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("Getnecesitados", new { id = necesitados.Id_publicacion }, necesitados);
+            return CreatedAtAction("Getnecesitados", new { id = necesitados.Id_publicacionNese }, necesitados);
         }
 
         // DELETE: api/necesitados/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> Deletenecesitados(int id)
         {
-            var necesitados = await _context.necesitado.FindAsync(id);
+            var necesitados = await _context.necesitados.FindAsync(id);
             if (necesitados == null)
             {
                 return NotFound();
             }
 
-            _context.necesitado.Remove(necesitados);
+            _context.necesitados.Remove(necesitados);
             await _context.SaveChangesAsync();
 
             return NoContent();
@@ -101,7 +100,7 @@ namespace Web_Red_de_Esperanza.Controllers
 
         private bool necesitadosExists(int id)
         {
-            return _context.necesitado.Any(e => e.Id_publicacion == id);
+            return _context.necesitados.Any(e => e.Id_publicacionNese == id);
         }
     }
 }

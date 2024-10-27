@@ -1,23 +1,23 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
 
 namespace Web_Red_de_Esperanza.Models
 {
     public class MyDbContext : DbContext
     {
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        /*protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb; Database=red_esperanza; integrated security=true;");
-        }
+            optionsBuilder.UseSqlServer(@"Server=(localdb)\\mssqllocaldb; Database=red_esperanza; integrated security=true;");
+        }*/
 
         public MyDbContext() { }
 
         public MyDbContext(DbContextOptions<MyDbContext> options) : base(options) { }
         //NECESITADOS
-        public DbSet<Necesitados> necesitado { get; set; }
+        public DbSet<Necesitado> necesitados { get; set; }
         //DESAPARECIDOS
         public DbSet<desaparecidos> desaparecidos { get; set; }
         //CUENTAS
@@ -26,12 +26,12 @@ namespace Web_Red_de_Esperanza.Models
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {  //NECESITADOS
             base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<Necesitados>().HasKey(e => e.Id_publicacion);
+            modelBuilder.Entity<Necesitado>().HasKey(e => e.Id_publicacionNese);
             //DESAPARECIDOS
             base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<desaparecidos>().HasKey(e => e.Id_publicacion);
+            modelBuilder.Entity<desaparecidos>().HasKey(e => e.Id_publicacionDesa);
             //CUENTAS
-            base.OnModelCreating(modelBuilder);
+           base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<cuentas>().HasKey(e => e.Id_cuenta);
         }
 

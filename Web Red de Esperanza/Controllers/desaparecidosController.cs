@@ -46,7 +46,7 @@ namespace Web_Red_de_Esperanza.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Putdesaparecidos(int id, desaparecidos desaparecidos)
         {
-            if (id != desaparecidos.Id_publicacion)
+            if (id != desaparecidos.Id_publicacionDesa)
             {
                 return BadRequest();
             }
@@ -80,7 +80,7 @@ namespace Web_Red_de_Esperanza.Controllers
             _context.desaparecidos.Add(desaparecidos);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("Getdesaparecidos", new { id = desaparecidos.Id_publicacion }, desaparecidos);
+            return CreatedAtAction("Getdesaparecidos", new { id = desaparecidos.Id_publicacionDesa }, desaparecidos);
         }
 
         // DELETE: api/desaparecidos/5
@@ -101,7 +101,7 @@ namespace Web_Red_de_Esperanza.Controllers
 
         private bool desaparecidosExists(int id)
         {
-            return _context.desaparecidos.Any(e => e.Id_publicacion == id);
+            return _context.desaparecidos.Any(e => e.Id_publicacionDesa == id);
         }
     }
 }
