@@ -16,6 +16,5 @@ namespace Web_Red_de_Esperanza.Models
         public DateTime fecha_publicacion { get; set; }
         public int asistido_id { get; set; }
         public int publicado_por { get; set; }
-
     }
 }
