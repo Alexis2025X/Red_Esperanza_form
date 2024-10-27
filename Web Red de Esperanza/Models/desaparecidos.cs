@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc.TagHelpers;
 using System.ComponentModel.DataAnnotations;
+using System.Drawing;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Web_Red_de_Esperanza.Models
 {
@@ -15,10 +17,10 @@ namespace Web_Red_de_Esperanza.Models
         public string Descripción_persona { get; set; }
         public string Telefono { get; set; }
         public string WhatsApp { get; set; }
-        public int distrito_id { get; set; }
-        public DateTime fecha_publicacion { get; set; }
+        public int Distrito_id { get; set; }
+        public DateTime Fecha_publicacion { get; set; }
         public int Publicado_por { get; set; }
-        public byte[] Imagen_desaparecidos { get; set; } // Asumimos que 'image' se mapea a un array de bytes
+        public int Imagen_desaparecidos { get; set; } // Asumimos que 'image' se mapea a un array de bytes
 
     }
 }

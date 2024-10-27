@@ -6,8 +6,8 @@ namespace Web_Red_de_Esperanza.Models
     {
         [Key]
         public int Id_cuenta { get; set; }
-        public string Nombre_ { get; set; }
-        public string Usuario_ { get; set; }
-        public string Contraseña_ { get; set; }
+        public string Nombre { get; set; }
+        public string Usuario { get; set; }
+        public string Contraseña { get; set; }
     }
 }
