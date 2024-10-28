@@ -22,14 +22,14 @@ namespace Web_Red_de_Esperanza.Controllers
 
         // GET: api/desaparecidos
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<desaparecidos>>> Getdesaparecidos()
+        public async Task<ActionResult<IEnumerable<Desaparecidos>>> Getdesaparecidos()
         {
             return await _context.desaparecidos.ToListAsync();
         }
 
         // GET: api/desaparecidos/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<desaparecidos>> Getdesaparecidos(int id)
+        public async Task<ActionResult<Desaparecidos>> Getdesaparecidos(int id)
         {
             var desaparecidos = await _context.desaparecidos.FindAsync(id);
 
@@ -44,7 +44,7 @@ namespace Web_Red_de_Esperanza.Controllers
         // PUT: api/desaparecidos/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> Putdesaparecidos(int id, desaparecidos desaparecidos)
+        public async Task<IActionResult> Putdesaparecidos(int id, Desaparecidos desaparecidos)
         {
             if (id != desaparecidos.Id_publicacionDesa)
             {
@@ -75,7 +75,7 @@ namespace Web_Red_de_Esperanza.Controllers
         // POST: api/desaparecidos
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<desaparecidos>> Postdesaparecidos(desaparecidos desaparecidos)
+        public async Task<ActionResult<Desaparecidos>> Postdesaparecidos(Desaparecidos desaparecidos)
         {
             _context.desaparecidos.Add(desaparecidos);
             await _context.SaveChangesAsync();

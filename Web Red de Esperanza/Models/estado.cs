@@ -2,11 +2,11 @@
 
 namespace Web_Red_de_Esperanza.Models
 {
-    public class estado
+    public class Estado
     {
         [Key]
         public int Id_estado { get; set; }
-        public string estado_ { get; set; }
+        public required string estado { get; set; }
 
     }
 }

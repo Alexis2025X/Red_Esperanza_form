@@ -19,7 +19,7 @@ namespace Web_Red_de_Esperanza.Models
         //NECESITADOS
         public DbSet<Necesitado> necesitados { get; set; }
         //DESAPARECIDOS
-        public DbSet<desaparecidos> desaparecidos { get; set; }
+        public DbSet<Desaparecidos> desaparecidos { get; set; }
         //CUENTAS
         public DbSet<cuentas> cuentas { get; set; }
 
@@ -29,7 +29,7 @@ namespace Web_Red_de_Esperanza.Models
             modelBuilder.Entity<Necesitado>().HasKey(e => e.Id_publicacionNese);
             //DESAPARECIDOS
             base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<desaparecidos>().HasKey(e => e.Id_publicacionDesa);
+            modelBuilder.Entity<Desaparecidos>().HasKey(e => e.Id_publicacionDesa);
             //CUENTAS
            base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<cuentas>().HasKey(e => e.Id_cuenta);

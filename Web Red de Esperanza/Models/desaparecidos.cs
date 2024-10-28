@@ -5,22 +5,22 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace Web_Red_de_Esperanza.Models
 {
-    public class desaparecidos
+    public class Desaparecidos
     {
         [Key]
         public int Id_publicacionDesa { get; set; }
-        public string Nombre { get; set; }
-        public string Apellido { get; set; }
+        public required string Nombre { get; set; }
+        public required string Apellido { get; set; }
         public int Edad { get; set; }
         public DateTime Fecha_Desaparicion { get; set; }
-        public string Lugar_Desaparicion { get; set; }
-        public string Descripción_persona { get; set; }
-        public string Telefono { get; set; }
-        public string WhatsApp { get; set; }
+        public required string Lugar_Desaparicion { get; set; }
+        public required string Descripción_persona { get; set; }
+        public required string Telefono { get; set; }
+        public string? WhatsApp { get; set; }
         public int Distrito_id { get; set; }
         public DateTime Fecha_publicacion { get; set; }
         public int Publicado_por { get; set; }
-        public int Imagen_desaparecidos { get; set; } // Asumimos que 'image' se mapea a un array de bytes
+        //public int Imagen_desaparecidos { get; set; } // Asumimos que 'image' se mapea a un array de bytes
 
     }
 }

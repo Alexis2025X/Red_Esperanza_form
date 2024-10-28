@@ -2,10 +2,10 @@
 
 namespace Web_Red_de_Esperanza.Models
 {
-    public class asistido
+    public class Asistido
     {
         [Key]
         public int Id_asistido { get; set; }
-        public string asistido_ { get; set; }
+        public required string asistido { get; set; }
     }
 }
