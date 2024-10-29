@@ -30,8 +30,8 @@
         </li>
         <li class="nav-item">
             <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Buscar necesitado" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit" style="background-color: blue; color: white;">Buscar</button>
+                <input class="form-control me-2" type="search" placeholder="Buscar necesitado" aria-label="Search" id="txtBuscar">
+                <button class="btn btn-outline-success" type="submit" style="background-color: blue; color: white;" id="btnBuscar">Buscar</button>
             </form>
         </li>
     </ul>
@@ -109,8 +109,14 @@
     <script>
 
         let bodyNecesitados = document.getElementById("bodyNecesitados");
-        
+
+        let txtbuscarNecesitado = document.getElementById("txtBuscar");
+        let txtBuscar = txtbuscarNecesitado.value;
+        let btnBuscar = document.getElementById("btnBuscar");
+        btnBuscar.addEventListener("click", buscarNecesitado(txtBuscar));
+
         mostrarNecesitados();
+
         async function mostrarNecesitados() {
             bodyNecesitados.innerHTML = '';
             const respuesta = await fetch("https://localhost:7253/api/necesitados", {
@@ -147,6 +153,46 @@
 `
 
             });
+        }
+        async function buscarNecesitado(txtBuscar) {
+            bodyNecesitados.innerHTML = '';
+            const respuesta = await fetch("https://localhost:7253/api/necesitados", {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            }), necesitados = await respuesta.json();
+            bodyNecesitados.innerHTML = "";
+
+            necesitados.forEach(necesitados => {
+                if (necesitados.nombre_nece == txtBuscar) {
+                    bodyNecesitados.innerHTML += `
+<div class="col-sm-6 col-md-4 ">
+  <div class="card" style="width: 18rem; background-color: #072145; color: white; margin: 0.5rem auto;">
+    <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"></rect><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
+    <div class="card-body">
+      <h5 class="card-title" style="background-color: #038587; color: white;">Ayudemos a: <br>
+      ${necesitados.nombre_nece} ${necesitados.apellido} </h5>
+ 
+    <div class="card-body">
+    <p>Edad: ${necesitados.edad}</p>
+    <p>Distrito: ${necesitados.distrito_id} </p>
+    <p>Direccion: ${necesitados.direccion} </p>
+      <p>Descripcion: <br></p>
+      <p class="card-text">${necesitados.situacion_descripcion}</p>  <p>Creacion del anuncio: ${necesitados.fecha_publicacion}  </p>
+      <p>Estado: ${necesitados.asistido_id} </p> 
+      <p>Tel: ${necesitados.telefono} <br> WhatsApp: ${necesitados.whatsApp}</p>
+      <p>Publicado por: ${necesitados.publicado_por} </p>
+    </div> 
+  </div>
+</div>
+`
+                } else {
+                    bodyNecesitados.innerHTML = ' <div style="display: flex; justify-content: center; margin-top: 25%;"><h3 style="color: wheat;">Persona necesitada no encontrada</h3></div>'
+                    setTimeout(mostrarNecesitados, 5000);
+                }
+
+            })
         }
         
 
