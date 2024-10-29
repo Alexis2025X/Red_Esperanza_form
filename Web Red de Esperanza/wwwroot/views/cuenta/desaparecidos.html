@@ -128,7 +128,7 @@
         let bodyDesaparecidos = document.getElementById("bodyDesaparecidos");
 
         let txtbuscarDesaparecido = document.getElementById("txtBuscar");
-        let txtBuscar = txtbuscarNecesitado.value;
+        let txtBuscar = txtbuscarDesaparecido.value;
         let btnBuscar = document.getElementById("btnBuscar");
         btnBuscar.addEventListener("click", buscarDesaparecido(txtBuscar));
 
@@ -213,7 +213,7 @@
 </div>`
            
                 } else {
-                    bodyNecesitados.innerHTML = ' <div style="display: flex; justify-content: center; margin-top: 25%;"><h3 style="color: wheat;">Registro de desaparecido no encontrada</h3></div>'
+                    bodyDesaparecidos.innerHTML = ' <div style="display: flex; justify-content: center; margin-top: 25%;"><h3 style="color: wheat;">Registro de desaparecido no encontrada</h3></div>'
                     setTimeout(mostrarDesaparecidos, 5000);
                 }
 
