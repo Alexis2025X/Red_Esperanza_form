@@ -110,8 +110,6 @@
 
         let bodyNecesitados = document.getElementById("bodyNecesitados");
 
-        let txtbuscarNecesitado = document.getElementById("txtBuscar");
-        let txtBuscar = txtbuscarNecesitado.value;
         let btnBuscar = document.getElementById("btnBuscar");
         btnBuscar.addEventListener("click", buscarNecesitado(txtBuscar));
 
@@ -156,6 +154,9 @@
             });
         }
         async function buscarNecesitado(txtBuscar) {
+            let txtbuscarNecesitado = document.getElementById("txtBuscar");
+            let txtBuscar = txtbuscarNecesitado.value;
+
             bodyNecesitados.innerHTML = '';
             const respuesta = await fetch("https://localhost:7253/api/necesitados", {
                 method: "GET",

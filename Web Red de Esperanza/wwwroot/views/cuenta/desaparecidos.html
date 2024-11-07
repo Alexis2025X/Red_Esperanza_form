@@ -127,10 +127,10 @@
 
         let bodyDesaparecidos = document.getElementById("bodyDesaparecidos");
 
-        let txtbuscarDesaparecido = document.getElementById("txtBuscar");
-        let txtBuscar = txtbuscarDesaparecido.value;
-        let btnBuscar = document.getElementById("btnBuscar");
-        btnBuscar.addEventListener("click", buscarDesaparecido(txtBuscar));
+       
+        let btnBuscar = document.querySelector("#btnBuscar");
+
+        btnBuscar.addEventListener("click", buscarDesaparecido);
 
         mostrarDesaparecidos();
 
@@ -174,7 +174,9 @@
             </div>
         </div>`});
         }
-        async function buscarDesaparecido(txtBuscar) {
+        async function buscarDesaparecido() {
+            let txtbuscarDesaparecido = document.getElementById("txtBuscar");
+            let txtBuscar = txtbuscarDesaparecido.value;
             bodyDesaparecidos.innerHTML = '';
             const respuesta = await fetch("https://localhost:7253/api/desaparecidos", {
                 method: "GET",

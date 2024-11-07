@@ -37,7 +37,7 @@
             <div class="card-body" style="display: grid; justify-content: center; align-items: center;">
 
                 <h5 class=" nombre card-title">Ingrese su nombre:</h5>
-                <Input type="text" style="background-color: rgb(3, 133, 135);" id="txtNombreCuenta" name="txtNombreCuenta"></Input>
+                <Input type="text" style="background-color: rgb(3, 133, 135);" id="txtNombreCuenta" name="txtNombreCuenta">
                 <style>
                     /* Estilo para quitar el borde del input */
                     #txtNombreCuenta {
@@ -48,7 +48,7 @@
                 </style>
 
                 <h5 class=" user card-title">Cree un usuario:</h5>
-                <Input type="text" border-style: none; style="background-color:  rgb(3, 133, 135);" id="txtUsuarioCuenta" name="txtUsuarioCuenta"></Input>
+                <Input type="text"  style="background-color:  rgb(3, 133, 135);" id="txtUsuarioCuenta" name="txtUsuarioCuenta">
                 <style>
                     /* Estilo para quitar el borde del input */
                     #txtUsuarioCuenta {
@@ -58,7 +58,7 @@
                     }
                 </style>
                 <h5 class=" contraseña card-title">Cree una contraseña:</h5>
-                <Input type="text" border-style: none; style="background-color: rgb(3, 133, 135);" id="txtContraseñaCuenta" name="txtContraseñaCuenta"></Input>
+                <Input type="text" style="background-color: rgb(3, 133, 135);" id="txtContraseñaCuenta" name="txtContraseñaCuenta">
                 <style>
                     #txtContraseñaCuenta{
                         background-color: rgb(3, 133, 135);
@@ -74,34 +74,78 @@
         </div>
     </div>
 
-    </div>
-
+   
     <script>
-        let crear = document.getElementById("btnCrear_cuenta");
+        const crear = document.getElementById("btnCrear_cuenta");
 
+        crear.addEventListener("click", guardarCuenta);
+
+        var url;
+        
         async function guardarCuenta() {
+            console.log("Comienzo");
             let datos = {
                 nombre: txtNombreCuenta.value,
                 usuario: txtUsuarioCuenta.value,
                 contraseña: txtContraseñaCuenta.value,
             },
                 method = "POST",
-                url = "https://localhost:7041/api/crear_cuenta";
-        }
-        const respuesta = await fetch(url, {
-            method,
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(datos)
-        }), crear_cuenta = await respuesta.json();
-        if (crear_cuenta && crear_cuenta?.Id_cuenta > 0) {
-            alert("La cuenta se ha creado exitosamente")
-        } else {
-            conosle.log(crear_cuenta);
-            console.error("Error al crear cuenta");
-        }
+                url = "https://localhost:7253/api/cuentas"
+            const respuesta = await fetch(url, {
+                method,
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(datos),
+            }), crear_cuenta = await respuesta.json()
+            try {
+                const respuesta = await fetch(url, {
+                    method,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(datos)
+                });
 
+                if (!respuesta.ok) {
+                    throw new Error('Error en la solicitud');
+
+                }
+
+                const jsonRespuesta = await respuesta.json();
+                // Procesar la respuesta del servidor
+            } catch (error) {
+                console.error('Error al crear la cuenta:', error);
+            }
+            limpieza();
+
+            /*try {
+                const respuesta = await fetch(url, {
+                    method,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(datos)
+                });
+
+                if (!respuesta.ok) {
+                    throw new Error('Error en la solicitud');
+
+                }
+
+                const jsonRespuesta = await respuesta.json();
+                // Procesar la respuesta del servidor
+            } catch (error) {
+                console.error('Error al crear la cuenta:', error);
+            }
+            limpieza();*/
+        }
+           
+        function limpieza(){
+            txtUsuarioCuenta.value = "";
+            txtNombreCuenta.value = "";
+            txtContraseñaCuenta.value = "";
+        }
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
