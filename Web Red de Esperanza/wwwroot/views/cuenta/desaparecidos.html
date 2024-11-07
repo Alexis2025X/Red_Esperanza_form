@@ -8,142 +8,187 @@
     <title>Desaparecidos</title>
 </head>
 <body class="m-0 border-0 bd-example m-0 border-0" style="background-color: #015a95;">
-    <ul class="nav justify-content-center menu-nav" style="background-color: rgb(4, 4, 117);">
-        <li class="nav-item">
-            <a class="nav-link" style="background-color:blue; color: white; margin:0 10px;" href="https://localhost:7253/views/cuenta/desaparecidos.html">Desaparecidos</a>
+    <nav class="navbar justify-content-center" data-bs-theme="White" style="background-color: rgb(4, 4, 117);">
+        <ul class="nav justify-content-center menu-nav" style="background-color: rgb(4, 4, 117);">
+            <li class="nav-item">
+                <a class="nav-link" style="background-color:blue; color: white; margin:0 10px;" href="https://localhost:7253/views/cuenta/desaparecidos.html">Desaparecidos</a>
 
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" style="background-color: rgb(4, 4, 117); color: white; margin:0 10px;" href="https://localhost:7253/views/cuenta/necesitados.html">Necesitados</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" style="background-color: rgb(4, 4, 117); color: white; margin:0 10px;" href="https://localhost:7253/views/cuenta/mi_cuenta.html">Mi cuenta</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" style="background-color: rgb(4, 4, 117); color: white; margin:0 10px;" href="https://localhost:7253/views/cuenta/mis_anuncios.html">Mis anuncios</a>
-        </li>
-        
-        <li class="nav-item">
-            <a class="nav-link" style="background-color: rgb(4, 4, 117); color: white; margin:0 10px;" href="https://localhost:7253/views/cuenta/crear_cuenta.html">Crear cuenta</a>
-        </li>
-        <li class="nav-item">
-            <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Buscar desaparecidos" aria-label="Search" id="txtBuscar">
-                <button class="btn btn-outline-success" type="submit" style="background-color: blue; color: white;" id="btnBuscar">Buscar</button>
-            </form>
-        </li>
-    </ul>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" style="background-color: rgb(4, 4, 117); color: white; margin:0 10px;" href="https://localhost:7253/views/cuenta/necesitados.html">Necesitados</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" style="background-color: rgb(4, 4, 117); color: white; margin:0 10px;" href="https://localhost:7253/views/cuenta/mi_cuenta.html">Mi cuenta</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" style="background-color: rgb(4, 4, 117); color: white; margin:0 10px;" href="https://localhost:7253/views/cuenta/mis_anuncios.html">Mis anuncios</a>
+            </li>
 
-    <!-- tarjetas -->
+            <li class="nav-item">
+                <a class="nav-link" style="background-color: rgb(4, 4, 117); color: white; margin:0 10px;" href="https://localhost:7253/views/cuenta/crear_cuenta.html">Crear cuenta</a>
+            </li>
+            <li class="nav-item">
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Buscar desaparecidos" aria-label="Search" id="txtBuscar">
+                    <button class="btn btn-outline-success" type="submit" style="background-color: blue; color: white;" id="btnBuscar">Buscar</button>
+                </form>
+            </li>
+        </ul>
+        </nav>
 
-    <div class="row m-0 border-0 bd-example m-0 border-0 justify-content-center" id="bodyDesaparecidos">
-        <div class="col-sm-6 col-md-4 ">
-            <div class="card" style="width: 18rem; background-color: #072145; color: white; margin: 0.5rem auto;">
-                <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"></rect><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
-                <div class="card-body">
-                    <h5 class="card-title" style="background-color: #038587; color: white;">NOMBRE desaparecido</h5>
+        <!-- tarjetas -->
+
+        <div class="row m-0 border-0 bd-example m-0 border-0 justify-content-center" id="bodyDesaparecidos">
+            <div class="col-sm-6 col-md-4 ">
+                <div class="card" style="width: 18rem; background-color: #072145; color: white; margin: 0.5rem auto;">
+                    <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"></rect><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
+                    <div class="card-body">
+                        <h5 class="card-title" style="background-color: #038587; color: white;">NOMBRE desaparecido</h5>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item" style="background-color: #072145; color: white;">Edad</li>
+                        <li class="list-group-item" style="background-color: #072145; color: white;">Visto antes</li>
+                        <li class="list-group-item" style="background-color: #072145; color: white;">algun lugar</li>
+                    </ul>
+                    <div class="card-body">
+                        <p>Descripción:</p>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <p>Creacion del anuncio: </p> <span id="Fecha_Creacion"></span>
+                        <p>Estado: </p> <span id="Fecha_Creacion"></span>
+                        <p>publicacido por: </p> <span id="Fecha_Creacion"></span>
+                    </div>
                 </div>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item" style="background-color: #072145; color: white;">Edad</li>
-                    <li class="list-group-item" style="background-color: #072145; color: white;">Visto antes</li>
-                    <li class="list-group-item" style="background-color: #072145; color: white;">algun lugar</li>
-                </ul>
-                <div class="card-body">
-                    <p>Descripción:</p>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <p>Creacion del anuncio: </p> <span id="Fecha_Creacion"></span>
-                    <p>Estado: </p> <span id="Fecha_Creacion"></span>
-                    <p>publicacido por: </p> <span id="Fecha_Creacion"></span>
+            </div>
+
+            <div class="col-sm-6 col-md-4">
+                <div class="card" style="width: 18rem; background-color: #072145; color: white;  margin: 0.5rem auto;">
+                    <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"></rect><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
+                    <div class="card-body">
+                        <h5 class="card-title" style="background-color: #038587; color: white;">NOMBRE desaparecido</h5>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item" style="background-color: #072145; color: white;">Edad</li>
+                        <li class="list-group-item" style="background-color: #072145; color: white;">Visto antes</li>
+                        <li class="list-group-item" style="background-color: #072145; color: white;">algun lugar</li>
+                    </ul>
+                    <div class="card-body">
+                        <p>Descripción:</p>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <p>Creacion del anuncio: </p> <span id="Fecha_Creacion"></span>
+                        <p>Estado: </p> <span id="Fecha_Creacion"></span>
+                        <p>publicacido por: </p> <span id="Fecha_Creacion"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-4">
+                <div class="card" style="width: 18rem; background-color: #072145; color: white; margin: 0.5rem auto;">
+                    <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"></rect><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
+                    <div class="card-body">
+                        <h5 class="card-title" style="background-color: #038587; color: white;">NOMBRE desaparecido</h5>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item" style="background-color: #072145; color: white;">Edad</li>
+                        <li class="list-group-item" style="background-color: #072145; color: white;">Visto antes</li>
+                        <li class="list-group-item" style="background-color: #072145; color: white;">algun lugar</li>
+                    </ul>
+                    <div class="card-body">
+                        <p>Descripción:</p>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <p>Creacion del anuncio: </p> <span id="Fecha_Creacion"></span>
+                        <p>Estado: </p> <span id="Fecha_Creacion"></span>
+                        <p>publicacido por: </p> <span id="Fecha_Creacion"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-md-4 ">
+                <div class="card" style="width: 18rem; background-color: #072145; color: white;  margin: 0.5rem auto;">
+                    <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"></rect><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
+                    <div class="card-body">
+                        <h5 class="card-title" style="background-color: #038587; color: white;">NOMBREdesaparecido</h5>
+                    </div>
+
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item" style="background-color: #072145; color: white;">Edad</li>
+                        <li class="list-group-item" style="background-color: #072145; color: white;">Visto antes</li>
+                        <li class="list-group-item" style="background-color: #072145; color: white;">algun lugar</li>
+                    </ul>
+
+                    <div class="card-body">
+                        <p>Descripción:</p>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <p>Creacion del anuncio: </p> <span id="Fecha_Creacion"></span>
+                        <p>Estado: </p> <span id="Fecha_Creacion"></span>
+                        <p>publicacido por: </p> <span id="Fecha_Creacion"></span>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <div class="col-sm-6 col-md-4">
-            <div class="card" style="width: 18rem; background-color: #072145; color: white;  margin: 0.5rem auto;">
-                <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"></rect><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
-                <div class="card-body">
-                    <h5 class="card-title" style="background-color: #038587; color: white;">NOMBRE desaparecido</h5>
-                </div>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item" style="background-color: #072145; color: white;">Edad</li>
-                    <li class="list-group-item" style="background-color: #072145; color: white;">Visto antes</li>
-                    <li class="list-group-item" style="background-color: #072145; color: white;">algun lugar</li>
-                </ul>
-                <div class="card-body">
-                    <p>Descripción:</p>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <p>Creacion del anuncio: </p> <span id="Fecha_Creacion"></span>
-                    <p>Estado: </p> <span id="Fecha_Creacion"></span>
-                    <p>publicacido por: </p> <span id="Fecha_Creacion"></span>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-6 col-md-4">
-            <div class="card" style="width: 18rem; background-color: #072145; color: white; margin: 0.5rem auto;">
-                <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"></rect><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
-                <div class="card-body">
-                    <h5 class="card-title" style="background-color: #038587; color: white;">NOMBRE desaparecido</h5>
-                </div>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item" style="background-color: #072145; color: white;">Edad</li>
-                    <li class="list-group-item" style="background-color: #072145; color: white;">Visto antes</li>
-                    <li class="list-group-item" style="background-color: #072145; color: white;">algun lugar</li>
-                </ul>
-                <div class="card-body">
-                    <p>Descripción:</p>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <p>Creacion del anuncio: </p> <span id="Fecha_Creacion"></span>
-                    <p>Estado: </p> <span id="Fecha_Creacion"></span>
-                    <p>publicacido por: </p> <span id="Fecha_Creacion"></span>
-                </div>
-            </div>
-        </div>
+        <script>
+            let bodyDesaparecidos = document.getElementById("bodyDesaparecidos");
+            let btnBuscar = document.querySelector("#btnBuscar");
+            btnBuscar.addEventListener("click", buscarDesaparecido);
 
-        <div class="col-sm-6 col-md-4 ">
-            <div class="card" style="width: 18rem; background-color: #072145; color: white;  margin: 0.5rem auto;">
-                <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"></rect><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
-                <div class="card-body">
-                    <h5 class="card-title" style="background-color: #038587; color: white;">NOMBREdesaparecido</h5>
-                </div>
+            mostrarDesaparecidos();
 
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item" style="background-color: #072145; color: white;">Edad</li>
-                    <li class="list-group-item" style="background-color: #072145; color: white;">Visto antes</li>
-                    <li class="list-group-item" style="background-color: #072145; color: white;">algun lugar</li>
-                </ul>
+            async function mostrarDesaparecidos() {
+                console.log("Mostrando data")
+                bodyDesaparecidos.innerHTML = '';
+                const respuesta = await fetch("https://localhost:7253/api/desaparecidos", {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                }), Desaparecidos = await respuesta.json();
+                Desaparecidos.forEach(Desaparecidos => {
 
-                <div class="card-body">
-                    <p>Descripción:</p>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <p>Creacion del anuncio: </p> <span id="Fecha_Creacion"></span>
-                    <p>Estado: </p> <span id="Fecha_Creacion"></span>
-                    <p>publicacido por: </p> <span id="Fecha_Creacion"></span>
-                </div>
-            </div>
-        </div>
-    </div>
+                    bodyDesaparecidos.innerHTML += `
 
-    <script>
-        let bodyDesaparecidos = document.getElementById("bodyDesaparecidos");
-        let btnBuscar = document.querySelector("#btnBuscar");
-        btnBuscar.addEventListener("click", buscarDesaparecido);
+                <div class="col-sm-6 col-md-4 ">
+                    <div class="card" style="width: 18rem; background-color: #072145; color: white; margin: 0.5rem auto;">
+                        <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"></rect><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
+                        <div class="card-body">
+                            <h5 class="card-title" style="background-color: #038587; color: white;">Ayudenos a encontrar a: ${Desaparecidos.nombre} ${Desaparecidos.apellido} </h5>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item" style="background-color: #072145; color: white;">Edad: ${Desaparecidos.edad}</li>
+                            <li class="list-group-item" style="background-color: #072145; color: white;">Fecha de desaparición: ${Desaparecidos.fecha_Desaparicion}</li>
+                            <li class="list-group-item" style="background-color: #072145; color: white;">Visto por ultima vez en: ${Desaparecidos.lugar_Desaparicion}</li>
+                        </ul>
+                        <div class="card-body">
+                            <p>Descripción: ${Desaparecidos.descripción_persona}</p>
 
-        mostrarDesaparecidos();
+                            <p>Si sabe algo contactelos por medio de:<p>
+                            <p>Telefono: ${Desaparecidos.telefono} </p>
+                            <p>WhatsApp: ${Desaparecidos.whatsApp} </p>
+                            <p>Distrito: ${Desaparecidos.distrito_id} </p>
+                            <p>Estado: -- </p>
+                            <p>Fecha de creación del anuncio: ${Desaparecidos.fecha_publicacion}  </p>
+                            <p>publicacido por: ${Desaparecidos.publicado_por}</p>
+                        </div>
+                    </div>
+                </div>`});
+            }
+            async function buscarDesaparecido(e) {
+                e.preventDefault();
+                console.log("comenzo la busqueda");
+                let txtbuscarDesaparecido = document.getElementById("txtBuscar");
+                let txtBuscar = txtbuscarDesaparecido.value;
+                bodyDesaparecidos.innerHTML = '';
+                const respuesta = await fetch("https://localhost:7253/api/desaparecidos", {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                }), Desaparecidos = await respuesta.json();
+                //
+                Desaparecidos.forEach(Desaparecidos => {
+                    if (Desaparecidos.nombre == txtBuscar) {
+                        console.log("encontrado");
+                        bodyDesaparecidos.innerHTML += `
 
-        async function mostrarDesaparecidos() {
-            console.log("Mostrando data")
-             bodyDesaparecidos.innerHTML = '';
-            const respuesta = await fetch("https://localhost:7253/api/desaparecidos", {
-                method: "GET",
-                headers: {
-                    "Content-Type": "application/json"
-                }
-            }), Desaparecidos = await respuesta.json();
-            Desaparecidos.forEach(Desaparecidos => {
-
-                bodyDesaparecidos.innerHTML += `
-               
-        <div class="col-sm-6 col-md-4 ">
+<div class="col-sm-6 col-md-4 ">
             <div class="card" style="width: 18rem; background-color: #072145; color: white; margin: 0.5rem auto;">
                 <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"></rect><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
                 <div class="card-body">
@@ -156,7 +201,7 @@
                 </ul>
                 <div class="card-body">
                     <p>Descripción: ${Desaparecidos.descripción_persona}</p>
-                    
+
                     <p>Si sabe algo contactelos por medio de:<p>
                     <p>Telefono: ${Desaparecidos.telefono} </p>
                     <p>WhatsApp: ${Desaparecidos.whatsApp} </p>
@@ -166,63 +211,20 @@
                     <p>publicacido por: ${Desaparecidos.publicado_por}</p>
                 </div>
             </div>
-        </div>`});
-        }
-        async function buscarDesaparecido(e) {
-            e.preventDefault();
-            console.log("comenzo la busqueda");
-            let txtbuscarDesaparecido = document.getElementById("txtBuscar");
-            let txtBuscar = txtbuscarDesaparecido.value;
-            bodyDesaparecidos.innerHTML = '';
-            const respuesta = await fetch("https://localhost:7253/api/desaparecidos", {
-                method: "GET",
-                headers: {
-                    "Content-Type": "application/json"
-                }
-            }), Desaparecidos = await respuesta.json();
-            //
-            Desaparecidos.forEach(Desaparecidos => {
-                if (Desaparecidos.nombre == txtBuscar) {
-                    console.log("encontrado");
-                    bodyDesaparecidos.innerHTML += `
-       
-<div class="col-sm-6 col-md-4 ">
-    <div class="card" style="width: 18rem; background-color: #072145; color: white; margin: 0.5rem auto;">
-        <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"></rect><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
-        <div class="card-body">
-            <h5 class="card-title" style="background-color: #038587; color: white;">Ayudenos a encontrar a: ${Desaparecidos.nombre} ${Desaparecidos.apellido} </h5>
-        </div>
-        <ul class="list-group list-group-flush">
-            <li class="list-group-item" style="background-color: #072145; color: white;">Edad: ${Desaparecidos.edad}</li>
-            <li class="list-group-item" style="background-color: #072145; color: white;">Fecha de desaparición: ${Desaparecidos.fecha_Desaparicion}</li>
-            <li class="list-group-item" style="background-color: #072145; color: white;">Visto por ultima vez en: ${Desaparecidos.lugar_Desaparicion}</li>
-        </ul>
-        <div class="card-body">
-            <p>Descripción: ${Desaparecidos.descripción_persona}</p>
-            
-            <p>Si sabe algo contactelos por medio de:<p>
-            <p>Telefono: ${Desaparecidos.telefono} </p>
-            <p>WhatsApp: ${Desaparecidos.whatsApp} </p>
-            <p>Distrito: ${Desaparecidos.distrito_id} </p>
-            <p>Estado: -- </p>
-            <p>Fecha de creación del anuncio: ${Desaparecidos.fecha_publicacion}  </p>
-            <p>publicacido por: ${Desaparecidos.publicado_por}</p>
-        </div>
-    </div>
 </div>`
-           
-                } else {
-                    console.log("No encontrado");
-                    bodyDesaparecidos.innerHTML = ' <div style="display: flex; justify-content: center; margin-top: 25%;"><h3 style="color: wheat;">Registro de desaparecido no encontrada</h3></div>'
-                    setTimeout(mostrarDesaparecidos, 5000);
-                }
 
-            })
-        }
+                    } else {
+                        console.log("No encontrado");
+                        bodyDesaparecidos.innerHTML = ' <div style="display: flex; justify-content: center; margin-top: 25%;"><h3 style="color: wheat;">Registro de desaparecido no encontrada</h3></div>'
+                        setTimeout(mostrarDesaparecidos, 5000);
+                    }
 
-    </script>
+                })
+            }
+
+        </script>
 
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>

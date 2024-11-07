@@ -9,282 +9,283 @@
 </head>
 <body class="m-0 border-0 bd-example m-0 border-0" style="background-color: #015a95;">
 
+    <nav class="navbar justify-content-center" data-bs-theme="White" style="background-color: rgb(4, 4, 117);">
+        <ul class="nav justify-content-center menu-nav" style="background-color: rgb(4, 4, 117);">
+            <li class="nav-item">
+                <a class="nav-link" style="background-color:rgb(4, 4, 117); color: white; margin:0 10px;" href="https://localhost:7253/views/cuenta/desaparecidos.html">Desaparecidos</a>
 
-    <ul class="nav justify-content-center menu-nav" style="background-color: rgb(4, 4, 117);">
-        <li class="nav-item">
-            <a class="nav-link" style="background-color:rgb(4, 4, 117); color: white; margin:0 10px;" href="https://localhost:7253/views/cuenta/desaparecidos.html">Desaparecidos</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" style="background-color: rgb(4, 4, 117); color: white; margin:0 10px;" href="https://localhost:7253/views/cuenta/necesitados.html">Necesitados</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" style="background-color: rgb(4, 4, 117) ; color: white; margin:0 10px;" href="https://localhost:7253/views/cuenta/mi_cuenta.html">Mi cuenta</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" style="background-color: blue; color: white; margin:0 10px;" href="https://localhost:7253/views/cuenta/mis_anuncios.html">Mis anuncios</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" style="background-color: rgb(4, 4, 117); color: white; margin:0 10px;" href="https://localhost:7253/views/cuenta/crear_cuenta.html">Crear cuenta</a>
+            </li>
+            <li class="nav-item">
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Buscar anuncio" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit" style="background-color: blue; color: white;">Buscar</button>
+                </form>
+            </li>
+        </ul>
+        </nav>
 
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" style="background-color: rgb(4, 4, 117); color: white; margin:0 10px;" href="https://localhost:7253/views/cuenta/necesitados.html">Necesitados</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" style="background-color: rgb(4, 4, 117) ; color: white; margin:0 10px;" href="https://localhost:7253/views/cuenta/mi_cuenta.html">Mi cuenta</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" style="background-color: blue; color: white; margin:0 10px;" href="https://localhost:7253/views/cuenta/mis_anuncios.html">Mis anuncios</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" style="background-color: rgb(4, 4, 117); color: white; margin:0 10px;" href="https://localhost:7253/views/cuenta/crear_cuenta.html">Crear cuenta</a>
-        </li>
-        <li class="nav-item">
-            <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Buscar anuncio" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit" style="background-color: blue; color: white;">Buscar</button>
-            </form>
-        </li>
-    </ul>
+        <!-- tarjetas -->
 
-    <!-- tarjetas -->
+        <div class="row m-0 border-0 bd-example m-0 border-0 justify-content-center">
+            <div class="col-sm-6 col-md-4 " style="position: static;">
+                <div class="card" style="width: 18rem; background-color: #072145; color: white; margin: 0.5rem auto;">
 
-    <div class="row m-0 border-0 bd-example m-0 border-0 justify-content-center">
-        <div class="col-sm-6 col-md-4 " style="position: static;">
-            <div class="card" style="width: 18rem; background-color: #072145; color: white; margin: 0.5rem auto;">
-               
-                <div class="card-body">
-                    <input type="file" id="imagen" placeholder="" name="name" style="max-width:100%;" />
-                    <h5 class="card-title" style="background-color: #038587; color: white;">
-                        Ayudemos a: <br>
-                        <input type="text" id="txtNombreNecesitado" class="card-title" style="background-color: #038587; color: white;" placeholder="Nombre">
-                        <input type="text" id="txtApellidoNecesitado" class="card-title" style="background-color: #038587; color: white;" placeholder="Apellido">
-                    </h5>
                     <div class="card-body">
-                        <input type="number" id="txtEdadNecesitado" class="card-title" min="0" style="background-color: #038587; color: white;" placeholder="Edad">
-                        <p>Distrito: </p>
-                        <select name="miCombobox" id="txtDistritoNecesitado" style="background: #038587; color: white; ">
-                            <option value="distrito1">Distrito 1</option>
-                            <option value="distrito2">Distrito 2</option>
-                            <option value="distrito3">Distrito 3</option>
-                        </select>
-                        <p>Direccion:  </p>
-                        <input type="text" id="txtDireccionNecesitado" class="card-title" style="background-color: #038587; color: white;" placeholder="Dirección">
+                        <input type="file" id="imagen" placeholder="" name="name" style="max-width:100%;" />
+                        <h5 class="card-title" style="background-color: #038587; color: white;">
+                            Ayudemos a: <br>
+                            <input type="text" id="txtNombreNecesitado" class="card-title" style="background-color: #038587; color: white;" placeholder="Nombre">
+                            <input type="text" id="txtApellidoNecesitado" class="card-title" style="background-color: #038587; color: white;" placeholder="Apellido">
+                        </h5>
+                        <div class="card-body">
+                            <input type="number" id="txtEdadNecesitado" class="card-title" min="0" style="background-color: #038587; color: white;" placeholder="Edad">
+                            <p>Distrito: </p>
+                            <select name="miCombobox" id="txtDistritoNecesitado" style="background: #038587; color: white; ">
+                                <option value="distrito1">Distrito 1</option>
+                                <option value="distrito2">Distrito 2</option>
+                                <option value="distrito3">Distrito 3</option>
+                            </select>
+                            <p>Direccion:  </p>
+                            <input type="text" id="txtDireccionNecesitado" class="card-title" style="background-color: #038587; color: white;" placeholder="Dirección">
 
-                        <p>Descripcion: <br></p>
-                        <textarea type="text" id="txtDescripcionNecesitados" class="card-title" maxlength="220" style="background-color: #038587; color: white; max-height:20vh; min-height:10vh; " placeholder="Descripcion de la situacion"></textarea>
-                        <p class="card-text">Creacion del anuncio:  </p>
-                        <p>Estado:  </p>
-                        <select name="miCombobox" id="txtEstadoNecesitado" style="background: #038587; color: white; ">
-                            <option value="estado1">estado 1</option>
-                            <option value="estado2">estado 2</option>
-                        </select>
-                        <p>
-                            Tel:  <input type="text" id="txtTelefonoNecesitado" class="card-title" style="background-color: #038587; color: white;" placeholder="Numero telefonico">
-                            <br> WhatsApp: <input id="txtWhatsAppNecesitado" type="text" class="card-title" style="background-color: #038587; color: white;" placeholder="Numero de WhatsApp">
+                            <p>Descripcion: <br></p>
+                            <textarea type="text" id="txtDescripcionNecesitados" class="card-title" maxlength="220" style="background-color: #038587; color: white; max-height:20vh; min-height:10vh; " placeholder="Descripcion de la situacion"></textarea>
+                            <p class="card-text">Creacion del anuncio:  </p>
+                            <p>Estado:  </p>
+                            <select name="miCombobox" id="txtEstadoNecesitado" style="background: #038587; color: white; ">
+                                <option value="estado1">estado 1</option>
+                                <option value="estado2">estado 2</option>
+                            </select>
+                            <p>
+                                Tel:  <input type="text" id="txtTelefonoNecesitado" class="card-title" style="background-color: #038587; color: white;" placeholder="Numero telefonico">
+                                <br> WhatsApp: <input id="txtWhatsAppNecesitado" type="text" class="card-title" style="background-color: #038587; color: white;" placeholder="Numero de WhatsApp">
 
-                        </p>
-                        <p>Publicado por: </p>
-                        <input id="btnPublicarNecesitado" class="btn btn-primary" type="submit" value="Publicar">
+                            </p>
+                            <p>Publicado por: </p>
+                            <input id="btnPublicarNecesitado" class="btn btn-primary" type="submit" value="Publicar">
 
+                        </div>
                     </div>
                 </div>
+
             </div>
+            <!--Creacion de anuncio de desaparecido-->
+            <div class="col-sm-6 col-md-4 " style="position: static;">
+                <div class="card" style="width: 18rem; background-color: #072145; color: white; margin: 0.5rem auto;">
+                    <div class="card-body">
+                        <input type="file" placeholder="" name="name" style="max-width:100%;" />
+                        <h5 class="card-title" style="background-color: #038587; color: white;">
+                            Encontremos a: <br>
+                            <input type="text" id="txtNombreDesaparecido" class="card-title" style="background-color: #038587; color: white;" placeholder="Nombre">
+                            <input type="text" id="txtApellidoDesaparecido" class="card-title" style="background-color: #038587; color: white;" placeholder="Apellido">
+                        </h5>
+                        <div class="card-body">
+                            <input type="number" id="txtEdadDesaparecido" class="card-title" min="0" style="background-color: #038587; color: white;" placeholder="Edad">
+                            <p>
+                                Visto antes: <select name="miCombobox" id="txtVistoAntesDesaparecido" style="background: #038587; color: white; ">
+                                    <option value="distrito1">Distrito 1</option>
+                                    <option value="distrito2">Distrito 2</option>
+                                    <option value="distrito3">Distrito 3</option>
+                                </select>
+                            </p>
+                            <p>Descripcion: <br></p>
+                            <textarea type="text" id="txtDescripcionDesaparecido" class="card-title" maxlength="220" style="background-color: #038587; color: white; max-height:20vh; min-height:10vh; " placeholder="Descripcion de la situacion"></textarea>
+                            <p class="card-text">Creacion del anuncio: </p>
+                            <p>
+                                Tel:  <input type="text" id="txtTelefonoDesaparecido" class="card-title" style="background-color: #038587; color: white;" placeholder="Numero telefonico">
+                                <br> WhatsApp: <input id="txtWhatsAppDesaparecido" type="text" class="card-title" style="background-color: #038587; color: white;" placeholder="Numero de WhatsApp">
 
-        </div>
-        <!--Creacion de anuncio de desaparecido-->
-        <div class="col-sm-6 col-md-4 " style="position: static;">
-             <div class="card" style="width: 18rem; background-color: #072145; color: white; margin: 0.5rem auto;">
-                 <div class="card-body">
-                     <input type="file"placeholder="" name="name" style="max-width:100%;" />
-                     <h5 class="card-title" style="background-color: #038587; color: white;">
-                         Encontremos a: <br>
-                         <input type="text" id="txtNombreDesaparecido" class="card-title" style="background-color: #038587; color: white;" placeholder="Nombre">
-                         <input type="text" id="txtApellidoDesaparecido" class="card-title" style="background-color: #038587; color: white;" placeholder="Apellido">
-                     </h5>
-                     <div class="card-body">
-                         <input type="number" id="txtEdadDesaparecido" class="card-title" min="0" style="background-color: #038587; color: white;" placeholder="Edad">
-                         <p>
-                             Visto antes: <select name="miCombobox" id="txtVistoAntesDesaparecido" style="background: #038587; color: white; ">
-                                 <option value="distrito1">Distrito 1</option>
-                                 <option value="distrito2">Distrito 2</option>
-                                 <option value="distrito3">Distrito 3</option>
-                             </select>
-                         </p>
-                         <p>Descripcion: <br></p>
-                         <textarea type="text" id="txtDescripcionDesaparecido" class="card-title" maxlength="220" style="background-color: #038587; color: white; max-height:20vh; min-height:10vh; " placeholder="Descripcion de la situacion"></textarea>
-                         <p class="card-text">Creacion del anuncio: </p>
-                         <p>
-                             Tel:  <input type="text" id="txtTelefonoDesaparecido" class="card-title" style="background-color: #038587; color: white;" placeholder="Numero telefonico">
-                             <br> WhatsApp: <input id="txtWhatsAppDesaparecido" type="text" class="card-title" style="background-color: #038587; color: white;" placeholder="Numero de WhatsApp">
+                            </p>
+                            <p>Publicado por: </p>
+                            <input id="btnPublicarDesaparecido" class="btn btn-primary" type="submit" value="Publicar">
 
-                         </p>
-                         <p>Publicado por: </p>
-                         <input id="btnPublicarDesaparecido" class="btn btn-primary" type="submit" value="Publicar">
+                        </div>
+                    </div>
+                </div>
 
-                     </div>
-                 </div>
             </div>
-
         </div>
-    </div>
-    <script>
+        <script>
 
-        //Objetos del HTML
-        let btnAgregarNecesitado = document.getElementById("btnPublicarNecesitado");
-        let btnAgregarDesaparecido = document.getElementById("btnPublicarDesaparecido");
+            //Objetos del HTML
+            let btnAgregarNecesitado = document.getElementById("btnPublicarNecesitado");
+            let btnAgregarDesaparecido = document.getElementById("btnPublicarDesaparecido");
 
-        btnAgregarNecesitado.addEventListener("click", agregarNecesitado);
-        btnAgregarDesaparecido.addEventListener("click", agregarDesaparecido);
-        //Creacion de anuncio de necesitados
-        async function agregarNecesitado() {
-            const fechaActual = new Date();
-            const dia = fechaActual.getDate();
-            const mes = fechaActual.getMonth() + 1;
-            const ano = fechaActual.getFullYear();
-
-            let datos = {
-                Nombre_nece: txtNombreNecesitado.value,
-                Apellido: txtApellidoNecesitado.value,
-                Edad: txtEdadNecesitado.value,
-                Direccion: txtDireccionNecesitado.value,
-                Distrito_id: txtDistritoNecesitado.value,
-
-                Situacion_descripcion: txtDescripcionNecesitados.value,
-
-                Fecha_publicacion: dia + "-" + mes  +"-" + ano,
-
-                Telefono: txtTelefonoNecesitado.value,
-                WhatsApp: txtWhatsAppNecesitado.value,
-                
-
-            },
-                method = "POST",
-                url = "https://localhost:7041/api/necesitados";
-            const respuesta = await fetch(url, {
-                method,
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(datos)
-            }), desaparecidos = await respuesta.json();
-            if (desaparecidos && desaparecidos?.Id_publicacionNese > 0) {
-                listarAlumnos();
-                limpiarDatosAlumnos();
-            } else {
-                conosle.log(alumno);
-            }
-        }
-
-        //Creacion de anuncio de desaparecidos
-        async function agregarDesaparecido() {
-            try {
+            btnAgregarNecesitado.addEventListener("click", agregarNecesitado);
+            btnAgregarDesaparecido.addEventListener("click", agregarDesaparecido);
+            //Creacion de anuncio de necesitados
+            async function agregarNecesitado() {
                 const fechaActual = new Date();
                 const dia = fechaActual.getDate();
                 const mes = fechaActual.getMonth() + 1;
-                const anio = fechaActual.getFullYear();
+                const ano = fechaActual.getFullYear();
 
                 let datos = {
-                    Nombre: txtNombreDesaparecido.value,
-                    Apellido: txtApellidoDesaparecido.value,
-                    Edad: txtEdadDesaparecido.value, 
-                    Lugar_Desaparicion: txtVistoAntesDesaparecido.value,
-                    Descripción_persona: txtDescripcionDesaparecido.value,
-                    Telefono: txtTelefonoDesaparecido.value,
-                    WhatsApp: txtWhatsAppDesaparecido.value,
-                    Fecha_publicacion: dia + "-" + mes + "-" + anio,
+                    Nombre_nece: txtNombreNecesitado.value,
+                    Apellido: txtApellidoNecesitado.value,
+                    Edad: txtEdadNecesitado.value,
+                    Direccion: txtDireccionNecesitado.value,
+                    Distrito_id: txtDistritoNecesitado.value,
+
+                    Situacion_descripcion: txtDescripcionNecesitados.value,
+
+                    Fecha_publicacion: dia + "-" + mes + "-" + ano,
+
+                    Telefono: txtTelefonoNecesitado.value,
+                    WhatsApp: txtWhatsAppNecesitado.value,
+
 
                 },
                     method = "POST",
-                    url = "https://localhost:7253/api/desaparecidos";
-                const respuesta = await fetch (url, {
+                    url = "https://localhost:7041/api/necesitados";
+                const respuesta = await fetch(url, {
                     method,
                     headers: {
                         "Content-Type": "application/json"
                     },
                     body: JSON.stringify(datos)
                 }), desaparecidos = await respuesta.json();
-                if (desaparecidos && desaparecidos?.Id_publicacionDesa > 0) {
+                if (desaparecidos && desaparecidos?.Id_publicacionNese > 0) {
                     listarAlumnos();
                     limpiarDatosAlumnos();
                 } else {
-                    conosle.log(desaparecidos);
+                    conosle.log(alumno);
                 }
-            } catch (e) {
-                console.log("Ocurrio un error " + e)
             }
-           
-        }
-        //mostrar datos de desaparecidos
-        async function mostrarDesaparecidos() {
-            bodyDesaparecidos.innerHTML = '';
-            const respuesta = await fetch("https://localhost:7253/api/desaparecidos", {
-                method: "GET",
-                headers: {
-                    "Content-Type": "application/json"
+
+            //Creacion de anuncio de desaparecidos
+            async function agregarDesaparecido() {
+                try {
+                    const fechaActual = new Date();
+                    const dia = fechaActual.getDate();
+                    const mes = fechaActual.getMonth() + 1;
+                    const anio = fechaActual.getFullYear();
+
+                    let datos = {
+                        Nombre: txtNombreDesaparecido.value,
+                        Apellido: txtApellidoDesaparecido.value,
+                        Edad: txtEdadDesaparecido.value,
+                        Lugar_Desaparicion: txtVistoAntesDesaparecido.value,
+                        Descripción_persona: txtDescripcionDesaparecido.value,
+                        Telefono: txtTelefonoDesaparecido.value,
+                        WhatsApp: txtWhatsAppDesaparecido.value,
+                        Fecha_publicacion: dia + "-" + mes + "-" + anio,
+
+                    },
+                        method = "POST",
+                        url = "https://localhost:7253/api/desaparecidos";
+                    const respuesta = await fetch(url, {
+                        method,
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify(datos)
+                    }), desaparecidos = await respuesta.json();
+                    if (desaparecidos && desaparecidos?.Id_publicacionDesa > 0) {
+                        listarAlumnos();
+                        limpiarDatosAlumnos();
+                    } else {
+                        conosle.log(desaparecidos);
+                    }
+                } catch (e) {
+                    console.log("Ocurrio un error " + e)
                 }
-            }), Desaparecidos = await respuesta.json();
-            //
 
-            //
-            Desaparecidos.forEach(Desaparecidos => {
+            }
+            //mostrar datos de desaparecidos
+            async function mostrarDesaparecidos() {
+                bodyDesaparecidos.innerHTML = '';
+                const respuesta = await fetch("https://localhost:7253/api/desaparecidos", {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                }), Desaparecidos = await respuesta.json();
+                //
 
-                bodyDesaparecidos.innerHTML += `
-       
+                //
+                Desaparecidos.forEach(Desaparecidos => {
+
+                    bodyDesaparecidos.innerHTML += `
+
 <div class="col-sm-6 col-md-4 ">
-    <div class="card" style="width: 18rem; background-color: #072145; color: white; margin: 0.5rem auto;">
-        <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"></rect><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
-        <div class="card-body">
-            <h5 class="card-title" style="background-color: #038587; color: white;">Ayudenos a encontrar a: ${Desaparecidos.nombre} ${Desaparecidos.apellido} </h5>
-        </div>
-        <ul class="list-group list-group-flush">
-            <li class="list-group-item" style="background-color: #072145; color: white;">Edad: ${Desaparecidos.edad}</li>
-            <li class="list-group-item" style="background-color: #072145; color: white;">Fecha de desaparición: ${Desaparecidos.fecha_Desaparicion}</li>
-            <li class="list-group-item" style="background-color: #072145; color: white;">Visto por ultima vez en: ${Desaparecidos.lugar_Desaparicion}</li>
-        </ul>
-        <div class="card-body">
-            <p>Descripción: ${Desaparecidos.descripción_persona}</p>
-            
-            <p>Si sabe algo contactelos por medio de:<p>
-            <p>Telefono: ${Desaparecidos.telefono} </p>
-            <p>WhatsApp: ${Desaparecidos.whatsApp} </p>
-            <p>Distrito: ${Desaparecidos.distrito_id} </p>
-            <p>Estado: -- </p>
-            <p>Fecha de creación del anuncio: ${Desaparecidos.fecha_publicacion}  </p>
-            <p>publicacido por: ${Desaparecidos.publicado_por}</p>
-        </div>
-    </div>
+            <div class="card" style="width: 18rem; background-color: #072145; color: white; margin: 0.5rem auto;">
+                <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"></rect><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
+                <div class="card-body">
+                    <h5 class="card-title" style="background-color: #038587; color: white;">Ayudenos a encontrar a: ${Desaparecidos.nombre} ${Desaparecidos.apellido} </h5>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item" style="background-color: #072145; color: white;">Edad: ${Desaparecidos.edad}</li>
+                    <li class="list-group-item" style="background-color: #072145; color: white;">Fecha de desaparición: ${Desaparecidos.fecha_Desaparicion}</li>
+                    <li class="list-group-item" style="background-color: #072145; color: white;">Visto por ultima vez en: ${Desaparecidos.lugar_Desaparicion}</li>
+                </ul>
+                <div class="card-body">
+                    <p>Descripción: ${Desaparecidos.descripción_persona}</p>
+
+                    <p>Si sabe algo contactelos por medio de:<p>
+                    <p>Telefono: ${Desaparecidos.telefono} </p>
+                    <p>WhatsApp: ${Desaparecidos.whatsApp} </p>
+                    <p>Distrito: ${Desaparecidos.distrito_id} </p>
+                    <p>Estado: -- </p>
+                    <p>Fecha de creación del anuncio: ${Desaparecidos.fecha_publicacion}  </p>
+                    <p>publicacido por: ${Desaparecidos.publicado_por}</p>
+                </div>
+            </div>
 </div>`});
-        }
-        //mostrar datos de necesitados
-        async function mostrarNecesitados() {
-            bodyNecesitados.innerHTML = '';
-            const respuesta = await fetch("https://localhost:7253/api/necesitados", {
-                method: "GET",
-                headers: {
-                    "Content-Type": "application/json"
-                }
-            }), necesitados = await respuesta.json();
-            //
+            }
+            //mostrar datos de necesitados
+            async function mostrarNecesitados() {
+                bodyNecesitados.innerHTML = '';
+                const respuesta = await fetch("https://localhost:7253/api/necesitados", {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                }), necesitados = await respuesta.json();
+                //
 
-            //
-            necesitados.forEach(necesitados => {
+                //
+                necesitados.forEach(necesitados => {
 
-                bodyNecesitados.innerHTML += `
+                    bodyNecesitados.innerHTML += `
 <div class="col-sm-6 col-md-4 ">
-  <div class="card" style="width: 18rem; background-color: #072145; color: white; margin: 0.5rem auto;">
-    <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"></rect><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
-    <div class="card-body">
-      <h5 class="card-title" style="background-color: #038587; color: white;">Ayudemos a: <br>
-      ${necesitados.nombre_nece} ${necesitados.apellido} </h5>
- 
-    <div class="card-body">
-    <p>Edad: ${necesitados.edad}</p>
-    <p>Distrito: ${necesitados.distrito_id} </p>
-    <p>Direccion: ${necesitados.direccion} </p>
-      <p>Descripcion: <br></p>
-      <p class="card-text">${necesitados.situacion_descripcion}</p>  <p>Creacion del anuncio: ${necesitados.fecha_publicacion}  </p>
-      <p>Estado: ${necesitados.asistido_id} </p> 
-      <p>Tel: ${necesitados.telefono} <br> WhatsApp: ${necesitados.whatsApp}</p>
-      <p>Publicado por: ${necesitados.publicado_por} </p>
-    </div> 
-  </div>
+          <div class="card" style="width: 18rem; background-color: #072145; color: white; margin: 0.5rem auto;">
+            <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"></rect><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
+            <div class="card-body">
+              <h5 class="card-title" style="background-color: #038587; color: white;">Ayudemos a: <br>
+              ${necesitados.nombre_nece} ${necesitados.apellido} </h5>
+
+            <div class="card-body">
+            <p>Edad: ${necesitados.edad}</p>
+            <p>Distrito: ${necesitados.distrito_id} </p>
+            <p>Direccion: ${necesitados.direccion} </p>
+              <p>Descripcion: <br></p>
+              <p class="card-text">${necesitados.situacion_descripcion}</p>  <p>Creacion del anuncio: ${necesitados.fecha_publicacion}  </p>
+              <p>Estado: ${necesitados.asistido_id} </p>
+              <p>Tel: ${necesitados.telefono} <br> WhatsApp: ${necesitados.whatsApp}</p>
+              <p>Publicado por: ${necesitados.publicado_por} </p>
+            </div>
+          </div>
 </div>
 `
 
-            });
-        }
-    </script>
+                });
+            }
+        </script>
 
-    <div class="row m-0 border-0 bd-example m-0 border-0 justify-content-center">
+        <div class="row m-0 border-0 bd-example m-0 border-0 justify-content-center">
 
             <div class="card" style="width: 18rem; background-color: #072145; color: white; margin: 0.5rem auto;">
                 <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"></rect><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
