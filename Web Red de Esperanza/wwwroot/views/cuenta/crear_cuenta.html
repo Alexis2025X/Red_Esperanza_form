@@ -11,8 +11,6 @@
     <ul class="nav justify-content-center menu-nav" style="background-color: rgb(4, 4, 117);">
         <li class="nav-item">
             <a class="nav-link" style="background-color:rgb(4, 4, 117); color: white; margin:0 10px;" href="https://localhost:7253/views/cuenta/desaparecidos.html">Desaparecidos</a>
-
-
         </li>
         <li class="nav-item">
             <a class="nav-link" style="background-color: rgb(4, 4, 117); color: white; margin:0 10px;" href="https://localhost:7253/views/cuenta/necesitados.html">Necesitados</a>
@@ -48,7 +46,7 @@
                 </style>
 
                 <h5 class=" user card-title">Cree un usuario:</h5>
-                <Input type="text"  style="background-color:  rgb(3, 133, 135);" id="txtUsuarioCuenta" name="txtUsuarioCuenta">
+                <Input type="text" style="background-color:  rgb(3, 133, 135);" id="txtUsuarioCuenta" name="txtUsuarioCuenta">
                 <style>
                     /* Estilo para quitar el borde del input */
                     #txtUsuarioCuenta {
@@ -60,7 +58,7 @@
                 <h5 class=" contraseña card-title">Cree una contraseña:</h5>
                 <Input type="text" style="background-color: rgb(3, 133, 135);" id="txtContraseñaCuenta" name="txtContraseñaCuenta">
                 <style>
-                    #txtContraseñaCuenta{
+                    #txtContraseñaCuenta {
                         background-color: rgb(3, 133, 135);
                         border: none; /* Quitar el borde */
                         outline: none; /* Quitar el borde al hacer clic */
@@ -74,14 +72,14 @@
         </div>
     </div>
 
-   
+
     <script>
         const crear = document.getElementById("btnCrear_cuenta");
 
         crear.addEventListener("click", guardarCuenta);
 
         var url;
-        
+
         async function guardarCuenta() {
             console.log("Comienzo");
             let datos = {
@@ -91,13 +89,13 @@
             },
                 method = "POST",
                 url = "https://localhost:7253/api/cuentas"
-            const respuesta = await fetch(url, {
-                method,
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(datos),
-            }), crear_cuenta = await respuesta.json()
+            /*                const respuesta = await fetch(url, {
+                            method,
+                            headers: {
+                                "Content-Type": "application/json"
+                            },
+                            body: JSON.stringify(datos),
+                        }), crear_cuenta = await respuesta.json()*/
             try {
                 const respuesta = await fetch(url, {
                     method,
@@ -112,7 +110,7 @@
 
                 }
 
-                const jsonRespuesta = await respuesta.json();
+                //const jsonRespuesta = await respuesta.json();
                 // Procesar la respuesta del servidor
             } catch (error) {
                 console.error('Error al crear la cuenta:', error);
@@ -140,8 +138,8 @@
             }
             limpieza();*/
         }
-           
-        function limpieza(){
+
+        function limpieza() {
             txtUsuarioCuenta.value = "";
             txtNombreCuenta.value = "";
             txtContraseñaCuenta.value = "";

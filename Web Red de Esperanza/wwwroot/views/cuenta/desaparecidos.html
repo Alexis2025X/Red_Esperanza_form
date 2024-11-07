@@ -124,17 +124,14 @@
     </div>
 
     <script>
-
         let bodyDesaparecidos = document.getElementById("bodyDesaparecidos");
-
-       
         let btnBuscar = document.querySelector("#btnBuscar");
-
         btnBuscar.addEventListener("click", buscarDesaparecido);
 
         mostrarDesaparecidos();
 
         async function mostrarDesaparecidos() {
+            console.log("Mostrando data")
              bodyDesaparecidos.innerHTML = '';
             const respuesta = await fetch("https://localhost:7253/api/desaparecidos", {
                 method: "GET",
@@ -142,9 +139,6 @@
                     "Content-Type": "application/json"
                 }
             }), Desaparecidos = await respuesta.json();
-            //
-
-            //
             Desaparecidos.forEach(Desaparecidos => {
 
                 bodyDesaparecidos.innerHTML += `
@@ -174,7 +168,9 @@
             </div>
         </div>`});
         }
-        async function buscarDesaparecido() {
+        async function buscarDesaparecido(e) {
+            e.preventDefault();
+            console.log("comenzo la busqueda");
             let txtbuscarDesaparecido = document.getElementById("txtBuscar");
             let txtBuscar = txtbuscarDesaparecido.value;
             bodyDesaparecidos.innerHTML = '';
@@ -187,6 +183,7 @@
             //
             Desaparecidos.forEach(Desaparecidos => {
                 if (Desaparecidos.nombre == txtBuscar) {
+                    console.log("encontrado");
                     bodyDesaparecidos.innerHTML += `
        
 <div class="col-sm-6 col-md-4 ">
@@ -215,6 +212,7 @@
 </div>`
            
                 } else {
+                    console.log("No encontrado");
                     bodyDesaparecidos.innerHTML = ' <div style="display: flex; justify-content: center; margin-top: 25%;"><h3 style="color: wheat;">Registro de desaparecido no encontrada</h3></div>'
                     setTimeout(mostrarDesaparecidos, 5000);
                 }

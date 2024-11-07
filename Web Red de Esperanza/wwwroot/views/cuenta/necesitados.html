@@ -107,25 +107,21 @@
     </div>
 
     <script>
-
+       
         let bodyNecesitados = document.getElementById("bodyNecesitados");
-
+       
         let btnBuscar = document.getElementById("btnBuscar");
-        btnBuscar.addEventListener("click", buscarNecesitado(txtBuscar));
-
+        btnBuscar.addEventListener("click", buscarNecesitado);
         mostrarNecesitados();
-
         async function mostrarNecesitados() {
+            console.log("Mostrando data")
             bodyNecesitados.innerHTML = '';
-            const respuesta = await fetch("https://localhost:7253/api/necesitados", {
+            const respuesta = await fetch('https://localhost:7253/api/necesitados', {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json"
                 }
             }), necesitados = await respuesta.json();
-            //
-
-            //
             necesitados.forEach(necesitados => {
                 
                 bodyNecesitados.innerHTML += `
@@ -153,7 +149,9 @@
 
             });
         }
-        async function buscarNecesitado(txtBuscar) {
+        async function buscarNecesitado(event) {
+            event.preventDefault();
+            console.log("Buscando");
             let txtbuscarNecesitado = document.getElementById("txtBuscar");
             let txtBuscar = txtbuscarNecesitado.value;
 
@@ -164,10 +162,11 @@
                     "Content-Type": "application/json"
                 }
             }), necesitados = await respuesta.json();
-            bodyNecesitados.innerHTML = "";
+           
 
             necesitados.forEach(necesitados => {
                 if (necesitados.nombre_nece == txtBuscar) {
+                    console.log("encontrado");
                     bodyNecesitados.innerHTML += `
 <div class="col-sm-6 col-md-4 ">
   <div class="card" style="width: 18rem; background-color: #072145; color: white; margin: 0.5rem auto;">
@@ -190,6 +189,7 @@
 </div>
 `
                 } else {
+                    console.log("No encontrado");
                     bodyNecesitados.innerHTML = ' <div style="display: flex; justify-content: center; margin-top: 25%;"><h3 style="color: wheat;">Persona necesitada no encontrada</h3></div>'
                     setTimeout(mostrarNecesitados, 5000);
                 }
