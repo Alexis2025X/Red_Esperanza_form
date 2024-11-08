@@ -107,25 +107,29 @@
             let useer = user.value;
             let contras = contra.value;
 
-            const respuesta = await fetch('https://localhost:7253/api/cuentas', {
-                method: "GET",
-                headers: {
-                    "Content-Type": "application/json"
-                }
-            }), cuentas = await respuesta.json();
+            if (useer == "" || contras == "") {
+                alertify.error('Ingrese sus credenciales.');
+            } else {
+                const respuesta = await fetch('https://localhost:7253/api/cuentas', {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                }), cuentas = await respuesta.json();
 
-            cuentas.forEach(cuentas => {
-                if (cuentas.usuario === useer && cuentas.contraseña === contras) {
-                    const url = ' https://localhost:7253/views/cuenta/desaparecidos.html';
-                    localStorage.setItem('nombre', cuentas.id_cuenta);
-                    window.open(url, '_self');
-                }
-            })
+                cuentas.forEach(cuentas => {
+                    if (cuentas.usuario === useer && cuentas.contraseña === contras) {
+                        const url = ' https://localhost:7253/views/cuenta/desaparecidos.html';
+                        localStorage.setItem('nombre', cuentas.id_cuenta);
+                        window.open(url, '_self');
+                    }
+                })
 
-           
-            alertify.error('Usuario o contraseña incorrecta.');
-        }
-           
+
+                alertify.error('Usuario o contraseña incorrecta.');
+            }
+
+            }
       
             
     </script>
