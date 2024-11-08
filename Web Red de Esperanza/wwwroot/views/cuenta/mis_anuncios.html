@@ -90,9 +90,11 @@
                     <input type="file" id="fileimagenDesa" style="max-width:100%;" />
                     <h5 class="card-title" style="background-color: #038587; color: white;">
                         Encontremos a: <br>
+                    </h5>
                         <input type="text" id="txtNombreDesaparecido" class="card-title" style="background-color: #038587; color: white;" placeholder="Nombre">
                         <input type="text" id="txtApellidoDesaparecido" class="card-title" style="background-color: #038587; color: white;" placeholder="Apellido">
-                    </h5>
+                        <h5>Fecha de desaparicion</h5>  <input type="date" id="fecha_desaparicion"/>
+                    
                     <div class="card-body">
                         <input type="number" id="txtEdadDesaparecido" class="card-title" min="0" style="background-color: #038587; color: white;" placeholder="Edad">
                         <p>
@@ -102,6 +104,8 @@
                                 <option value="distrito3">Distrito 3</option>
                             </select>
                         </p>
+                        Lugar desaparicion:
+                         <textarea type="text" id="txtLugarDesaparecido" class="card-title" maxlength="220" style="background-color: #038587; color: white; max-height:20vh; min-height:10vh; " placeholder="Descripcion de la situacion"></textarea>
                         <p>Descripcion: <br></p>
                         <textarea type="text" id="txtDescripcionDesaparecido" class="card-title" maxlength="220" style="background-color: #038587; color: white; max-height:20vh; min-height:10vh; " placeholder="Descripcion de la situacion"></textarea>
                         <p class="card-text">Creacion del anuncio: </p>
@@ -135,8 +139,8 @@
 
 
         function mostrarImg(e) {
-           
-            
+
+
 
             if (e.target.id == "fileimagenNese") {
                 const input = this;
@@ -178,7 +182,7 @@
                     alertify.error('Error al cargar la imagen');
                 }
             }
-        
+        }
             
           
 
@@ -228,26 +232,40 @@
             }
 
             //Creacion de anuncio de desaparecidos
-            async function agregarDesaparecido() {
+        async function agregarDesaparecido() {
+            console.log("Comenzamos la incersion")
                 try {
+                    const distritos = ["Distrito 1", "Distrito 2", "Distrito 3"];
+                    var distrito;
+                    for (var i = 0; distrito < length; i++) {
+                        if (distrito[i] == txtVistoAntesDesaparecido.value) {
+                            distrito = i + 1;
+                        }
+                    }
+
                     const fechaActual = new Date();
                     const dia = fechaActual.getDate();
                     const mes = fechaActual.getMonth() + 1;
                     const anio = fechaActual.getFullYear();
 
+                   
+
                     let datos = {
-                        Nombre: txtNombreDesaparecido.value,
-                        Apellido: txtApellidoDesaparecido.value,
-                        Edad: txtEdadDesaparecido.value,
-                        Lugar_Desaparicion: txtVistoAntesDesaparecido.value,
-                        Descripción_persona: txtDescripcionDesaparecido.value,
-                        Telefono: txtTelefonoDesaparecido.value,
-                        WhatsApp: txtWhatsAppDesaparecido.value,
-                        Fecha_publicacion: dia + "-" + mes + "-" + anio,
+                        nombre: txtNombreDesaparecido.value,
+                        apellido: txtApellidoDesaparecido,
+                        edad: parseInt(txtEdadDesaparecido.value),
+                        fecha_Desaparicion: fecha_desaparicion.value,
+                        lugar_Desaparicion:txtLugarDesaparecido.value,
+                        descripción_persona: txtDescripcionDesaparecido.value,
+                        telefono: txtTelefonoDesaparecido.value,
+                        whatsApp: txtWhatsAppDesaparecido.value,
+                        distrito_id: distrito,
+                        fecha_publicacion: "'" + dia+"-"+mes+"-"+anio+"'",
+                        publicado_por: 1
 
                     },
                         method = "POST",
-                        url = "https://localhost:7253/api/desaparecidos";
+                        url = 'https://localhost:7253/api/desaparecidos';
                     const respuesta = await fetch(url, {
                         method,
                         headers: {
@@ -345,7 +363,7 @@
 
                 });
             }
-        }
+        
     </script>
 
     <div class="row m-0 border-0 bd-example m-0 border-0 justify-content-center">
