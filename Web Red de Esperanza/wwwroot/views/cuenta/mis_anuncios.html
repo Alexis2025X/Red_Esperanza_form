@@ -237,9 +237,15 @@
                 try {
                     const distritos = ["Distrito 1", "Distrito 2", "Distrito 3"];
                     var distrito;
-                    for (var i = 0; distrito < length; i++) {
-                        if (distrito[i] == txtVistoAntesDesaparecido.value) {
-                            distrito = i + 1;
+
+                    const selectElement = document.getElementById("txtVistoAntesDesaparecido");
+                    const selectedIndex = selectElement.selectedIndex;
+                    const selectedOption = selectElement.options[selectedIndex];
+                    const selectedText = selectedOption.text;
+
+                    for (var i = 0; i < distritos.length; i++) {
+                        if (distritos[i] == selectedText) {
+                            distrito = i +1
                         }
                     }
 
@@ -248,20 +254,22 @@
                     const mes = fechaActual.getMonth() + 1;
                     const anio = fechaActual.getFullYear();
 
-                   
+                    const nombreAlmacenado = localStorage.getItem('nombre');
+                    console.log(nombreAlmacenado); 
 
+                    console.log(distrito);
                     let datos = {
                         nombre: txtNombreDesaparecido.value,
-                        apellido: txtApellidoDesaparecido,
-                        edad: parseInt(txtEdadDesaparecido.value),
+                        apellido: txtApellidoDesaparecido.value,
+                        edad: txtEdadDesaparecido.value,
                         fecha_Desaparicion: fecha_desaparicion.value,
                         lugar_Desaparicion:txtLugarDesaparecido.value,
                         descripción_persona: txtDescripcionDesaparecido.value,
                         telefono: txtTelefonoDesaparecido.value,
                         whatsApp: txtWhatsAppDesaparecido.value,
                         distrito_id: distrito,
-                        fecha_publicacion: "'" + dia+"-"+mes+"-"+anio+"'",
-                        publicado_por: 1
+                        fecha_publicacion: "'" + dia + "-" + mes + "-" + anio + "'",
+                        publicado_por: nombreAlmacenado
 
                     },
                         method = "POST",
@@ -273,13 +281,17 @@
                         },
                         body: JSON.stringify(datos)
                     }), desaparecidos = await respuesta.json();
+                    alertify.success("Publicación realizada");
+                    console.log(datos)
                     if (desaparecidos && desaparecidos?.Id_publicacionDesa > 0) {
+                        alertify.success("Publicación realizada");
                         listarAlumnos();
                         limpiarDatosAlumnos();
                     } else {
                         conosle.log(desaparecidos);
                     }
                 } catch (e) {
+                    alertify.error('Ocurrio un error al realizar la publicación.');
                     console.log("Ocurrio un error " + e)
                 }
 

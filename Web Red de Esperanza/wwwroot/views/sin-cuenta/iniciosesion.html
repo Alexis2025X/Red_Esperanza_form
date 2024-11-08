@@ -117,6 +117,7 @@
             cuentas.forEach(cuentas => {
                 if (cuentas.usuario === useer && cuentas.contraseña === contras) {
                     const url = ' https://localhost:7253/views/cuenta/desaparecidos.html';
+                    localStorage.setItem('nombre', cuentas.id_cuenta);
                     window.open(url, '_self');
                 }
             })
