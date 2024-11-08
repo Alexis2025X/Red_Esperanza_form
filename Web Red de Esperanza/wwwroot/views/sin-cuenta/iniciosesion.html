@@ -69,24 +69,66 @@
                             outline: none; /* Quitar el borde al hacer clic */
                         }
                     </style>
-                    <a href="https://localhost:7253/views/cuenta/desaparecidos.html">
-                        <button type="button" id="btnIniciarSesion" name="btnIniciarSesion" class="btn-primary" style="background-color: rgb(4, 111, 212); border-style: none; padding: 4.5px; border-radius: 45vh; color: white; justify-items: center; margin-top: 15px;">   Iniciar sesion   </button>
-                    </a>
-                        
-                        <center>
+                    <!--href="https://localhost:7253/views/cuenta/desaparecidos.html"-->
+                    <button  type="button" id="btnIniciarSesion" name="btnIniciarSesion" class="btn-primary" style="background-color: rgb(4, 111, 212); border-style: none; padding: 4.5px; border-radius: 45vh; color: white; justify-items: center; margin-top: 15px;">   Iniciar sesion   </button>
+
+
+                    <center>
+
                         <a href="https://localhost:7253/views/sin-cuenta/desaparecidos.html">
-                                <button type="button" id="btnCrear_cuenta" name="btnCrear_cuenta" class="btn-primary" style="background-color: rgb(4, 111, 212); border-style: none; border-radius: 45vh; color: white; justify-items: center; padding: 4.5px; margin-top:10px;">   Continuar sin cuenta    </button>
+                            <button type="button" id="btnCrear_cuenta" name="btnCrear_cuenta" class="btn-primary" style="background-color: rgb(4, 111, 212); border-style: none; border-radius: 45vh; color: white; justify-items: center; padding: 4.5px; margin-top:10px;">
+                                Continuar sin cuenta
+
+                            </button>
                         </a>
-                        </center>
+
+                        
+
+                    </center>
 
                 </div>
             </div>
         </div>
         </center>
-            <!-- JavaScript -->
+           <!--  JavaScript -->
             <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.14.0/build/alertify.min.js"></script>
 
 
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+    <script>
+
+        //objetos de HTML
+        let btnInicioSesion = document.getElementById("btnIniciarSesion").addEventListener("click", login) 
+      
+        async function login() {
+            let user = document.getElementById("txtUsuarioCuenta");
+            let contra = document.getElementById("txtContraseñaCuenta");
+            let useer = user.value;
+            let contras = contra.value;
+
+            const respuesta = await fetch('https://localhost:7253/api/cuentas', {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            }), cuentas = await respuesta.json();
+
+            cuentas.forEach(cuentas => {
+                if (cuentas.usuario === useer && cuentas.contraseña === contras) {
+                    const url = ' https://localhost:7253/views/cuenta/desaparecidos.html';
+                    window.open(url, '_self');
+                }
+            })
+
+           
+            alertify.error('Usuario o contraseña incorrecta.');
+        }
+           
+      
+            
+    </script>
+
+
 </body>
 </html>
