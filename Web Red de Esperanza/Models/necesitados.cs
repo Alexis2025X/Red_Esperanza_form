@@ -18,6 +18,7 @@ namespace Web_Red_de_Esperanza.Models
         public int asistido_id { get; set; }
         public string? Telefono { get; set; }
         public string? WhatsApp { get; set; }
+        public string? Publicado_por { get; set; }
        /* public byte imagen { get; set; }*/
       
 
