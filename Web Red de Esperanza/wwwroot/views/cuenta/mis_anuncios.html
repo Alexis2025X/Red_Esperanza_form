@@ -128,9 +128,10 @@
                     <input type="file" id="fileimagenDesa" style="max-width:100%;" />
                     <h5 class="card-title" style="background-color: #038587; color: white;">
                         Encontremos a: <br>
+
+                        <input type="text" id="txtNombreDesaparecido" class="card-title" style="background-color: #038587; color: white;" placeholder="Nombre">
+                        <input type="text" id="txtApellidoDesaparecido" class="card-title" style="background-color: #038587; color: white;" placeholder="Apellido">
                     </h5>
-                    <input type="text" id="txtNombreDesaparecido" class="card-title" style="background-color: #038587; color: white;" placeholder="Nombre">
-                    <input type="text" id="txtApellidoDesaparecido" class="card-title" style="background-color: #038587; color: white;" placeholder="Apellido">
                     <h5>Fecha de desaparicion</h5>  <input type="date" id="fecha_desaparicion" />
 
                     <div class="card-body">
@@ -152,12 +153,11 @@
 
                         </p>
                         <input id="btnPublicarDesaparecido" class="btn btn-primary" type="submit" value="Publicar">
-
+                    </div>
                     </div>
                 </div>
             </div>
 
-        </div>
     </div>
     <!--  JavaScript -->
     <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.14.0/build/alertify.min.js"></script>
@@ -341,7 +341,6 @@
                     ayuda_id: tipo_ayuda,
                     situacion_descripcion: txtDescripcionNecesitados.value,
                     fecha_publicacion: "'" + dia + "-" + mes + "-" + anio + "'",
-                    asistido_id: tipo_ayuda,
                     telefono: txtTelefonoNecesitado.value,
                     whatsApp: txtWhatsAppNecesitado.value,
                     publicado_por: parseInt(nombreAlmacenado)

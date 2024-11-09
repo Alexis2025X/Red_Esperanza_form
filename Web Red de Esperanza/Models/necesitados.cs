@@ -15,7 +15,6 @@ namespace Web_Red_de_Esperanza.Models
         public int ayuda_id { get; set; }
         public required string Situacion_descripcion { get; set; }
         public DateTime Fecha_publicacion { get; set; }
-        public int asistido_id { get; set; }
         public string? Telefono { get; set; }
         public string? WhatsApp { get; set; }
         public string? Publicado_por { get; set; }
