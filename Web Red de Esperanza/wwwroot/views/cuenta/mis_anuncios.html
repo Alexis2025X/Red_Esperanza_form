@@ -316,46 +316,94 @@
                 }
                 // Obtener los valores de todos los campos
                 const valoresCampos = [
-                    txtNombreDesaparecido.value,
-                    txtApellidoDesaparecido.value,
-                    txtEdadDesaparecido.value,
-                    fecha_desaparicion.value,
-                    txtLugarDesaparecido.value,
-                    txtDescripcionDesaparecido.value,
-                    txtTelefonoDesaparecido.value,
-                    txtWhatsAppDesaparecido.value,
-                    distrito,
-                    nombreAlmacenado
+                    !txtNombreDesaparecido.value,
+                    !txtApellidoDesaparecido.value,
+                    !txtEdadDesaparecido.value,
+                    !fecha_desaparicion.value,
+                    !txtLugarDesaparecido.value,
+                    !txtDescripcionDesaparecido.value,
+                    !txtTelefonoDesaparecido.value,
+                    !txtWhatsAppDesaparecido.value,
+                    !distrito,
+                    !nombreAlmacenado
                 ];
-
-                // Iterar sobre cada valor y verificar si está vacío
-                for (const valor of valoresCampos) {
-                    if (!valor || valor.trim() === '') {
-                        // Si algún valor está vacío o contiene solo espacios en blanco, mostrar un mensaje de error
-                        return false; // Detener la ejecución del formulario
+                for (var i = 0; i < valoresCampos.length; i++) {
+                    if (valoresCampos[i] == true) {
+                        console.log(false)
+                        return false
                     }
                 }
-
-                // Si todos los campos están llenos, permitir el envío del formulario
+                console.log(true)
                 return true;
             }
             function validarDatosNecesitados() {
-                // Obtener los valores de los campos
-                const nombre = txtNombreDesaparecido.value;
-                const apellido = txtApellidoDesaparecido.value;
-                const edad = txtEdadDesaparecido.value;
-                const fecha = fecha_desaparicion.value;
-                const lugar = txtLugarDesaparecido.value;
-                const descripcion = txtDescripcionDesaparecido.value;
-                const telefono = txtTelefonoDesaparecido.value;
-                const whatsapp = txtWhatsAppDesaparecido.value;
+                //obteniendo el id del distrito
+                const selectElement = document.getElementById("txtDistritoNecesitado");
+                const distritos = ["Distrito 1", "Distrito 2", "Distrito 3"];
+                var distrito;
+                const selectedIndex = selectElement.selectedIndex;
+                const selectedOption = selectElement.options[selectedIndex];
+                const selectedText = selectedOption.text;
 
-                // Verificar si alguno de los campos está vacío
-                if (!nombre || !apellido || !edad || !fecha || !lugar || !descripcion || !telefono || !whatsapp || !distrito || !nombreAlmacenado) {
-                    return false;
-                } else {
-                    return true;
+                for (var i = 0; i < distritos.length; i++) {
+                    if (distritos[i] == selectedText) {
+                        distrito = i + 1
+                    }
                 }
+                console.log(distrito);
+                //obteniendo el id de la ayuda
+                const selectElementAyuda = document.getElementById("txtAyudaNecesitado");
+                const tipo_ayudas = ["ayuda 1", "ayuda 2"];
+                var tipo_ayuda;
+                const selectedIndexNece = selectElementAyuda.selectedIndex;
+                const selectedOptionNece = selectElementAyuda.options[selectedIndexNece];
+                const selectedTextNece = selectedOptionNece.text;
+
+                for (var i = 0; i < tipo_ayudas.length; i++) {
+                    if (tipo_ayudas[i] == selectedTextNece) {
+                        tipo_ayuda = i + 1
+                    }
+                }
+                
+                const campos = [
+                        !txtNombreNecesitado.value,
+                        !txtApellidoNecesitado.value,
+                        !parseInt(txtEdadNecesitado.value),
+                        !txtDireccionNecesitado.value,
+                        !txtDescripcionNecesitados.value,
+                        !txtTelefonoNecesitado.value,
+                        !txtWhatsAppNecesitado.value,
+                ];
+
+                console.log(distrito)
+                console.log(tipo_ayuda)
+                console.log(campos);
+                // Verificamos si alguno de los campos está vacío o tiene un valor false
+                for (var i = 0; i < campos.length; i++) {
+                    if (campos[i] == true) {
+                        return false;
+                    }
+                }
+
+                return true;
+
+                /*if (
+                    !txtNombreNecesitado ||
+                    !txtApellidoNecesitado ||
+                    txtEdadNecesitado.value || // Verificamos si la edad es un número
+                    !txtDireccionNecesitado ||
+                    !txtDescripcionNecesitados ||
+                    !txtTelefonoNecesitado ||
+                    !txtWhatsAppNecesitado
+                ) {
+                    
+                    console.log(false);
+                    return false; // Si algún campo está vacío, retornamos false
+                } else {
+                    console.log(true)
+                    return true; // Si todos los campos están llenos, retornamos true
+                    
+                }*/
             }
 
             btnAgregarNecesitado.addEventListener("click", agregarNecesitado);
@@ -366,8 +414,10 @@
             async function agregarNecesitado() {
                 let validacion = validarDatosNecesitados()
                 if (validacion == false) {
-                    alertify.error('Error notification message.');
+                    alertify.error('Agregue todos los campos.');
                 } else {
+                    alertify.success("Validacion correcta");
+                    
                     //obteniendo el id del distrito
                     const selectElement = document.getElementById("txtDistritoNecesitado");
                     const distritos = ["Distrito 1", "Distrito 2", "Distrito 3"];
