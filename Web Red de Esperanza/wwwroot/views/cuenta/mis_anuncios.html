@@ -322,7 +322,9 @@
 
 
     <script>
+        //mostrar publicaciones realizadas al iniciar la pagina
         mostrarDesaparecidos();
+       // mostrarNecesitados();
         //Objetos del HTML
         const txtBuscarPublicacion = document.getElementById('btnBuscar').addEventListener("click", buscarPublicacion);
         let btnAgregarNecesitado = document.getElementById("btnPublicarNecesitado");
@@ -332,7 +334,7 @@
         let filenece = document.getElementById("fileimagenNese").addEventListener("change", mostrarImg)
         let fileDesa = document.getElementById("fileimagenDesa").addEventListener("change", mostrarImg)
 
-
+        //mostrar_imagen
         function mostrarImg(e) {
 
 
@@ -380,7 +382,7 @@
                 }
             }
         }
-
+        //validacion de datos
         function validarDatosDesaparecidos() {
             //obtencion de compos adicionales
             const distritos = ["Distrito 1", "Distrito 2", "Distrito 3"];
@@ -411,11 +413,11 @@
             ];
             for (var i = 0; i < valoresCampos.length; i++) {
                 if (valoresCampos[i] == true) {
-                    console.log(false)
+                    
                     return false
                 }
             }
-            console.log(true)
+           
             return true;
         }
         function validarDatosNecesitados() {
@@ -432,7 +434,6 @@
                     distrito = i + 1
                 }
             }
-            console.log(distrito);
             //obteniendo el id de la ayuda
             const selectElementAyuda = document.getElementById("txtAyudaNecesitado");
             const tipo_ayudas = ["ayuda 1", "ayuda 2"];
@@ -456,10 +457,6 @@
                 !txtTelefonoNecesitado.value,
                 !txtWhatsAppNecesitado.value,
             ];
-
-            console.log(distrito)
-            console.log(tipo_ayuda)
-            console.log(campos);
             // Verificamos si alguno de los campos está vacío o tiene un valor false
             for (var i = 0; i < campos.length; i++) {
                 if (campos[i] == true) {
@@ -469,106 +466,94 @@
 
             return true;
 
-            /*if (
-                !txtNombreNecesitado ||
-                !txtApellidoNecesitado ||
-                txtEdadNecesitado.value || // Verificamos si la edad es un número
-                !txtDireccionNecesitado ||
-                !txtDescripcionNecesitados ||
-                !txtTelefonoNecesitado ||
-                !txtWhatsAppNecesitado
-            ) {
-
-                console.log(false);
-                return false; // Si algún campo está vacío, retornamos false
-            } else {
-                console.log(true)
-                return true; // Si todos los campos están llenos, retornamos true
-
-            }*/
+            
         }
-
+        //botones de agregar
         btnAgregarNecesitado.addEventListener("click", agregarNecesitado);
         btnAgregarDesaparecido.addEventListener("click", agregarDesaparecido);
-        //mostrar_imagen
+      
 
         //Creacion de anuncio de necesitados
         async function agregarNecesitado() {
-            let validacion = validarDatosNecesitados()
-            if (validacion == false) {
-                alertify.error('Agregue todos los campos.');
-            } else {
-                alertify.success("Validacion correcta");
-
-                //obteniendo el id del distrito
-                const selectElement = document.getElementById("txtDistritoNecesitado");
-                const distritos = ["Distrito 1", "Distrito 2", "Distrito 3"];
-                var distrito;
-                const selectedIndex = selectElement.selectedIndex;
-                const selectedOption = selectElement.options[selectedIndex];
-                const selectedText = selectedOption.text;
-
-                for (var i = 0; i < distritos.length; i++) {
-                    if (distritos[i] == selectedText) {
-                        distrito = i + 1
-                    }
-                }
-                //obteniendo el id de la ayuda
-                const selectElementAyuda = document.getElementById("txtAyudaNecesitado");
-                const tipo_ayudas = ["ayuda 1", "ayuda 2"];
-                var tipo_ayuda;
-                const selectedIndexNece = selectElementAyuda.selectedIndex;
-                const selectedOptionNece = selectElementAyuda.options[selectedIndex];
-                const selectedTextNece = selectElementAyuda.text;
-
-                for (var i = 0; i < tipo_ayudas.length; i++) {
-                    if (tipo_ayudas[i] == selectedTextNece) {
-                        tipo_ayuda = i + 1
-                    }
-                }
-
-
-
-                const fechaActual = new Date();
-                const dia = fechaActual.getDate();
-                const mes = fechaActual.getMonth() + 1;
-                const anio = fechaActual.getFullYear();
-
-                const nombreAlmacenado = localStorage.getItem('nombre');
-                console.log(nombreAlmacenado);
-
-                let datos = {
-                    nombre_nece: txtNombreNecesitado.value,
-                    apellido: txtApellidoNecesitado.value,
-                    edad: parseInt(txtEdadNecesitado.value),
-                    direccion: txtDireccionNecesitado.value,
-                    distrito_id: distrito,
-                    ayuda_id: tipo_ayuda,
-                    situacion_descripcion: txtDescripcionNecesitados.value,
-                    fecha_publicacion: "'" + dia + "-" + mes + "-" + anio + "'",
-                    telefono: txtTelefonoNecesitado.value,
-                    whatsApp: txtWhatsAppNecesitado.value,
-                    publicado_por: parseInt(nombreAlmacenado)
-                }
-
-                method = "POST",
-                    url = "https://localhost:7041/api/necesitados";
-                console.log(datos);
-                const respuesta = await fetch(url, {
-                    method,
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify(datos)
-                }), desaparecidos = await respuesta.json();
-
-                if (desaparecidos && desaparecidos?.Id_publicacionNese > 0) {
-                    listarAlumnos();
-                    limpiarDatosAlumnos();
+            try {
+                let validacion = validarDatosNecesitados()
+                if (validacion == false) {
+                    alertify.error('Agregue todos los campos.');
                 } else {
-                    conosle.log(alumno);
-                }
+                    alertify.success("Comenzando la publicacion");
 
+                    //obteniendo el id del distrito
+                    const selectElement = document.getElementById("txtDistritoNecesitado");
+                    const distritos = ["Distrito 1", "Distrito 2", "Distrito 3"];
+                    var distrito;
+                    const selectedIndex = selectElement.selectedIndex;
+                    const selectedOption = selectElement.options[selectedIndex];
+                    const selectedText = selectedOption.text;
+
+                    for (var i = 0; i < distritos.length; i++) {
+                        if (distritos[i] == selectedText) {
+                            distrito = i + 1
+                        }
+                    }
+                    //obteniendo el id de la ayuda
+                    const selectElementAyuda = document.getElementById("txtAyudaNecesitado");
+                    const tipo_ayudas = ["ayuda 1", "ayuda 2"];
+                    var tipo_ayuda;
+                    const selectedIndexNece = selectElementAyuda.selectedIndex;
+                    const selectedOptionNece = selectElementAyuda.options[selectedIndex];
+                    const selectedTextNece = selectElementAyuda.text;
+
+                    for (var i = 0; i < tipo_ayudas.length; i++) {
+                        if (tipo_ayudas[i] == selectedTextNece) {
+                            tipo_ayuda = i + 1
+                        }
+                    }
+
+
+
+                    const fechaActual = new Date();
+                    const dia = fechaActual.getDate();
+                    const mes = fechaActual.getMonth() + 1;
+                    const anio = fechaActual.getFullYear();
+
+                    const nombreAlmacenado = localStorage.getItem('nombre');
+                    console.log(nombreAlmacenado);
+
+                    let datos = {
+                        nombre_nece: txtNombreNecesitado.value,
+                        apellido: txtApellidoNecesitado.value,
+                        edad: parseInt(txtEdadNecesitado.value),
+                        direccion: txtDireccionNecesitado.value,
+                        distrito_id: distrito,
+                        ayuda_id: tipo_ayuda,
+                        situacion_descripcion: txtDescripcionNecesitados.value,
+                        fecha_publicacion: "'" + dia + "-" + mes + "-" + anio + "'",
+                        telefono: txtTelefonoNecesitado.value,
+                        whatsApp: txtWhatsAppNecesitado.value,
+                        publicado_por: parseInt(nombreAlmacenado)
+                    }
+
+                    method = "POST",
+                        url = "https://localhost:7041/api/necesitados";
+                    console.log(datos);
+                    const respuesta = await fetch(url, {
+                        method,
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify(datos)
+                    }), desaparecidos = await respuesta.json();
+
+                    if (desaparecidos && desaparecidos?.Id_publicacionNese > 0) {
+                        mostrarDesaparecidos();
+                        //mostrarNecesitados();
+                    } else {
+                        alertify.error("A ocurrido un error");
+                    }
+
+                }
+            } catch (e) {
+                alertify.error("A ocurrido un error");
             }
 
         }
@@ -600,9 +585,7 @@
                     const anio = fechaActual.getFullYear();
 
                     const nombreAlmacenado = localStorage.getItem('nombre');
-                    console.log(nombreAlmacenado);
 
-                    console.log(distrito);
                     let datos = {
                         nombre: txtNombreDesaparecido.value,
                         apellido: txtApellidoDesaparecido.value,
@@ -627,14 +610,12 @@
                         body: JSON.stringify(datos)
                     }), desaparecidos = await respuesta.json();
                     alertify.success("Publicación realizada");
-                    console.log(datos)
+                   
                     if (desaparecidos && desaparecidos?.Id_publicacionDesa > 0) {
                         alertify.success("Publicación realizada");
-                        listarAlumnos();
-                        limpiarDatosAlumnos();
-                    } else {
-                        conosle.log(desaparecidos);
-                    }
+                        mostrarDesaparecidos();
+                        //mostrarNecesitados();
+                    } 
                 } catch (e) {
                     alertify.error('Ocurrio un error al realizar la publicación.');
                     console.log("Ocurrio un error " + e)
@@ -644,6 +625,7 @@
 
         }
         //mostrar datos de desaparecidos
+
         async function mostrarDesaparecidos() {
             conenedorAnuncios.innerHTML = '';
             const respuesta = await fetch("https://localhost:7253/api/desaparecidos", {
@@ -681,9 +663,9 @@
                                             <p>WhatsApp: ${Desaparecidos.whatsApp} </p>
                                             <p>Distrito: ${Desaparecidos.distrito_id} </p>
                                               <div class="card-body" id="conten-btn">
-                                                <input class="btn btn-primary" type="submit" value="Editar">
-                                                <input class="btn btn-danger" type="submit" value="Eliminar">
-                                                </div>
+                                                <input name="nece" class="btn btn-primary" id="${Desaparecidos.id_publicacionDesa}" type="submit" value="Editar">
+                                              <input class="btn btn-danger" id='${Desaparecidos.id_publicacionDesa}' type="submit" name="nece" onclick="eliminarPublicacion(event)" class="delete" value="Eliminar">
+                                                 </div>
                                         </div>
                                     </div>
 </div>`
@@ -722,10 +704,10 @@
                                       <p>Estado: ${necesitados.asistido_id} </p>
                                       <p>Tel: ${necesitados.telefono} <br> WhatsApp: ${necesitados.whatsApp}</p>
                                       <p>Publicado por: ${necesitados.publicado_por} </p>
-                                        <div class="card-body" id="conten-btn">
-                                      <input class="btn btn-primary" type="submit" value="Editar">
-                                       <input class="btn btn-danger" type="submit" value="Eliminar">
-                                       </div>
+                                       <div class="card-body" id="conten-btn">
+                                         <input name="nece" class="btn btn-primary" id="${Desaparecidos.id_publicacionDesa}" type="submit" value="Editar">
+                                            <input class="btn btn-danger" id='${Desaparecidos.id_publicacionDesa}' type="submit" name="nece" onclick="eliminarPublicacion(event)" class="delete" value="Eliminar">
+                                        </div>
                                     </div>
                                   </div>
 </div>
@@ -735,6 +717,7 @@
 
             });
         }
+        //Buscar publicacion
 
         async function buscarPublicacion(e) {
             e.preventDefault();
@@ -765,30 +748,30 @@
                     encontrado = true;
                     conenedorAnuncios.innerHTML += `
 
-                                    <div class="col-sm-6 col-md-4 ">
-                                    <div class="card" style="width: 18rem; background-color: #072145; color: white; margin: 0.5rem auto;">
-                                        <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"></rect><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
-                                        <div class="card-body">
-                                            <h5 class="card-title" style="background-color: #038587; color: white;">Ayudenos a encontrar a: ${Desaparecidos.nombre} ${Desaparecidos.apellido} </h5>
-                                        </div>
-                                        <ul class="list-group list-group-flush">
-                                            <li class="list-group-item" style="background-color: #072145; color: white;">Edad: ${Desaparecidos.edad}</li>
-                                            <li class="list-group-item" style="background-color: #072145; color: white;">Fecha de desaparición: ${Desaparecidos.fecha_Desaparicion}</li>
-                                            <li class="list-group-item" style="background-color: #072145; color: white;">Visto por ultima vez en: ${Desaparecidos.lugar_Desaparicion}</li>
-                                        </ul>
-                                        <div class="card-body">
-                                            <p>Descripción: ${Desaparecidos.descripción_persona}</p>
-
-                                            <p>Si sabe algo contactelos por medio de:<p>
-                                            <p>Telefono: ${Desaparecidos.telefono} </p>
-                                            <p>WhatsApp: ${Desaparecidos.whatsApp} </p>
-                                            <p>Distrito: ${Desaparecidos.distrito_id} </p>
-                                              <div class="card-body" id="conten-btn">
-                                                <input class="btn btn-primary" type="submit" value="Editar">
-                                                <input class="btn btn-danger" type="submit" value="Eliminar">
-                                                </div>
-                                        </div>
+                                <div class="col-sm-6 col-md-4 ">
+                                <div class="card" style="width: 18rem; background-color: #072145; color: white; margin: 0.5rem auto;">
+                                    <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"></rect><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
+                                    <div class="card-body">
+                                        <h5 class="card-title" style="background-color: #038587; color: white;">Ayudenos a encontrar a: ${Desaparecidos.nombre} ${Desaparecidos.apellido} </h5>
                                     </div>
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item" style="background-color: #072145; color: white;">Edad: ${Desaparecidos.edad}</li>
+                                        <li class="list-group-item" style="background-color: #072145; color: white;">Fecha de desaparición: ${Desaparecidos.fecha_Desaparicion}</li>
+                                        <li class="list-group-item" style="background-color: #072145; color: white;">Visto por ultima vez en: ${Desaparecidos.lugar_Desaparicion}</li>
+                                    </ul>
+                                    <div class="card-body">
+                                        <p>Descripción: ${Desaparecidos.descripción_persona}</p>
+
+                                        <p>Si sabe algo contactelos por medio de:<p>
+                                        <p>Telefono: ${Desaparecidos.telefono} </p>
+                                        <p>WhatsApp: ${Desaparecidos.whatsApp} </p>
+                                        <p>Distrito: ${Desaparecidos.distrito_id} </p>
+                                          <div class="card-body" id="conten-btn">
+                                            <input class="btn btn-primary" type="submit" value="Editar">
+                                            <input class="btn btn-danger" type="submit" value="Eliminar">
+                                            </div>
+                                    </div>
+                                </div>
 </div>`
                 }
             })
@@ -796,28 +779,28 @@
                 if (parseInt(necesitados.publicado_por) === nombreAlmacenado && necesitados.necesitados.nombre_nece == txtBuscado || necesitados.apellido == txtBuscado) {
 
                     bodyNecesitados.innerHTML += `
-<div class="col-sm-6 col-md-4 ">
-                                  <div class="card" style="width: 18rem; background-color: #072145; color: white; margin: 0.5rem auto;">
-                                    <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"></rect><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
-                                    <div class="card-body">
-                                      <h5 class="card-title" style="background-color: #038587; color: white;">Ayudemos a: <br>
-                                      ${necesitados.nombre_nece} ${necesitados.apellido} </h5>
+                            <div class="col-sm-6 col-md-4 ">
+                              <div class="card" style="width: 18rem; background-color: #072145; color: white; margin: 0.5rem auto;">
+                                <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"></rect><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
+                                <div class="card-body">
+                                  <h5 class="card-title" style="background-color: #038587; color: white;">Ayudemos a: <br>
+                                  ${necesitados.nombre_nece} ${necesitados.apellido} </h5>
 
-                                    <div class="card-body">
-                                    <p>Edad: ${necesitados.edad}</p>
-                                    <p>Distrito: ${necesitados.distrito_id} </p>
-                                    <p>Direccion: ${necesitados.direccion} </p>
-                                      <p>Descripcion: <br></p>
-                                      <p class="card-text">${necesitados.situacion_descripcion}</p>  <p>Creacion del anuncio: ${necesitados.fecha_publicacion}  </p>
-                                      <p>Estado: ${necesitados.asistido_id} </p>
-                                      <p>Tel: ${necesitados.telefono} <br> WhatsApp: ${necesitados.whatsApp}</p>
-                                      <p>Publicado por: ${necesitados.publicado_por} </p>
-                                        <div class="card-body" id="conten-btn">
-                                      <input class="btn btn-primary" type="submit" value="Editar">
-                                       <input class="btn btn-danger" type="submit" value="Eliminar">
-                                       </div>
-                                    </div>
-                                  </div>
+                                <div class="card-body">
+                                <p>Edad: ${necesitados.edad}</p>
+                                <p>Distrito: ${necesitados.distrito_id} </p>
+                                <p>Direccion: ${necesitados.direccion} </p>
+                                  <p>Descripcion: <br></p>
+                                  <p class="card-text">${necesitados.situacion_descripcion}</p>  <p>Creacion del anuncio: ${necesitados.fecha_publicacion}  </p>
+                                  <p>Estado: ${necesitados.asistido_id} </p>
+                                  <p>Tel: ${necesitados.telefono} <br> WhatsApp: ${necesitados.whatsApp}</p>
+                                  <p>Publicado por: ${necesitados.publicado_por} </p>
+                                    <div class="card-body" id="conten-btn">
+                                  <input class="btn btn-primary" type="submit" value="Editar">
+                                   <input class="btn btn-danger" type="submit" value="Eliminar">
+                                   </div>
+                                </div>
+                              </div>
 </div>
 `
                 }
@@ -830,6 +813,39 @@
             }
 
         }
+        //eliminar publicacion
+        async function eliminarPublicacion(e) {
+            console.log("hola");
+            let id = e.target.id;
+            let baseSelect = e.target.name;
+
+            if (confirm(`Esta seguro de eliminar la publicacion`)) {
+                var url;
+                if (baseSelect == "desa") {
+                    url = `https://localhost:7253/api/desaparecidos/${id}`;
+
+                } else if (baseSelect == "nece") {
+                    url = `https://localhost:7253/api/desaparecidos/${id}`;
+
+                }
+
+                let respuesta = await fetch(url, {
+                    method: "DELETE",
+                    headers: {
+                        "Content-Type": "application/text"
+                    }
+                }),
+                    datos = await respuesta.text();
+                if (datos && datos.length > 0) {
+                    console.log(datos);
+                } else {
+                    mostrarDesaparecidos()
+                }
+            }
+
+
+        }
+
     </script>
 
     <!--  <div class="row m-0 border-0 bd-example m-0 border-0 justify-content-center">
