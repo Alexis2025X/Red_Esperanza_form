@@ -12,7 +12,8 @@
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.14.0/build/css/themes/semantic.min.css" />
     <!-- Bootstrap theme -->
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.14.0/build/css/themes/bootstrap.min.css" />
-
+    <!--Para la icono de la contraseña-->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <title>Document</title>
 </head>
 <body class="m-0 border-0 bd-example m-0 border-0" style="background-color: #015a95; ">
@@ -61,7 +62,31 @@
                     <center>
                         <h5 class=" contraseña card-title">Contraseña</h5>
                     </center>
-                    <Input type="text" maxlength="10" style="background-color: rgb(3, 133, 135); font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; color: black; text-align: center;" id="txtContraseñaCuenta" name="txtContraseñaCuenta">
+                    <Input type="password" maxlength="10" style="background-color: rgb(3, 133, 135); font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; color: black; text-align: center;" id="txtContraseñaCuenta" name="txtContraseñaCuenta">
+                    <i class='bx bx-show-alt' style=" background-color:red; width:0px; font-size: 30px; transform: translateX(145px) translateY(-28px); cursor:pointer;"></i>
+
+                    <script>
+                        
+                        //llamamos al input y al icon
+                        const txtContraseñaCuenta = document.getElementById("txtContraseñaCuenta")
+                          let icon = document.querySelector(".bx");
+                            
+                        //cada vez que le demos click al icono...
+                        icon.addEventListener("click", e => {
+                            if (txtContraseñaCuenta.type === "password") {
+                                txtContraseñaCuenta.type = "text";
+                                icon.classList.remove('bx-show-alt');
+                                icon.classList.add('bx-hide');
+                            }
+                            else {
+                                txtContraseñaCuenta.type = "password"
+                                icon.classList.add('bx-show-alt');
+                                icon.classList.remove('bx-hide');
+                            }
+                        })
+                    </script>
+                    <!--<box-icon name='show-alt' ></box-icon> MOSTRAR-->
+                    <!--<box-icon name='low-vision' ></box-icon> NO MOSTRAR-->
                     <style>
                         #txtContraseñaCuenta {
                             background-color: rgb(3, 133, 135);
@@ -70,7 +95,7 @@
                         }
                     </style>
                     <!--href="https://localhost:7253/views/cuenta/desaparecidos.html"-->
-                    <button  type="button" id="btnIniciarSesion" name="btnIniciarSesion" class="btn-primary" style="background-color: rgb(4, 111, 212); border-style: none; padding: 4.5px; border-radius: 45vh; color: white; justify-items: center; margin-top: 15px;">   Iniciar sesion   </button>
+                    <button type="button" id="btnIniciarSesion" name="btnIniciarSesion" class="btn-primary" style="background-color: rgb(4, 111, 212); border-style: none; padding: 4.5px; border-radius: 45vh; color: white; justify-items: center; margin-top: 15px;">   Iniciar sesion   </button>
 
 
                     <center>
@@ -81,8 +106,6 @@
 
                             </button>
                         </a>
-
-                        
 
                     </center>
 
