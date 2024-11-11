@@ -40,10 +40,10 @@
         <div class="container col-md-4 col-sm-6">
 
             <div class="card" style="width: 20rem; margin-top: 25vh; margin: 25% auto; background-color: rgb(7, 33, 69); color: white; ">
-                <div class="card-body" style="display: grid; justify-content: center; align-items: center;">
+                <div class="card-body" style="display: grid; text-align: center;">
 
                     <h5 class=" nombre card-title">Nombre:</h5>
-                    <Input id="txtNombre" type="text" style="background-color: rgb(3, 133, 135); font-family: Roboto, sans-serif, Arial; font-weight: bold; align-items:center;" ></Input>
+                    <Input id="txtNombre" type="text" style="background-color: rgb(3, 133, 135); font-family: Roboto, sans-serif, Arial; font-weight: bold; text-align: center;" ></Input>
                     <style>
                         #txtNombre {
                             background-color: rgb(3, 133, 135);
@@ -90,46 +90,7 @@
 
 
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
 </body>
 </html>
 
-<!--<script>
-    async function mostrarMiCuenta() {
-        console.log("Mostrando data")
-        bodyMiCuenta.innerHTML = '';
-        const respuesta = await fetch('https://localhost:7253/api/cuentas', {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json"
-            }
-        }), cuentas = await respuesta.json();
-        cuentas.forEach(cuentas => {
-
-            bodyMiCuenta.innerHTML += `<h5 class=" nombre card-title">Nombre:</h5>
-<Input id="txtNombre" type="text" style="background-color: rgb(3, 133, 135);">${cuentas.nombre}</Input>
-<style>
-    #txtNombre {
-        background-color: rgb(3, 133, 135);
-        border: none; /* Quitar el borde */
-        outline: none; /* Quitar el borde al hacer clic */
-    }
-</style>
-<h5 class=" user card-title">Usuario:</h5>
-<Input id="txtUsuario" type="text" style="background-color:  rgb(3, 133, 135);">${cuentas.usuario}</Input>
-<style>
-    #txtUsuario {
-        background-color: rgb(3, 133, 135);
-        border: none; /* Quitar el borde */
-        outline: none; /* Quitar el borde al hacer clic */
-    }
-</style>
-<h5 class=" contraseña card-title">Contraseña:</h5>
-<Input id="txtContraseña" type="text" style="background-color: rgb(3, 133, 135);">${cuentas.contraseña}</Input>
-<style>
-    #txtContraseña {
-        background-color: rgb(3, 133, 135);
-        border: none; /* Quitar el borde */
-        outline: none; /* Quitar el borde al hacer clic */
-    }
-</style>`
-</script>-->

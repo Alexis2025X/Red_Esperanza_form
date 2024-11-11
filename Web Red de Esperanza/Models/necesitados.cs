@@ -17,9 +17,8 @@ namespace Web_Red_de_Esperanza.Models
         public DateTime Fecha_publicacion { get; set; }
         public string? Telefono { get; set; }
         public string? WhatsApp { get; set; }
-        public string? Publicado_por { get; set; }
+        public int publicado_por { get; set; }
        /* public byte imagen { get; set; }*/
-      
 
     }
 }

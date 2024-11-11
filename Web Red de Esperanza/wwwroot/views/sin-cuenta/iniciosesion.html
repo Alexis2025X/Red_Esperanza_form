@@ -14,9 +14,14 @@
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.14.0/build/css/themes/bootstrap.min.css" />
     <!--Para la icono de la contraseña-->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <!--Font Family proveniente de google fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
     <title>Document</title>
 </head>
-<body class="m-0 border-0 bd-example m-0 border-0" style="background-color: #015a95; ">
+<body class="m-0 border-0 bd-example m-0 border-0" style="background-color: #015a95; font-family: Roboto, sans-serif, Arial;">
     <nav class="navbar justify-content-center" data-bs-theme="White" style="background-color: rgb(4, 4, 117);">
         <ul class="nav justify-content-center menu-nav" style="background-color: rgb(4, 4, 117);">
             <li class="nav-item">
@@ -45,12 +50,13 @@
             <div class="card" style="width: 20rem; margin-top: 25vh; margin: 25% auto; background-color: rgb(7, 33, 69); color: white; ">
                 <div class="card-body" style="display: grid; justify-content: center; align-items: center;">
                     <center>
-                        <h5 class=" nombre card-title" style="font-size:1.5rem;">Inicio de sesion</h5>
+                        <h5 class=" nombre card-title" style="font-size:1.5rem;">Inicio de sesión</h5>
                     </center>
                     <center>
+                        
                         <h5 class=" user card-title">Usuario:</h5>
                     </center>
-                    <Input type="text" maxlength="75" style="background-color:  rgb(3, 133, 135); font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; color:black; text-align:center;" id="txtUsuarioCuenta" name="txtUsuarioCuenta">
+                    <Input type="text" maxlength="75" style=" font-family: Roboto, sans-serif, Arial; font-weight: bold; color: black; text-align: center;" id="txtUsuarioCuenta" name="txtUsuarioCuenta">
                     <style>
                         /* Estilo para quitar el borde del input */
                         #txtUsuarioCuenta {
@@ -60,18 +66,19 @@
                         }
                     </style>
                     <center>
-                        <h5 class=" contraseña card-title">Contraseña</h5>
+                        
+                        <h5 class=" contraseña card-title" style="margin-top: 10px">Contraseña</h5>
                     </center>
-                    <Input type="password" maxlength="10" style="background-color: rgb(3, 133, 135); font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; color: black; text-align: center;" id="txtContraseñaCuenta" name="txtContraseñaCuenta">
-                    
-                    <i class='bx bx-show-alt' style=" background-color:red; width:0px; font-size: 30px; transform: translateX(145px) translateY(-28px); cursor:pointer;"></i>
+                    <Input type="password" maxlength="10" style=" font-family: Roboto, sans-serif, Arial; font-weight: bold; color: black; text-align: center; " id="txtContraseñaCuenta" name="txtContraseñaCuenta">
+
+                    <i class='bx bx-show-alt' style=" background-color:red; width:0px; font-size: 30px; transform: translateX(160px) translateY(-28px); cursor:pointer;"></i>
 
                     <script>
-                        
+
                         //llamamos al input y al icon
                         const txtContraseñaCuenta = document.getElementById("txtContraseñaCuenta")
-                          let icon = document.querySelector(".bx");
-                            
+                        let icon = document.querySelector(".bx");
+
                         //cada vez que le demos click al icono...
                         icon.addEventListener("click", e => {
                             if (txtContraseñaCuenta.type === "password") {
@@ -96,9 +103,7 @@
                         }
                     </style>
                     <!--href="https://localhost:7253/views/cuenta/desaparecidos.html"-->
-                    <button type="button" id="btnIniciarSesion" name="btnIniciarSesion" class="btn-primary" style="background-color: rgb(4, 111, 212); border-style: none; padding: 4.5px; border-radius: 45vh; color: white; justify-items: center; margin-top: 15px;">   Iniciar sesion   </button>
-
-
+                    <button type="button" id="btnIniciarSesion" name="btnIniciarSesion" class="btn-primary" style="background-color: rgb(4, 111, 212); border-style: none; padding: 4.5px; border-radius: 45vh; color: white; justify-items: center; margin-top: -10px">   Iniciar sesión   </button>
                     <center>
 
                         <a href="https://localhost:7253/views/sin-cuenta/desaparecidos.html">
@@ -113,18 +118,18 @@
                 </div>
             </div>
         </div>
-        </center>
-           <!--  JavaScript -->
-            <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.14.0/build/alertify.min.js"></script>
+    </center>
+    <!--  JavaScript -->
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.14.0/build/alertify.min.js"></script>
 
 
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
     <script>
 
         //objetos de HTML
-        let btnInicioSesion = document.getElementById("btnIniciarSesion").addEventListener("click", login) 
-      
+        let btnInicioSesion = document.getElementById("btnIniciarSesion").addEventListener("click", login)
+
         async function login() {
             let user = document.getElementById("txtUsuarioCuenta");
             let contra = document.getElementById("txtContraseñaCuenta");
@@ -153,9 +158,9 @@
                 alertify.error('Usuario o contraseña incorrecta.');
             }
 
-            }
-      
-            
+        }
+
+
     </script>
 
 
