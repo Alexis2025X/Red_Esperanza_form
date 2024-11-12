@@ -314,6 +314,7 @@
 
     </div>
     <div id="conenedorAnuncios" class="row m-0 border-0 bd-example m-0 border-0 justify-content-center"></div>
+    <div id="conenedorAnunciosNece" class="row m-0 border-0 bd-example m-0 border-0 justify-content-center"></div>
     <!--  JavaScript -->
     <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.14.0/build/alertify.min.js"></script>
 
@@ -323,8 +324,9 @@
 
     <script>
         //mostrar publicaciones realizadas al iniciar la pagina
+        mostrarNecesitados();
         mostrarDesaparecidos();
-       // mostrarNecesitados();
+      
         //Objetos del HTML
         const txtBuscarPublicacion = document.getElementById('btnBuscar').addEventListener("click", buscarPublicacion);
         let btnAgregarNecesitado = document.getElementById("btnPublicarNecesitado");
@@ -546,7 +548,7 @@
 
                     if (desaparecidos && desaparecidos?.Id_publicacionNese > 0) {
                         mostrarDesaparecidos();
-                        //mostrarNecesitados();
+                        mostrarNecesitados();
                     } else {
                         alertify.error("A ocurrido un error");
                     }
@@ -614,7 +616,7 @@
                     if (desaparecidos && desaparecidos?.Id_publicacionDesa > 0) {
                         alertify.success("Publicación realizada");
                         mostrarDesaparecidos();
-                        //mostrarNecesitados();
+                        mostrarNecesitados();
                     } 
                 } catch (e) {
                     alertify.error('Ocurrio un error al realizar la publicación.');
@@ -663,19 +665,23 @@
                                             <p>WhatsApp: ${Desaparecidos.whatsApp} </p>
                                             <p>Distrito: ${Desaparecidos.distrito_id} </p>
                                               <div class="card-body" id="conten-btn">
-                                                <input name="nece" class="btn btn-primary" id="${Desaparecidos.id_publicacionDesa}" type="submit" value="Editar">
-                                              <input class="btn btn-danger" id='${Desaparecidos.id_publicacionDesa}' type="submit" name="nece" onclick="eliminarPublicacion(event)" class="delete" value="Eliminar">
+                                                <input name="desa" class="btn btn-primary" id="${Desaparecidos.Id_publicacionDesa}" type="submit" value="Editar">
+                                              <input class="btn btn-danger" id="${Desaparecidos.id_publicacionDesa}" type="submit" name="desa" onclick="eliminarPublicacion(event)" class="delete" value="Eliminar">
                                                  </div>
                                         </div>
                                     </div>
 </div>`
                 }
             });
+
+
+
         }
         //mostrar datos de necesitados
         async function mostrarNecesitados() {
-            bodyNecesitados.innerHTML = '';
-            const respuesta = await fetch("https://localhost:7253/api/necesitados", {
+            conenedorAnuncios.innerHTML = '';
+            
+            const respuesta = await fetch('https://localhost:7253/api/necesitados', {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json"
@@ -683,12 +689,14 @@
             }), necesitados = await respuesta.json();
             //
             const nombreAlmacenado = localStorage.getItem('nombre'); //
-
+            console.log(necesitados);
+            
             necesitados.forEach(necesitados => {
-                if (parseInt(necesitados.publicado_por) === nombreAlmacenado) {
-
-                    bodyNecesitados.innerHTML += `
-<div class="col-sm-6 col-md-4 ">
+                console.log(nombreAlmacenado);
+                if (parseInt(necesitados.publicado_por) == nombreAlmacenado) {
+                   
+                    conenedorAnuncios.innerHTML += `
+                            <div class="col-sm-6 col-md-4 ">
                                   <div class="card" style="width: 18rem; background-color: #072145; color: white; margin: 0.5rem auto;">
                                     <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"></rect><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
                                     <div class="card-body">
@@ -705,8 +713,8 @@
                                       <p>Tel: ${necesitados.telefono} <br> WhatsApp: ${necesitados.whatsApp}</p>
                                       <p>Publicado por: ${necesitados.publicado_por} </p>
                                        <div class="card-body" id="conten-btn">
-                                         <input name="nece" class="btn btn-primary" id="${Desaparecidos.id_publicacionDesa}" type="submit" value="Editar">
-                                            <input class="btn btn-danger" id='${Desaparecidos.id_publicacionDesa}' type="submit" name="nece" onclick="eliminarPublicacion(event)" class="delete" value="Eliminar">
+                                         <input name="nece" class="btn btn-primary" id="${necesitados.id_publicacionNese}" type="submit" value="Editar">
+                                            <input class="btn btn-danger" id='${necesitados.id_publicacionNese}' type="submit" name="nece" onclick="eliminarPublicacion(event)" class="delete" value="Eliminar">
                                         </div>
                                     </div>
                                   </div>
@@ -815,18 +823,20 @@
         }
         //eliminar publicacion
         async function eliminarPublicacion(e) {
-            console.log("hola");
+            
             let id = e.target.id;
             let baseSelect = e.target.name;
-
+            console.log(id);
+            console.log(baseSelect);
             if (confirm(`Esta seguro de eliminar la publicacion`)) {
                 var url;
                 if (baseSelect == "desa") {
                     url = `https://localhost:7253/api/desaparecidos/${id}`;
+                    console.log("desa");
 
                 } else if (baseSelect == "nece") {
-                    url = `https://localhost:7253/api/desaparecidos/${id}`;
-
+                    url = `https://localhost:7253/api/necesitados/${id}`;
+                    console.log("nece");
                 }
 
                 let respuesta = await fetch(url, {
@@ -839,7 +849,8 @@
                 if (datos && datos.length > 0) {
                     console.log(datos);
                 } else {
-                    mostrarDesaparecidos()
+                    mostrarDesaparecidos();
+                    mostrarNecesitados();
                 }
             }
 
