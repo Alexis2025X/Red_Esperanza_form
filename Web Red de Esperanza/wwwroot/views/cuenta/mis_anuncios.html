@@ -535,7 +535,7 @@
                             distrito_id: distrito,
                             ayuda_id: tipo_ayuda,
                             situacion_descripcion: txtDescripcionNecesitados.value,
-                            fecha_publicacion: "'" + dia + "-" + mes + "-" + anio + "'",
+                            fecha_publicacion:  dia + "-" + mes + "-" + anio,
                             telefono: txtTelefonoNecesitado.value,
                             whatsApp: txtWhatsAppNecesitado.value,
                             publicado_por: parseInt(nombreAlmacenado)
@@ -543,7 +543,7 @@
 
                        
                     console.log(datos);
-                    if (btnAgregarNecesitado.value == "Agregar") {
+                    if (btnAgregarNecesitado.value == "Publicar") {
                         method = "POST",
                             url = "https://localhost:7041/api/necesitados";
                       ;
@@ -552,7 +552,7 @@
                         console.log(id_edicion);
                         method = "PUT",
                             url = url = `https://localhost:7253/api/desaparecidos/${id_edicion}`;
-                        btnAgregarNecesitado.value == "Agregar";
+                        btnAgregarNecesitado.value == "Publicar";
 
                             
                     }
