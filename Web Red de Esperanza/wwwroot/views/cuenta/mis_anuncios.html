@@ -527,52 +527,54 @@
                         const nombreAlmacenado = localStorage.getItem('nombre');
                         console.log(nombreAlmacenado);
 
-                        let datos = {
-                            nombre_nece: txtNombreNecesitado.value,
-                            apellido: txtApellidoNecesitado.value,
-                            edad: parseInt(txtEdadNecesitado.value),
-                            direccion: txtDireccionNecesitado.value,
-                            distrito_id: distrito,
-                            ayuda_id: tipo_ayuda,
-                            situacion_descripcion: txtDescripcionNecesitados.value,
-                            fecha_publicacion:  dia + "-" + mes + "-" + anio,
-                            telefono: txtTelefonoNecesitado.value,
-                            whatsApp: txtWhatsAppNecesitado.value,
-                            publicado_por: parseInt(nombreAlmacenado)
+                    let datos = {
+                            "nombre_nece": txtNombreNecesitado.value,
+                            "apellido": txtApellidoNecesitado.value,
+                            "edad": parseInt(txtEdadNecesitado.value),
+                            "direccion": txtDireccionNecesitado.value,
+                            "distrito_id": distrito,
+                            "ayuda_id": tipo_ayuda,
+                            "situacion_descripcion": txtDescripcionNecesitados.value,
+                            "fecha_publicacion": anio + "-" + mes + "-" + dia,
+                            "telefono": txtTelefonoNecesitado.value,
+                            "whatsApp": txtWhatsAppNecesitado.value,
+                            "publicado_por": parseInt(nombreAlmacenado)
                         }
 
                        
                     console.log(datos);
                     if (btnAgregarNecesitado.value == "Publicar") {
-                        method = "POST",
-                            url = "https://localhost:7041/api/necesitados";
-                      ;
-                    } else {
-                        id_edicion;
-                        console.log(id_edicion);
-                        method = "PUT",
-                            url = url = `https://localhost:7253/api/desaparecidos/${id_edicion}`;
-                        btnAgregarNecesitado.value == "Publicar";
-
-                            
-                    }
-
+                        method = 'POST';
+                        url = 'https://localhost:7253/api/necesitados'; 
                         const respuesta = await fetch(url, {
                             method,
                             headers: {
                                 "Content-Type": "application/json"
                             },
                             body: JSON.stringify(datos)
-                        }), desaparecidos = await respuesta.json();
+                        }), necesitados = await respuesta.json();
+                    } else {
+                        id_edicion;
+                        console.log(id_edicion);
+                        method = "PUT";
+                        url = `https://localhost:7253/api/necesitados/${id_edicion}`;
 
-                        if (desaparecidos && desaparecidos?.Id_publicacionNese > 0) {
+                       
+
+                        const respuesta = await fetch(url, {
+                            method,
+                            headers: {
+                                "Content-Type": "application/json"
+                            },
+                            body: JSON.stringify(nuevosDatos)
+                        }), necesitados = await respuesta.json();
+
+                        console.log(datos);
+                    }
+                    btnAgregarNecesitado.value = "Publicar";
+ 
                             mostrarDesaparecidos();
                             mostrarNecesitados();
-                        } else {
-                            alertify.error("A ocurrido un error");
-                        }
-
-                    
                 }
 
 
@@ -853,7 +855,8 @@
         }
         //eliminar publicacion
         async function eliminarPublicacion(e) {
-
+            let id = e.target.id;
+            let baseSelect = e.target.name;
             console.log(id);
             console.log(baseSelect);
             if (confirm(`Esta seguro de eliminar la publicacion`)) {
