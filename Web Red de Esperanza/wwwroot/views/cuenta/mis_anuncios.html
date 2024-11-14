@@ -326,7 +326,11 @@
         //mostrar publicaciones realizadas al iniciar la pagina
         mostrarNecesitados();
         mostrarDesaparecidos();
-      
+
+        //variable de accion
+        var id_edicion;
+        var base_seleccionada;
+
         //Objetos del HTML
         const txtBuscarPublicacion = document.getElementById('btnBuscar').addEventListener("click", buscarPublicacion);
         let btnAgregarNecesitado = document.getElementById("btnPublicarNecesitado");
@@ -449,7 +453,7 @@
                     tipo_ayuda = i + 1
                 }
             }
-
+            console.log(tipo_ayuda);
             const campos = [
                 !txtNombreNecesitado.value,
                 !txtApellidoNecesitado.value,
@@ -479,94 +483,116 @@
         async function agregarNecesitado() {
             try {
                 let validacion = validarDatosNecesitados()
+                alert("comenzando");
                 if (validacion == false) {
                     alertify.error('Agregue todos los campos.');
                 } else {
-                    alertify.success("Comenzando la publicacion");
+                   
+                        alertify.success("Comenzando la publicacion");
+                        //obteniendo el id del distrito
+                        const selectElement = document.getElementById("txtDistritoNecesitado");
+                        const distritos = ["Distrito 1", "Distrito 2", "Distrito 3"];
+                        var distrito;
+                        const selectedIndex = selectElement.selectedIndex;
+                        const selectedOption = selectElement.options[selectedIndex];
+                        const selectedText = selectedOption.text;
 
-                    //obteniendo el id del distrito
-                    const selectElement = document.getElementById("txtDistritoNecesitado");
-                    const distritos = ["Distrito 1", "Distrito 2", "Distrito 3"];
-                    var distrito;
-                    const selectedIndex = selectElement.selectedIndex;
-                    const selectedOption = selectElement.options[selectedIndex];
-                    const selectedText = selectedOption.text;
-
-                    for (var i = 0; i < distritos.length; i++) {
-                        if (distritos[i] == selectedText) {
-                            distrito = i + 1
+                        for (var i = 0; i < distritos.length; i++) {
+                            if (distritos[i] == selectedText) {
+                                distrito = i + 1
+                            }
                         }
-                    }
-                    //obteniendo el id de la ayuda
+                        //obteniendo el id de la ayuda
                     const selectElementAyuda = document.getElementById("txtAyudaNecesitado");
                     const tipo_ayudas = ["ayuda 1", "ayuda 2"];
                     var tipo_ayuda;
                     const selectedIndexNece = selectElementAyuda.selectedIndex;
-                    const selectedOptionNece = selectElementAyuda.options[selectedIndex];
-                    const selectedTextNece = selectElementAyuda.text;
+                    const selectedOptionNece = selectElementAyuda.options[selectedIndexNece];
+                    const selectedTextNece = selectedOptionNece.text;
 
                     for (var i = 0; i < tipo_ayudas.length; i++) {
                         if (tipo_ayudas[i] == selectedTextNece) {
                             tipo_ayuda = i + 1
                         }
                     }
+                    console.log(tipo_ayuda);
 
 
 
-                    const fechaActual = new Date();
-                    const dia = fechaActual.getDate();
-                    const mes = fechaActual.getMonth() + 1;
-                    const anio = fechaActual.getFullYear();
+                        const fechaActual = new Date();
+                        const dia = fechaActual.getDate();
+                        const mes = fechaActual.getMonth() + 1;
+                        const anio = fechaActual.getFullYear();
 
-                    const nombreAlmacenado = localStorage.getItem('nombre');
-                    console.log(nombreAlmacenado);
+                        const nombreAlmacenado = localStorage.getItem('nombre');
+                        console.log(nombreAlmacenado);
 
-                    let datos = {
-                        nombre_nece: txtNombreNecesitado.value,
-                        apellido: txtApellidoNecesitado.value,
-                        edad: parseInt(txtEdadNecesitado.value),
-                        direccion: txtDireccionNecesitado.value,
-                        distrito_id: distrito,
-                        ayuda_id: tipo_ayuda,
-                        situacion_descripcion: txtDescripcionNecesitados.value,
-                        fecha_publicacion: "'" + dia + "-" + mes + "-" + anio + "'",
-                        telefono: txtTelefonoNecesitado.value,
-                        whatsApp: txtWhatsAppNecesitado.value,
-                        publicado_por: parseInt(nombreAlmacenado)
-                    }
+                        let datos = {
+                            nombre_nece: txtNombreNecesitado.value,
+                            apellido: txtApellidoNecesitado.value,
+                            edad: parseInt(txtEdadNecesitado.value),
+                            direccion: txtDireccionNecesitado.value,
+                            distrito_id: distrito,
+                            ayuda_id: tipo_ayuda,
+                            situacion_descripcion: txtDescripcionNecesitados.value,
+                            fecha_publicacion: "'" + dia + "-" + mes + "-" + anio + "'",
+                            telefono: txtTelefonoNecesitado.value,
+                            whatsApp: txtWhatsAppNecesitado.value,
+                            publicado_por: parseInt(nombreAlmacenado)
+                        }
 
-                    method = "POST",
-                        url = "https://localhost:7041/api/necesitados";
+                       
                     console.log(datos);
-                    const respuesta = await fetch(url, {
-                        method,
-                        headers: {
-                            "Content-Type": "application/json"
-                        },
-                        body: JSON.stringify(datos)
-                    }), desaparecidos = await respuesta.json();
-
-                    if (desaparecidos && desaparecidos?.Id_publicacionNese > 0) {
-                        mostrarDesaparecidos();
-                        mostrarNecesitados();
+                    if (btnAgregarNecesitado.value == "Agregar") {
+                        method = "POST",
+                            url = "https://localhost:7041/api/necesitados";
+                      ;
                     } else {
-                        alertify.error("A ocurrido un error");
+                        id_edicion;
+                        console.log(id_edicion);
+                        method = "PUT",
+                            url = url = `https://localhost:7253/api/desaparecidos/${id_edicion}`;
+                        btnAgregarNecesitado.value == "Agregar";
+
+                            
                     }
 
-                }
-            } catch (e) {
-                alertify.error("A ocurrido un error");
-            }
+                        const respuesta = await fetch(url, {
+                            method,
+                            headers: {
+                                "Content-Type": "application/json"
+                            },
+                            body: JSON.stringify(datos)
+                        }), desaparecidos = await respuesta.json();
 
+                        if (desaparecidos && desaparecidos?.Id_publicacionNese > 0) {
+                            mostrarDesaparecidos();
+                            mostrarNecesitados();
+                        } else {
+                            alertify.error("A ocurrido un error");
+                        }
+
+                    
+                }
+
+
+
+
+                 } catch (e) {
+                     alertify.error("A ocurrido un error");
+                 }
+            
         }
         //Creacion de anuncio de desaparecidos
         async function agregarDesaparecido() {
-            let validacion = validarDatosDesaparecidos();
-            if (validacion == false) {
-                alertify.error("Ingresa todos los valores");
-            } else {
-                console.log("Comenzamos la incersion")
-                try {
+            try {
+                let validacion = validarDatosDesaparecidos();
+                if (validacion == false) {
+                    alertify.error("Ingresa todos los valores");
+                } else {
+
+                    console.log("Comenzamos la incersion")
+
                     const distritos = ["Distrito 1", "Distrito 2", "Distrito 3"];
                     var distrito;
 
@@ -604,28 +630,30 @@
                     },
                         method = "POST",
                         url = 'https://localhost:7253/api/desaparecidos';
-                    const respuesta = await fetch(url, {
-                        method,
-                        headers: {
-                            "Content-Type": "application/json"
-                        },
-                        body: JSON.stringify(datos)
-                    }), desaparecidos = await respuesta.json();
+
+                }
+                const respuesta = await fetch(url, {
+                    method,
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(datos)
+                }), desaparecidos = await respuesta.json();
+                alertify.success("Publicación realizada");
+
+                if (desaparecidos && desaparecidos?.Id_publicacionDesa > 0) {
                     alertify.success("Publicación realizada");
-                   
-                    if (desaparecidos && desaparecidos?.Id_publicacionDesa > 0) {
-                        alertify.success("Publicación realizada");
-                        mostrarDesaparecidos();
-                        mostrarNecesitados();
-                    } 
+                    mostrarDesaparecidos();
+                    mostrarNecesitados();
+                }
+
+            
                 } catch (e) {
                     alertify.error('Ocurrio un error al realizar la publicación.');
                     console.log("Ocurrio un error " + e)
                 }
 
             }
-
-        }
         //mostrar datos de desaparecidos
 
         async function mostrarDesaparecidos() {
@@ -713,8 +741,8 @@
                                       <p>Tel: ${necesitados.telefono} <br> WhatsApp: ${necesitados.whatsApp}</p>
                                       <p>Publicado por: ${necesitados.publicado_por} </p>
                                        <div class="card-body" id="conten-btn">
-                                         <input name="nece" class="btn btn-primary" id="${necesitados.id_publicacionNese}" type="submit" value="Editar">
-                                            <input class="btn btn-danger" id='${necesitados.id_publicacionNese}' type="submit" name="nece" onclick="eliminarPublicacion(event)" class="delete" value="Eliminar">
+                                         <input name="nece" onclick = "editarPublicacion(event)" class="btn btn-primary" id="${necesitados.id_publicacionNese}" type="submit" value="Editar">
+                                            <input class="btn  btn-danger" id='${necesitados.id_publicacionNese}' type="submit" name="nece" onclick="eliminarPublicacion(event)" class="delete" value="Eliminar">
                                         </div>
                                     </div>
                                   </div>
@@ -749,9 +777,10 @@
             let txtBuscado = txtBusqueda.value;
             let encontrado = false;
             conenedorAnuncios.innerHTML = '';
-
+            console.log(nombreAlmacenado);
             Desaparecidos.forEach(Desaparecidos => {
                 if (parseInt(Desaparecidos.publicado_por) == nombreAlmacenado && txtBuscado == Desaparecidos.nombre || txtBuscado == Desaparecidos.apellido) {
+                    console.log("Encontrado");
                     alertify.success("Registro de publicacion encontrado");
                     encontrado = true;
                     conenedorAnuncios.innerHTML += `
@@ -818,14 +847,13 @@
             if (encontrado == false) {
                 alertify.error("Registro de publicacion no encontrado");
                 mostrarDesaparecidos();
+                mostrarNecesitados();
             }
 
         }
         //eliminar publicacion
         async function eliminarPublicacion(e) {
-            
-            let id = e.target.id;
-            let baseSelect = e.target.name;
+
             console.log(id);
             console.log(baseSelect);
             if (confirm(`Esta seguro de eliminar la publicacion`)) {
@@ -834,9 +862,12 @@
                     url = `https://localhost:7253/api/desaparecidos/${id}`;
                     console.log("desa");
 
+
                 } else if (baseSelect == "nece") {
                     url = `https://localhost:7253/api/necesitados/${id}`;
                     console.log("nece");
+
+
                 }
 
                 let respuesta = await fetch(url, {
@@ -853,95 +884,61 @@
                     mostrarNecesitados();
                 }
             }
-
-
         }
+            
+
+        async function editarPublicacion(e) {
+            let id = e.target.id;
+            let baseSelect = e.target.name;
+            console.log(id);
+            if (confirm(`Esta seguro de editar la publicacion`)) {
+                id_edicion = id;
+                base_seleccionada = baseSelect;
+                var url;
+                if (baseSelect == "desa") {
+                    url = `https://localhost:7253/api/desaparecidos/${id}`;
+                    console.log("desa");
+
+
+                    txtNombreDesaparecido.value = "";
+                    txtApellidoDesaparecido.value = "";
+                    txtEdadDesaparecido.value = "";
+                    fecha_desaparicion.value = "";
+                    txtLugarDesaparecido.value = "";
+                    txtDescripcionDesaparecido.value = "";
+                    txtTelefonoDesaparecido.value = "";
+                    txtWhatsAppDesaparecido.value = "";
+
+                } else if (baseSelect == "nece") {
+
+                    const respuestaNese = await fetch(`https://localhost:7253/api/necesitados/${id}`, {
+                        method: "GET",
+                        headers: {
+                            "Content-Type": "application/json"
+                        }
+                    }), necesitados = await respuestaNese.json();
+
+                    if (id == necesitados.id_publicacionNese) {
+                        txtNombreNecesitado.value = necesitados.nombre_nece;
+                        txtApellidoNecesitado.value = necesitados.apellido;
+                        txtEdadNecesitado.value = parseInt(necesitados.edad);
+                        txtDireccionNecesitado.value = necesitados.direccion;
+                        txtDescripcionNecesitados.value = necesitados.situacion_descripcion;
+                        txtTelefonoNecesitado.value = necesitados.telefono;
+                        txtWhatsAppNecesitado.value = necesitados.whatsApp;
+                        btnAgregarNecesitado.value = "Actualizar"
+                    }
+
+                }
+            }
+        
+    }
+
+                  
 
     </script>
 
-    <!--  <div class="row m-0 border-0 bd-example m-0 border-0 justify-content-center">
-
-          <div class="card" style="width: 18rem; background-color: #072145; color: white; margin: 0.5rem auto;">
-              <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"></rect><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
-              <div class="card-body">
-                  <h5 class="card-title" style="background-color: #038587; color: white;">Ayudemos a: </h5>
-                  <h5 class="card-title" style="background-color: #038587; color: white;">Nombre persona necesitada </h5>
-              </div>
-              <div class="card-body">
-                  <p>Descripción:</p>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  <p>Creacion del anuncio: </p> <span id="Fecha_Creacion"></span>
-                  <p>Estado: </p> <span id="Fecha_Creacion"></span>
-                  <p>publicacido por: </p> <span id="Fecha_Creacion"></span>
-                  <input class="btn btn-primary" type="submit" value="Editar">
-                  <input class="btn btn-danger" type="submit" value="Eliminar">
-              </div>
-          </div>
-          <div class="card" style="width: 18rem; background-color: #072145; color: white; margin: 0.5rem auto;">
-              <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"></rect><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
-              <div class="card-body">
-                  <h5 class="card-title" style="background-color: #038587; color: white;">Ayudemos a: </h5>
-                  <h5 class="card-title" style="background-color: #038587; color: white;">Nombre persona necesitada </h5>
-              </div>
-              <div class="card-body">
-                  <p>Descripción:</p>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  <p>Creacion del anuncio: </p> <span id="Fecha_Creacion"></span>
-                  <p>Estado: </p> <span id="Fecha_Creacion"></span>
-                  <p>publicacido por: </p> <span id="Fecha_Creacion"></span>
-                  <input class="btn btn-primary" type="submit" value="Editar">
-                  <input class="btn btn-danger" type="submit" value="Eliminar">
-              </div>
-          </div>
-          <div class="card" style="width: 18rem; background-color: #072145; color: white; margin: 0.5rem auto;">
-              <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"></rect><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
-              <div class="card-body">
-                  <h5 class="card-title" style="background-color: #038587; color: white;">Ayudemos a: </h5>
-                  <h5 class="card-title" style="background-color: #038587; color: white;">Nombre persona necesitada </h5>
-              </div>
-              <div class="card-body">
-                  <p>Descripción:</p>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  <p>Creacion del anuncio: </p> <span id="Fecha_Creacion"></span>
-                  <p>Estado: </p> <span id="Fecha_Creacion"></span>
-                  <p>publicacido por: </p> <span id="Fecha_Creacion"></span>
-                  <input class="btn btn-primary" type="submit" value="Editar">
-                  <input class="btn btn-danger" type="submit" value="Eliminar">
-              </div>
-          </div>
-          <div class="card" style="width: 18rem; background-color: #072145; color: white; margin: 0.5rem auto;">
-              <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"></rect><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
-              <div class="card-body">
-                  <h5 class="card-title" style="background-color: #038587; color: white;">Ayudemos a: </h5>
-                  <h5 class="card-title" style="background-color: #038587; color: white;">Nombre persona necesitada </h5>
-              </div>
-              <div class="card-body">
-                  <p>Descripción:</p>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  <p>Creacion del anuncio: </p> <span id="Fecha_Creacion"></span>
-                  <p>Estado: </p> <span id="Fecha_Creacion"></span>
-                  <p>publicacido por: </p> <span id="Fecha_Creacion"></span>
-                  <input class="btn btn-primary" type="submit" value="Editar">
-                  <input class="btn btn-danger" type="submit" value="Eliminar">
-              </div>
-          </div>
-          <div class="card" style="width: 18rem; background-color: #072145; color: white; margin: 0.5rem auto;">
-              <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"></rect><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
-              <div class="card-body">
-                  <h5 class="card-title" style="background-color: #038587; color: white;">Ayudemos a: </h5>
-                  <h5 class="card-title" style="background-color: #038587; color: white;">Nombre persona necesitada </h5>
-              </div>
-              <div class="card-body">
-                  <p>Descripción:</p>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  <p>Creacion del anuncio: </p> <span id="Fecha_Creacion"></span>
-                  <p>Estado: </p> <span id="Fecha_Creacion"></span>
-                  <p>publicacido por: </p> <span id="Fecha_Creacion"></span>
-                  <input class="btn btn-primary" type="submit" value="Editar">
-                  <input class="btn btn-danger" type="submit" value="Eliminar">
-              </div>
-          </div>
-      </div>-->
+   
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>
