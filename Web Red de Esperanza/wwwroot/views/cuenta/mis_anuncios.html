@@ -559,14 +559,12 @@
                         method = "PUT";
                         url = `https://localhost:7253/api/necesitados/${id_edicion}`;
 
-                       
-
                         const respuesta = await fetch(url, {
                             method,
                             headers: {
                                 "Content-Type": "application/json"
                             },
-                            body: JSON.stringify(nuevosDatos)
+                            body: JSON.stringify(datos)
                         }), necesitados = await respuesta.json();
 
                         console.log(datos);
