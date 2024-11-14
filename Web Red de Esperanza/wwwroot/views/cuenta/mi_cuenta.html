@@ -8,6 +8,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <!--Para la icono de la contraseña-->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
     <title>Document</title>
 </head>
@@ -38,52 +40,77 @@
 
     <center>
         <div class="container col-md-4 col-sm-6">
-
-            <div class="card" style="width: 20rem; margin-top: 25vh; margin: 25% auto; background-color: rgb(7, 33, 69); color: white; ">
+            
+            <div class="card" style="width: 20rem; margin-top: 25vh; margin: 25% auto; background-color: rgb(7, 33, 69); color: white; " >
                 <div class="card-body" style="display: grid; text-align: center;">
+                    <center>
+                        <h5 class=" nombre card-title" style="margin-top: 10px">Nombre:</h5>
+                        <Input id="txtNombre" type="text" style="background-color: rgb(3, 133, 135); font-family: Roboto, sans-serif, Arial; font-weight: bold; text-align: center;">
+                        <style>
+                            #txtNombre {
+                                background-color: rgb(3, 133, 135);
+                                border: none; /* Quitar el borde */
+                                outline: none; /* Quitar el borde al hacer clic */
+                            }
+                        </style>
+                        <h5 class=" user card-title" style="margin-top: 10px">Usuario:</h5>
+                        <Input id="txtUsuario" type="text" style="background-color: rgb(3, 133, 135); font-weight: bold; text-align: center;">
+                        <style>
+                            #txtUsuario {
+                                background-color: rgb(3, 133, 135);
+                                border: none; /* Quitar el borde */
+                                outline: none; /* Quitar el borde al hacer clic */
+                            }
+                        </style>
+                        <h5 class=" contraseña card-title" style="margin-top: 10px">Contraseña:</h5>
+                        <Input id="txtContraseña" type="text" style="background-color: rgb(3, 133, 135); font-weight: bold; text-align: center;">
+                        <i class='bx bx-show-alt' style=" color: black; background-color: red; width: 0px; font-size: 30px; transform: translateX(-35px) translateY(9px); cursor: pointer;"></i>
 
-                    <h5 class=" nombre card-title">Nombre:</h5>
-                    <Input id="txtNombre" type="text" style="background-color: rgb(3, 133, 135); font-family: Roboto, sans-serif, Arial; font-weight: bold; text-align: center;" ></Input>
-                    <style>
-                        #txtNombre {
-                            background-color: rgb(3, 133, 135);
-                            border: none; /* Quitar el borde */
-                            outline: none; /* Quitar el borde al hacer clic */
-                        }
-                    </style>
-                    <h5 class=" user card-title">Usuario:</h5>
-                    <Input id="txtUsuario" type="text" style="background-color: rgb(3, 133, 135); font-weight: bold;"></Input>
-                    <style>
-                        #txtUsuario {
-                            background-color: rgb(3, 133, 135);
-                            border: none; /* Quitar el borde */
-                            outline: none; /* Quitar el borde al hacer clic */
-                        }
-                    </style>
-                    <h5 class=" contraseña card-title">Contraseña:</h5>
-                    <Input id="txtContraseña" type="text" style="background-color: rgb(3, 133, 135); font-weight: bold;"></Input>
-                    <style>
-                        #txtContraseña {
-                            background-color: rgb(3, 133, 135);
-                            border: none; /* Quitar el borde */
-                            outline: none; /* Quitar el borde al hacer clic */
-                        }
-                    </style>
-                    <br>
+                        <script>
 
-                    <div class="container">
-                        <button type="button" class="btn-primary" style="background-color: rgb(4, 111, 212); color: white; justify-items: center; border-style: none; border-radius: 45vh;">   Deshabilitar   </button>
-                        <button type="button" class="btn-primary" style="background-color: rgb(4, 111, 212); color: white; justify-items: center; border-style: none; border-radius: 45vh;">   Editar   </button>
-                        <button type="button" class="btn-primary" style="background-color: rgb(4, 111, 212); color: white; justify-items: center; border-style: none; border-radius: 45vh;">   Guardar   </button>
-                        <center>
+                            //llamamos al input y al icon
+                            const txtContraseña = document.getElementById("txtContraseña")
+                            let icon = document.querySelector(".bx");
+
+                            //cada vez que le demos click al icono...
+                            icon.addEventListener("click", e => {
+                                if (txtContraseña.type === "password") {
+                                    txtContraseña.type = "text";
+                                    icon.classList.remove('bx-show-alt');
+                                    icon.classList.add('bx-hide');
+                                }
+                                else {
+                                    txtContraseña.type = "password"
+                                    icon.classList.add('bx-show-alt');
+                                    icon.classList.remove('bx-hide');
+                                }
+                            })
+                        </script>
+                        <!--<box-icon name='show-alt' ></box-icon> MOSTRAR-->
+                        <!--<box-icon name='low-vision' ></box-icon> NO MOSTRAR-->
+                        <style>
+                            #txtContraseña {
+                                background-color: rgb(3, 133, 135);
+                                border: none; /* Quitar el borde */
+                                outline: none; /* Quitar el borde al hacer clic */
+                            }
+                        </style>
+                    </center>
                             <br>
-                            <a href="https://localhost:7253/views/sin-cuenta/iniciosesion.html">
-                                <button type="button" id="btnCrear_cuenta" name="btnCrear_cuenta" class="btn-primary" style="background-color: rgb(4, 111, 212); border-style: none; border-radius: 45vh; color: white; justify-items: center;">   Cerrar sesion    </button>
-                            </a>
-                        </center>
 
-                    </div>
-                </div>
+                            <div class="container">
+                                <button type="button" class="btn-primary" style="background-color: rgb(4, 111, 212); color: white; justify-items: center; border-style: none; border-radius: 45vh;">   Eliminar   </button>
+                                <button type="button" class="btn-primary" style="background-color: rgb(4, 111, 212); color: white; justify-items: center; border-style: none; border-radius: 45vh;">   Editar   </button>
+                                <button type="button" class="btn-primary" style="background-color: rgb(4, 111, 212); color: white; justify-items: center; border-style: none; border-radius: 45vh;">   Guardar   </button>
+                                <center>
+                                    <br>
+                                    <a href="https://localhost:7253/views/sin-cuenta/iniciosesion.html">
+                                        <button type="button" id="btnCrear_cuenta" name="btnCrear_cuenta" class="btn-primary" style="background-color: rgb(4, 111, 212); border-style: none; border-radius: 45vh; color: white; justify-items: center;">   Cerrar sesion    </button>
+                                    </a>
+                                </center>
+
+                            </div>
+</div>
             </div>
         </div>
         </center>
