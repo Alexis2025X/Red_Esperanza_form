@@ -150,18 +150,18 @@
             const nombreAlmacenado = localStorage.getItem('nombre');
             if (confirm(`La eliminacion de su cuenta es irreversible, desea continuar`)) {
 
-                let respuesta = await fetch('https://localhost:7253/api/cuentas' + nombreAlmacenado, {
+                let respuesta = await fetch('https://localhost:7253/api/cuentas/' + nombreAlmacenado, {
                     method: "DELETE",
                     headers: {
                         "Content-Type": "application/text"
                     }
                 }),
                     datos = await respuesta.text();
-                if (datos && datos.length > 0) {
-                    console.log(datos);
-                } else {
-                    mostrarDatos();
+                let link = "https://localhost:7253/views/sin-cuenta/iniciosesion.html";
+                for (let i = 0; i < localStorage.length; i++) {
+                    localStorage.removeItem(localStorage.key(i));
                 }
+                window.open(link, '_self');
             }
         }
         async function guardarCuenta() {
@@ -174,8 +174,9 @@
                     }
                 }), cuentas = await respuesta.json();
                 console.log(cuentas);
+                const nombreAlmacenado = localStorage.getItem('nombre');
                 cuentas.forEach(cuentas => {
-                    if (cuentas.usuario == txtUser.value) {
+                    if (cuentas.usuario == txtUser.value && cuentas.id_cuenta != parseInt(nombreAlmacenado)) {
                         
                         confirmacion = true;
                         mostrarDatos();
