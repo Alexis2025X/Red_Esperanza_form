@@ -98,8 +98,8 @@
         var url;
 
         async function guardarCuenta() {
-            try {
-
+           try {
+            confirmacion = false;
                 const respuesta = await fetch('https://localhost:7253/api/cuentas', {
                     method: "GET",
                     headers: {
@@ -108,7 +108,7 @@
                 }), cuentas = await respuesta.json();
                 console.log(cuentas);
                 cuentas.forEach(cuentas => {
-                    if (cuentas.usuario == txtUsuarioCuenta.value) {
+                    if (cuentas.usuario == txtUsuarioCuenta.value ) {
 
                         confirmacion = true;
                     }
@@ -147,11 +147,11 @@
                         limpieza();
                     }
                 }
-            } catch (e) {
-                console.error("Error al crear la cuenta " + e)
+            } catch {
+                console.error("Error al crear la cuenta ")
                 alertify.error("Error al crear la cuenta");
             }
-        }
+        
 
         function limpieza() {
             txtUsuarioCuenta.value = "";
