@@ -30,7 +30,7 @@
             <li class="nav-item">
                 <form class="d-flex" role="search">
                     <input class="form-control me-2" type="search" placeholder="Buscar desaparecidos" aria-label="Search" id="txtBuscar">
-                    <button class="btn btn-outline-success" type="submit" style="background-color: blue; color: white;" id="btnBuscar">Buscar</button>
+                    <button class="btn btn-outline-success" type="submit" style="background-color: blue; color: white;" id="btnBuscar">Limpiar</button>
                 </form>
             </li>
         </ul>
@@ -134,16 +134,24 @@
     </div>
 
     <script>
+        //AGREGAR AL OTRO ARCHIVO
+        txtBuscar.addEventListener('keyup', e => {
+            mostrarDesaparecidos(txtBuscar.value);
+        });
+        //------
         let bodyDesaparecidos = document.getElementById("bodyDesaparecidos");
         let btnBuscar = document.querySelector("#btnBuscar");
-        btnBuscar.addEventListener("click", buscarDesaparecido);
+        //btnBuscar.addEventListener("click", buscarDesaparecido);
 
         mostrarDesaparecidos();
 
-        async function mostrarDesaparecidos() {
+        async function mostrarDesaparecidos(buscar= '') {
+            /*console.log(buscar)*/
+            let url = `/api/Desaparecidos/${buscar}`
+            //AGREGAR AL OTRO ARCHIVO
             console.log("Mostrando data")
             bodyDesaparecidos.innerHTML = '';
-            const respuesta = await fetch("https://localhost:7253/api/desaparecidos", {
+            const respuesta = await fetch(url, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json"
@@ -177,8 +185,8 @@
                             </div>
                         </div>
                     </div>`});
-        }
-        async function buscarDesaparecido(e) {
+                }
+/*        async function buscarDesaparecido(e) {
             e.preventDefault();
             console.log("comenzo la busqueda");
             let txtbuscarDesaparecido = document.getElementById("txtBuscar");
@@ -228,7 +236,7 @@
                 }
 
             })
-        }
+        }*/
 
     </script>
 
