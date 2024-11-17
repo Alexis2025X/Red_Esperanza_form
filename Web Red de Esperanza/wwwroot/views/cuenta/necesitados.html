@@ -35,7 +35,7 @@
             <li class="nav-item">
                 <form class="d-flex" role="search">
                     <input class="form-control me-2" type="search" placeholder="Buscar necesitado" aria-label="Search" id="txtBuscar">
-                    <button class="btn btn-outline-success" type="submit" style="background-color: blue; color: white;" id="btnBuscar">Buscar</button>
+                    <button class="btn btn-outline-success" type="submit" style="background-color: blue; color: white;" id="btnBuscar">Limpiar</button>
                 </form>
             </li>
         </ul>
@@ -120,16 +120,25 @@
     </div>
 
     <script>
-
+        //AGREGAR AL OTRO ARCHIVO
+        txtBuscar.addEventListener('keyup', e => {
+            mostrarNecesitados(txtBuscar.value);
+        });
+        //------
         let bodyNecesitados = document.getElementById("bodyNecesitados");
+        let btnBuscar = document.querySelector("#btnBuscar");
+        //btnBuscar.addEventListener("click", buscarNecesitados);
 
-        let btnBuscar = document.getElementById("btnBuscar");
-        btnBuscar.addEventListener("click", buscarNecesitado);
         mostrarNecesitados();
-        async function mostrarNecesitados() {
-            console.log("Mostrando data")
-            bodyNecesitados.innerHTML = '';
-            const respuesta = await fetch('https://localhost:7253/api/necesitados', {
+
+        async function mostrarNecesitados(buscar= '') {
+            console.log(buscar)
+        let url = `/api/Necesitados/${buscar}`
+        //AGREGAR AL OTRO ARCHIVO
+        console.log("Mostrando data")
+        bodyNecesitados.innerHTML = '';
+            const respuesta = await fetch(url, //------------
+                {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json"
@@ -161,7 +170,7 @@
 
             });
         }
-        async function buscarNecesitado(event) {
+/*        async function buscarNecesitado(event) {
             event.preventDefault();
             console.log("Buscando");
             let txtbuscarNecesitado = document.getElementById("txtBuscar");
@@ -209,7 +218,7 @@
             })
         }
 
-
+*/
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

@@ -26,19 +26,20 @@ namespace Web_Red_de_Esperanza.Controllers
         {
             return await _context.necesitados.ToListAsync();
         }
-
-        // GET: api/necesitados/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Necesitado>> Getnecesitados(int id)
+        //GET: api/Desaparecidos/buscar
+        [HttpGet("{buscar}")]
+        public async Task<ActionResult<IEnumerable<Necesitado>>> BuscarNecesitados(string buscar)
         {
-            var necesitados = await _context.necesitados.FindAsync(id);
-
-            if (necesitados == null)
+            var consulta = _context.necesitados.AsQueryable();
+            if (buscar != "")
             {
-                return NotFound();
+                consulta = consulta.Where(d => d.Nombre_nece.Contains(buscar));
             }
-
-            return necesitados;
+/*            if (buscar != "")
+            {
+                consulta = consulta.Where(d => d.Apellido.Contains(buscar));
+            }*/
+            return await consulta.ToListAsync();
         }
         // PUT: api/necesitados/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
