@@ -20,7 +20,6 @@ namespace Web_Red_de_Esperanza.Models
         public int Distrito_id { get; set; }
         public DateTime Fecha_publicacion { get; set; }
         public int Publicado_por { get; set; }
-        //public int Imagen_desaparecidos { get; set; } // Asumimos que 'image' se mapea a un array de bytes
-
+        public byte[]? imagen { get; set; }
     }
 }

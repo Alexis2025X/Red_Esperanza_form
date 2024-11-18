@@ -139,7 +139,7 @@
             <div class="card" style="width: 18rem; background-color: #072145; color: white; margin: 0.5rem auto;">
 
                 <div class="card-body">
-                    <div class="col-sm-6 col-md-4" style="width: 100%; ">
+                    <div class="col-sm-6 col-md-4" style="width: 100%; height:200px; ">
                         <center id="containerImgNece"></center>
                     </div>
                     <!--background-color: rgb(134, 142, 150);-->
@@ -267,12 +267,12 @@
             }
         </style>
 
-        <div class="col-sm-6 col-md-4 " style="position: static;">
+        <div class="col-sm-6 col-md-6 " style="position: static;">
 
             <div class="card" style="width: 18rem; background-color: #072145; color: white; margin: 0.5rem auto;">
 
                 <div class="card-body">
-                    <div class="col-sm-6 col-md-4" style="width:100%;">
+                    <div class="col-sm-6 col-md-4" style="width:100%; height:200px;">
 
                         <center id="containerImgDesa"></center>
                     </div>
@@ -381,6 +381,8 @@
                         imagen.id = "imagenDesa";
                         containerDesa.innerHTML = '';
                         containerDesa.appendChild(imagen);
+                        const arrayBuffer = e.target.result;
+                        localStorage.setItem('imagenDesa', arrayBuffer);
                     }
 
                     reader.readAsDataURL(input.files[0]);
@@ -528,7 +530,7 @@
 
                         const nombreAlmacenado = localStorage.getItem('nombre');
                         console.log(nombreAlmacenado);
-
+                        
                     const imagen_nece = localStorage.getItem('imgenNece');
                     let imagenNece = imagen_nece.split(",")[1]
                     let datos = {
@@ -550,30 +552,21 @@
                     console.log(datos);
                     if (btnAgregarNecesitado.value == "Publicar") {
                         method = 'POST';
-                        url = 'https://localhost:7253/api/necesitados'; 
-                        const respuesta = await fetch(url, {
-                            method,
-                            headers: {
-                                "Content-Type": "application/json"
-                            },
-                            body: JSON.stringify(datos)
-                        }), necesitados = await respuesta.json();
-                    } else {
-                        id_edicion;
-                        console.log(id_edicion);
-                        method = "PUT";
-                        url = `https://localhost:7253/api/necesitados/${id_edicion}`;
-
-                        const respuesta = await fetch(url, {
-                            method,
-                            headers: {
-                                "Content-Type": "application/json"
-                            },
-                            body: JSON.stringify(datos)
-                        }), necesitados = await respuesta.json();
-
-                        console.log(datos);
+                        url = 'https://localhost:7253/api/necesitados';
+                    } else if (btnAgregarNecesitado.value == "Actualizar"){
+                        const registro_modificar = localStorage.getItem('registro_modificar');
+                        console.log(registro_modificar);
+                        method = `PUT`;
+                        url = `https://localhost:7253/api/necesitados/${registro_modificar}`;
                     }
+                        const respuesta = await fetch(url, {
+                            method,
+                            headers: {
+                                "Content-Type": "application/json"
+                            },
+                            body: JSON.stringify(datos)
+                        }), necesitados = await respuesta.json();
+                    console.log(datos);
                     btnAgregarNecesitado.value = "Publicar";
  
                             mostrarDesaparecidos();
@@ -618,9 +611,10 @@
                     const anio = fechaActual.getFullYear();
 
                     const nombreAlmacenado = localStorage.getItem('nombre');
+                    const imagen_desa = localStorage.getItem('imagenDesa');
+                    let imagenDesa = imagen_desa.split(",")[1]
 
-
-                    console.log(imagen_nece);
+                    console.log(imagen_desa);
                     let datos = {
                         nombre: txtNombreDesaparecido.value,
                         apellido: txtApellidoDesaparecido.value,
@@ -631,36 +625,36 @@
                         telefono: txtTelefonoDesaparecido.value,
                         whatsApp: txtWhatsAppDesaparecido.value,
                         distrito_id: distrito,
-                        fecha_publicacion: "'" + dia + "-" + mes + "-" + anio + "'", //posiblemente de un error por las comillas
+                        fecha_publicacion: anio + "-" + mes + "-" + dia,
                         publicado_por: parseInt(nombreAlmacenado),
-                       
-                    },
-                        method = "POST",
+                        "imagen": imagenDesa
+                    };
+
+
+
+                    method = "POST",
                         url = 'https://localhost:7253/api/desaparecidos';
-
-                }
-                const respuesta = await fetch(url, {
-                    method,
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify(datos)
-                }), desaparecidos = await respuesta.json();
-                alertify.success("Publicación realizada");
-
-                if (desaparecidos && desaparecidos?.Id_publicacionDesa > 0) {
+                    const respuesta = await fetch(url, {
+                        method,
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify(datos)
+                    }), desaparecidos = await respuesta.json();
                     alertify.success("Publicación realizada");
-                    mostrarDesaparecidos();
-                    mostrarNecesitados();
-                }
 
-            
-                } catch (e) {
-                    alertify.error('Ocurrio un error al realizar la publicación.');
-                    console.log("Ocurrio un error " + e)
+                    if (desaparecidos && desaparecidos?.Id_publicacionDesa > 0) {
+                        alertify.success("Publicación realizada");
+                        mostrarDesaparecidos();
+                        mostrarNecesitados();
+                    }
                 }
-
+            } catch (e) {
+                alertify.error('Ocurrio un error al realizar la publicación.');
+                console.log("Ocurrio un error " + e)
             }
+
+        }
         //mostrar datos de desaparecidos
 
         async function mostrarDesaparecidos() {
@@ -681,9 +675,9 @@
                 if (parseInt(Desaparecidos.publicado_por) == nombreAlmacenado) {
                     conenedorAnuncios.innerHTML += `
 
-<div class="col-sm-6 col-md-4 ">
+                         <div class="col-sm-6 col-md-4 ">
                                     <div class="card" style="width: 18rem; background-color: #072145; color: white; margin: 0.5rem auto;">
-                                        <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"></rect><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
+                                         <img src="data:image/png;base64,${Desaparecidos.imagen}"class="img - thumbnail rounded"/>
                                         <div class="card-body">
                                             <h5 class="card-title" style="background-color: #038587; color: white;">Ayudenos a encontrar a: ${Desaparecidos.nombre} ${Desaparecidos.apellido} </h5>
                                         </div>
@@ -743,8 +737,7 @@
                                     <p>Distrito: ${necesitados.distrito_id} </p>
                                     <p>Direccion: ${necesitados.direccion} </p>
                                       <p>Descripcion: <br></p>
-                                      <p class="card-text">${necesitados.situacion_descripcion}</p>  <p>Creacion del anuncio: ${necesitados.fecha_publicacion}  </p>
-                                      <p>Estado: ${necesitados.asistido_id} </p>
+                                      <p class="card-text">${necesitados.situacion_descripcion}</p>  <p>Creacion del anuncio:<br> ${necesitados.fecha_publicacion}  </p>
                                       <p>Tel: ${necesitados.telefono} <br> WhatsApp: ${necesitados.whatsApp}</p>
                                       <p>Publicado por: ${necesitados.publicado_por} </p>
                                        <div class="card-body" id="conten-btn">
@@ -899,16 +892,16 @@
         async function editarPublicacion(e) {
             let id = e.target.id;
             let baseSelect = e.target.name;
+            localStorage.setItem('registro_modificar',id);
             console.log(id);
             if (confirm(`Esta seguro de editar la publicacion`)) {
                 id_edicion = id;
                 base_seleccionada = baseSelect;
                 var url;
                 if (baseSelect == "desa") {
-                    url = `https://localhost:7253/api/desaparecidos/${id}`;
+                    url = `https://localhost:7253/api/desaparecidos`;
                     console.log("desa");
-
-
+                    console.log(id_edicion);
                     txtNombreDesaparecido.value = "";
                     txtApellidoDesaparecido.value = "";
                     txtEdadDesaparecido.value = "";
@@ -917,26 +910,30 @@
                     txtDescripcionDesaparecido.value = "";
                     txtTelefonoDesaparecido.value = "";
                     txtWhatsAppDesaparecido.value = "";
-
+                    
                 } else if (baseSelect == "nece") {
+                    let containerNece = document.getElementById("containerImgNece");
 
-                    const respuestaNese = await fetch(`https://localhost:7253/api/necesitados/${id}`, {
+                    const respuestaNese = await fetch(`https://localhost:7253/api/necesitados`, {
                         method: "GET",
                         headers: {
                             "Content-Type": "application/json"
                         }
                     }), necesitados = await respuestaNese.json();
-
-                    if (id == necesitados.id_publicacionNese) {
-                        txtNombreNecesitado.value = necesitados.nombre_nece;
-                        txtApellidoNecesitado.value = necesitados.apellido;
-                        txtEdadNecesitado.value = parseInt(necesitados.edad);
-                        txtDireccionNecesitado.value = necesitados.direccion;
-                        txtDescripcionNecesitados.value = necesitados.situacion_descripcion;
-                        txtTelefonoNecesitado.value = necesitados.telefono;
-                        txtWhatsAppNecesitado.value = necesitados.whatsApp;
-                        btnAgregarNecesitado.value = "Actualizar"
-                    }
+                    necesitados.forEach(necesitados => {
+                        if (id == necesitados.id_publicacionNese) {
+                            txtNombreNecesitado.value = necesitados.nombre_nece;
+                            txtApellidoNecesitado.value = necesitados.apellido;
+                            txtEdadNecesitado.value = parseInt(necesitados.edad);
+                            txtDireccionNecesitado.value = necesitados.direccion;
+                            txtDescripcionNecesitados.value = necesitados.situacion_descripcion;
+                            txtTelefonoNecesitado.value = necesitados.telefono;
+                            txtWhatsAppNecesitado.value = necesitados.whatsApp;
+                            btnAgregarNecesitado.value = "Actualizar";
+                            containerNece.innerHTML = `    <img src="data:image/png;base64,${necesitados.imagen}"class="img - thumbnail rounded"/>`;
+                        }
+                    })
+                    
 
                 }
             }
@@ -947,7 +944,7 @@
 
     </script>
 
-   
+ 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>

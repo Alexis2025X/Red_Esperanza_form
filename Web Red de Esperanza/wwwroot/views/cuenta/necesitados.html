@@ -147,24 +147,26 @@
             necesitados.forEach(necesitados => {
 
                 bodyNecesitados.innerHTML += `
-<div class="col-sm-6 col-md-4 ">
-                  <div class="card" style="width: 18rem; background-color: #072145; color: white; margin: 0.5rem auto;">
-                    <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"></rect><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
-                    <div class="card-body">
-                      <h5 class="card-title" style="background-color: #038587; color: white;">Ayudemos a: <br>
-                      ${necesitados.nombre_nece} ${necesitados.apellido} </h5>
+                            <div class="col-sm-6 col-md-4 ">
+                                  <div class="card" style="width: 18rem; background-color: #072145; color: white; margin: 0.5rem auto;">
+                                    <img src="data:image/png;base64,${necesitados.imagen}"class="img - thumbnail rounded"/>
+                                    <div class="card-body">
+                                      <h5 class="card-title" style="background-color: #038587; color: white;">Ayudemos a: <br>
+                                      ${necesitados.nombre_nece} ${necesitados.apellido} </h5>
 
-                    <div class="card-body">
-                    <p>Edad: ${necesitados.edad}</p>
-                    <p>Distrito: ${necesitados.distrito_id} </p>
-                    <p>Direccion: ${necesitados.direccion} </p>
-                      <p>Descripcion: <br></p>
-                      <p class="card-text">${necesitados.situacion_descripcion}</p>  <p>Creacion del anuncio: ${necesitados.fecha_publicacion}  </p>
-                      <p>Estado: ${necesitados.asistido_id} </p>
-                      <p>Tel: ${necesitados.telefono} <br> WhatsApp: ${necesitados.whatsApp}</p>
-                      <p>Publicado por: ${necesitados.publicado_por} </p>
-                    </div>
-                  </div>
+                                    <div class="card-body">
+                                    <p>Edad: ${necesitados.edad}</p>
+                                    <p>Distrito: ${necesitados.distrito_id} </p>
+                                    <p>Direccion: ${necesitados.direccion} </p>
+                                      <p>Descripcion: <br></p>
+                                      <p class="card-text">${necesitados.situacion_descripcion}</p>  <p>Creacion del anuncio:<br> ${necesitados.fecha_publicacion}  </p>
+                                      <p>Tel: ${necesitados.telefono} <br> WhatsApp: ${necesitados.whatsApp}</p>
+                                      <p>Publicado por: ${necesitados.publicado_por} </p>
+                                       <div class="card-body" id="conten-btn">
+                                         
+                                        </div>
+                                    </div>
+                                  </div>
 </div>
 `
 
