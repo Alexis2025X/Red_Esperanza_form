@@ -142,7 +142,6 @@
                     <div class="col-sm-6 col-md-4" style="width: 100%; height:200px; ">
                         <center id="containerImgNece"></center>
                     </div>
-                    <!--background-color: rgb(134, 142, 150);-->
                         <input type="file" id="fileimagenNese" accept="image/*" style="max-width: 100%;">
 
                     <h5 class="card-title" style=" color: white;">
@@ -272,9 +271,9 @@
             <div class="card" style="width: 18rem; background-color: #072145; color: white; margin: 0.5rem auto;">
 
                 <div class="card-body">
-                    <div class="col-sm-6 col-md-4" style="width:100%; height:200px;">
+                    <div class="col-sm-6 col-md-4" style="width: 100%; height: 200px;">
 
-                        <center id="containerImgDesa"></center>
+                        <center  style="width: 100%; height: 200px;" id="containerImgDesa"></center>
                     </div>
                     <input type="file" id="fileimagenDesa" style="max-width:100%;" />
 
@@ -643,7 +642,7 @@
                     }), desaparecidos = await respuesta.json();
                     alertify.success("Publicación realizada");
 
-                    if (desaparecidos && desaparecidos?.Id_publicacionDesa > 0) {
+                    if (desaparecidos && desaparecidos?.id_publicacionDesa > 0) {
                         alertify.success("Publicación realizada");
                         mostrarDesaparecidos();
                         mostrarNecesitados();
@@ -694,7 +693,7 @@
                                             <p>WhatsApp: ${Desaparecidos.whatsApp} </p>
                                             <p>Distrito: ${Desaparecidos.distrito_id} </p>
                                               <div class="card-body" id="conten-btn">
-                                                <input name="desa" class="btn btn-primary" id="${Desaparecidos.Id_publicacionDesa}" type="submit" value="Editar">
+                                  <input id="${Desaparecidos.id_publicacionDesa}"  name="desa" onclick = "editarPublicacion(event)"  class="btn btn-primary"  type="submit" value="Editar">
                                               <input class="btn btn-danger" id="${Desaparecidos.id_publicacionDesa}" type="submit" name="desa" onclick="eliminarPublicacion(event)" class="delete" value="Eliminar">
                                                  </div>
                                         </div>
@@ -779,68 +778,16 @@
             conenedorAnuncios.innerHTML = '';
             console.log(nombreAlmacenado);
             Desaparecidos.forEach(Desaparecidos => {
-                if (parseInt(Desaparecidos.publicado_por) == nombreAlmacenado && txtBuscado == Desaparecidos.nombre || txtBuscado == Desaparecidos.apellido) {
+                if (parseInt(Desaparecidos.publicado_por) == nombreAlmacenado && txtBuscado ==   Desaparecidos.nombre || txtBuscado == Desaparecidos.apellido) {
                     console.log("Encontrado");
                     alertify.success("Registro de publicacion encontrado");
-                    encontrado = true;
-                    conenedorAnuncios.innerHTML += `
-
-                                <div class="col-sm-6 col-md-4 ">
-                                <div class="card" style="width: 18rem; background-color: #072145; color: white; margin: 0.5rem auto;">
-                                    <img src="data:image/png;base64,${necesitados.imagen}"class="img - thumbnail rounded"/>
-                                   
-                                    <div class="card-body">
-                                        <h5 class="card-title" style="background-color: #038587; color: white;">Ayudenos a encontrar a: ${Desaparecidos.nombre} ${Desaparecidos.apellido} </h5>
-                                    </div>
-                                    <ul class="list-group list-group-flush">
-                                        <li class="list-group-item" style="background-color: #072145; color: white;">Edad: ${Desaparecidos.edad}</li>
-                                        <li class="list-group-item" style="background-color: #072145; color: white;">Fecha de desaparición: ${Desaparecidos.fecha_Desaparicion}</li>
-                                        <li class="list-group-item" style="background-color: #072145; color: white;">Visto por ultima vez en: ${Desaparecidos.lugar_Desaparicion}</li>
-                                    </ul>
-                                    <div class="card-body">
-                                        <p>Descripción: ${Desaparecidos.descripción_persona}</p>
-
-                                        <p>Si sabe algo contactelos por medio de:<p>
-                                        <p>Telefono: ${Desaparecidos.telefono} </p>
-                                        <p>WhatsApp: ${Desaparecidos.whatsApp} </p>
-                                        <p>Distrito: ${Desaparecidos.distrito_id} </p>
-                                          <div class="card-body" id="conten-btn">
-                                            <input class="btn btn-primary" type="submit" value="Editar">
-                                            <input class="btn btn-danger" type="submit" value="Eliminar">
-                                            </div>
-                                    </div>
-                                </div>
-</div>`
+                    mostrarNecesitados();
                 }
             })
             necesitados.forEach(necesitados => {
                 if (parseInt(necesitados.publicado_por) === nombreAlmacenado && necesitados.necesitados.nombre_nece == txtBuscado || necesitados.apellido == txtBuscado) {
-
-                    bodyNecesitados.innerHTML += `
-                            <div class="col-sm-6 col-md-4 ">
-                              <div class="card" style="width: 18rem; background-color: #072145; color: white; margin: 0.5rem auto;">
-                                <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"></rect><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
-                                <div class="card-body">
-                                  <h5 class="card-title" style="background-color: #038587; color: white;">Ayudemos a: <br>
-                                  ${necesitados.nombre_nece} ${necesitados.apellido} </h5>
-
-                                <div class="card-body">
-                                <p>Edad: ${necesitados.edad}</p>
-                                <p>Distrito: ${necesitados.distrito_id} </p>
-                                <p>Direccion: ${necesitados.direccion} </p>
-                                  <p>Descripcion: <br></p>
-                                  <p class="card-text">${necesitados.situacion_descripcion}</p>  <p>Creacion del anuncio: ${necesitados.fecha_publicacion}  </p>
-                                  <p>Estado: ${necesitados.asistido_id} </p>
-                                  <p>Tel: ${necesitados.telefono} <br> WhatsApp: ${necesitados.whatsApp}</p>
-                                  <p>Publicado por: ${necesitados.publicado_por} </p>
-                                    <div class="card-body" id="conten-btn">
-                                  <input class="btn btn-primary" type="submit" value="Editar">
-                                   <input class="btn btn-danger" type="submit" value="Eliminar">
-                                   </div>
-                                </div>
-                              </div>
-</div>
-`
+                    mostrarDesaparecidos();
+                    alertify.success("Registro de publicacion encontrado");
                 }
             });
 
@@ -892,6 +839,7 @@
         async function editarPublicacion(e) {
             let id = e.target.id;
             let baseSelect = e.target.name;
+            console.log(id + "   asdasd " + baseSelect);
             localStorage.setItem('registro_modificar',id);
             console.log(id);
             if (confirm(`Esta seguro de editar la publicacion`)) {
@@ -899,17 +847,35 @@
                 base_seleccionada = baseSelect;
                 var url;
                 if (baseSelect == "desa") {
-                    url = `https://localhost:7253/api/desaparecidos`;
-                    console.log("desa");
-                    console.log(id_edicion);
-                    txtNombreDesaparecido.value = "";
-                    txtApellidoDesaparecido.value = "";
-                    txtEdadDesaparecido.value = "";
-                    fecha_desaparicion.value = "";
-                    txtLugarDesaparecido.value = "";
-                    txtDescripcionDesaparecido.value = "";
-                    txtTelefonoDesaparecido.value = "";
-                    txtWhatsAppDesaparecido.value = "";
+                    let containerDesa = document.getElementById("containerImgDesa");
+                    console.log(id);
+                    const respuestaDesa = await fetch(`https://localhost:7253/api/desaparecidos`, {
+                        method: "GET",
+                        headers: {
+                            "Content-Type": "application/json"
+                        }
+                    }), desaparecidos = await respuestaDesa.json();
+                    desaparecidos.forEach(Desaparecidos => {
+                          
+                     
+                        if (Desaparecidos.id_publicacionDesa == id) {
+                            console.log("encontramos algo");
+                            console.log(Desaparecidos);
+                            txtNombreDesaparecido.value = Desaparecidos.nombre;
+                            txtApellidoDesaparecido.value = Desaparecidos.apellido;
+                            txtEdadDesaparecido.value = Desaparecidos.edad;
+                            fecha_desaparicion.Date = Desaparecidos.fecha_Desaparicion;
+                            txtLugarDesaparecido.value = Desaparecidos.lugar_Desaparicion;
+                            txtDescripcionDesaparecido.value = Desaparecidos.descripción_persona;
+                            txtTelefonoDesaparecido.value = Desaparecidos.telefono;
+                            txtWhatsAppDesaparecido.value = Desaparecidos.whatsApp;
+                            containerDesa.innerHTML = `<img src="data:image/png;base64,${Desaparecidos.imagen}"/>`;
+                            txtVistoAntesDesaparecido.selectElement = Desaparecidos.distrito_id;
+                            
+                        }
+                    })
+
+                        
                     
                 } else if (baseSelect == "nece") {
                     let containerNece = document.getElementById("containerImgNece");
@@ -930,7 +896,9 @@
                             txtTelefonoNecesitado.value = necesitados.telefono;
                             txtWhatsAppNecesitado.value = necesitados.whatsApp;
                             btnAgregarNecesitado.value = "Actualizar";
-                            containerNece.innerHTML = `    <img src="data:image/png;base64,${necesitados.imagen}"class="img - thumbnail rounded"/>`;
+                            containerNece.innerHTML = `<img src="data:image/png;base64,${necesitados.imagen}"/>`;
+                            txtAyudaNecesitado.selectElement = necesitados.ayuda_id;
+                            txtDistritoNecesitado.selectElement = necesitados.distrito_id;
                         }
                     })
                     
