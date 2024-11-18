@@ -529,6 +529,8 @@
                         const nombreAlmacenado = localStorage.getItem('nombre');
                         console.log(nombreAlmacenado);
 
+                    const imagen_nece = localStorage.getItem('imgenNece');
+                    let imagenNece = imagen_nece.split(",")[1]
                     let datos = {
                             "nombre_nece": txtNombreNecesitado.value,
                             "apellido": txtApellidoNecesitado.value,
@@ -540,7 +542,8 @@
                             "fecha_publicacion": anio + "-" + mes + "-" + dia,
                             "telefono": txtTelefonoNecesitado.value,
                             "whatsApp": txtWhatsAppNecesitado.value,
-                            "publicado_por": parseInt(nombreAlmacenado)
+                        "publicado_por": parseInt(nombreAlmacenado),
+                        "imagen": imagenNece
                         }
 
                        
@@ -616,9 +619,8 @@
 
                     const nombreAlmacenado = localStorage.getItem('nombre');
 
-                    const imagen_nece = localStorage.getItem('imgenNece');
-                    let imagenNece = imagen_nece.split(",")[1]
 
+                    console.log(imagen_nece);
                     let datos = {
                         nombre: txtNombreDesaparecido.value,
                         apellido: txtApellidoDesaparecido.value,
@@ -631,7 +633,7 @@
                         distrito_id: distrito,
                         fecha_publicacion: "'" + dia + "-" + mes + "-" + anio + "'", //posiblemente de un error por las comillas
                         publicado_por: parseInt(nombreAlmacenado),
-                        "imagen": imagenNece
+                       
                     },
                         method = "POST",
                         url = 'https://localhost:7253/api/desaparecidos';
