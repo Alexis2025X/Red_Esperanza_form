@@ -537,17 +537,15 @@
                             "apellido": txtApellidoNecesitado.value,
                             "edad": parseInt(txtEdadNecesitado.value),
                             "direccion": txtDireccionNecesitado.value,
-                            "distrito_id": distrito,
-                            "ayuda_id": tipo_ayuda,
+                            "id_distrito": distrito,
+                            "id_ayuda": tipo_ayuda,
                             "situacion_descripcion": txtDescripcionNecesitados.value,
                             "fecha_publicacion": anio + "-" + mes + "-" + dia,
                             "telefono": txtTelefonoNecesitado.value,
                             "whatsApp": txtWhatsAppNecesitado.value,
-                            "publicado_por": parseInt(nombreAlmacenado),
+                            "id_cuenta": parseInt(nombreAlmacenado),
                             "imagen": imagenNece
                         }
-
-                       
                     console.log(datos);
                     if (btnAgregarNecesitado.value == "Publicar") {
                         method = 'POST';
@@ -623,9 +621,9 @@
                         descripción_persona: txtDescripcionDesaparecido.value,
                         telefono: txtTelefonoDesaparecido.value,
                         whatsApp: txtWhatsAppDesaparecido.value,
-                        distrito_id: distrito,
+                        id_distrito: distrito,
                         fecha_publicacion: anio + "-" + mes + "-" + dia,
-                        publicado_por: parseInt(nombreAlmacenado),
+                        id_cuenta: parseInt(nombreAlmacenado),
                         "imagen": imagenDesa
                     };
 
@@ -670,8 +668,8 @@
             //
             Desaparecidos.forEach(Desaparecidos => {
                 console.log(nombreAlmacenado);
-                console.log(Desaparecidos.publicado_por + "asda")
-                if (parseInt(Desaparecidos.publicado_por) == nombreAlmacenado) {
+                console.log(Desaparecidos.id_cuenta + "asda")
+                if (parseInt(Desaparecidos.id_cuenta) == nombreAlmacenado) {
                     conenedorAnuncios.innerHTML += `
 
                          <div class="col-sm-6 col-md-4 ">
@@ -691,7 +689,7 @@
                                             <p>Si sabe algo contactelos por medio de:<p>
                                             <p>Telefono: ${Desaparecidos.telefono} </p>
                                             <p>WhatsApp: ${Desaparecidos.whatsApp} </p>
-                                            <p>Distrito: ${Desaparecidos.distrito_id} </p>
+                                            <p>Distrito: ${Desaparecidos.id_distrito} </p>
                                               <div class="card-body" id="conten-btn">
                                   <input id="${Desaparecidos.id_publicacionDesa}"  name="desa" onclick = "editarPublicacion(event)"  class="btn btn-primary"  type="submit" value="Editar">
                                               <input class="btn btn-danger" id="${Desaparecidos.id_publicacionDesa}" type="submit" name="desa" onclick="eliminarPublicacion(event)" class="delete" value="Eliminar">
@@ -721,7 +719,7 @@
             
             necesitados.forEach(necesitados => {
                 console.log(nombreAlmacenado);
-                if (parseInt(necesitados.publicado_por) == nombreAlmacenado) {
+                if (parseInt(necesitados.id_cuenta) == nombreAlmacenado) {
                    
                     conenedorAnuncios.innerHTML += `
                             <div class="col-sm-6 col-md-4 ">
@@ -733,12 +731,12 @@
 
                                     <div class="card-body">
                                     <p>Edad: ${necesitados.edad}</p>
-                                    <p>Distrito: ${necesitados.distrito_id} </p>
+                                    <p>Distrito: ${necesitados.id_distrito} </p>
                                     <p>Direccion: ${necesitados.direccion} </p>
                                       <p>Descripcion: <br></p>
                                       <p class="card-text">${necesitados.situacion_descripcion}</p>  <p>Creacion del anuncio:<br> ${necesitados.fecha_publicacion}  </p>
                                       <p>Tel: ${necesitados.telefono} <br> WhatsApp: ${necesitados.whatsApp}</p>
-                                      <p>Publicado por: ${necesitados.publicado_por} </p>
+                                      <p>Publicado por: ${necesitados.id_cuenta} </p>
                                        <div class="card-body" id="conten-btn">
                                          <input name="nece" onclick = "editarPublicacion(event)" class="btn btn-primary" id="${necesitados.id_publicacionNese}" type="submit" value="Editar">
                                             <input class="btn  btn-danger" id='${necesitados.id_publicacionNese}' type="submit" name="nece" onclick="eliminarPublicacion(event)" class="delete" value="Eliminar">
@@ -778,14 +776,14 @@
             conenedorAnuncios.innerHTML = '';
             console.log(nombreAlmacenado);
             Desaparecidos.forEach(Desaparecidos => {
-                if (parseInt(Desaparecidos.publicado_por) == nombreAlmacenado && txtBuscado ==   Desaparecidos.nombre || txtBuscado == Desaparecidos.apellido) {
+                if (parseInt(Desaparecidos.id_cuenta) == nombreAlmacenado && txtBuscado ==   Desaparecidos.nombre || txtBuscado == Desaparecidos.apellido) {
                     console.log("Encontrado");
                     alertify.success("Registro de publicacion encontrado");
                     mostrarNecesitados();
                 }
             })
             necesitados.forEach(necesitados => {
-                if (parseInt(necesitados.publicado_por) === nombreAlmacenado && necesitados.necesitados.nombre_nece == txtBuscado || necesitados.apellido == txtBuscado) {
+                if (parseInt(necesitados.id_cuenta) === nombreAlmacenado && necesitados.necesitados.nombre_nece == txtBuscado || necesitados.apellido == txtBuscado) {
                     mostrarDesaparecidos();
                     alertify.success("Registro de publicacion encontrado");
                 }
@@ -870,7 +868,7 @@
                             txtTelefonoDesaparecido.value = Desaparecidos.telefono;
                             txtWhatsAppDesaparecido.value = Desaparecidos.whatsApp;
                             containerDesa.innerHTML = `<img src="data:image/png;base64,${Desaparecidos.imagen}"/>`;
-                            txtVistoAntesDesaparecido.selectElement = Desaparecidos.distrito_id;
+                            txtVistoAntesDesaparecido.selectElement = Desaparecidos.id_distrito;
                             
                         }
                     })
@@ -897,8 +895,8 @@
                             txtWhatsAppNecesitado.value = necesitados.whatsApp;
                             btnAgregarNecesitado.value = "Actualizar";
                             containerNece.innerHTML = `<img src="data:image/png;base64,${necesitados.imagen}"/>`;
-                            txtAyudaNecesitado.selectElement = necesitados.ayuda_id;
-                            txtDistritoNecesitado.selectElement = necesitados.distrito_id;
+                            txtAyudaNecesitado.selectElement = necesitados.id_ayuda;
+                            txtDistritoNecesitado.selectElement = necesitados.id_distrito;
                         }
                     })
                     

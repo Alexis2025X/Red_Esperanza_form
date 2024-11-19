@@ -19,7 +19,7 @@ namespace Web_Red_de_Esperanza.Models
         [MaxLength(100)]
         public string Apellido { get; set; }
 
-        [Range(0, 120)]
+        [Range(0, 120, ErrorMessage = "La edad debe estar entre 0 y 120 años.")]
         public int Edad { get; set; }
 
         [Required]
@@ -40,15 +40,17 @@ namespace Web_Red_de_Esperanza.Models
         public DateTime Fecha_publicacion { get; set; } = DateTime.Now;
 
         // Claves foráneas
-        public int id_distrito { get; set; } // FK con Distritos
-        public int id_cuenta { get; set; }  // FK con Cuenta
+        [Required]
+        [ForeignKey("Cuenta")]
+        public int id_cuenta { get; set; }
+
+        [Required]
+        [ForeignKey("Distrito")]
+        public int id_distrito { get; set; }
 
         // Propiedades de navegación
-        [ForeignKey("Id_cuenta")]
-        public Cuentas Cuenta { get; set; }       // Relación con Cuenta
-        
-        [ForeignKey("Id_distrito")]
-        public Distritos Distrito { get; set; }   // Relación con Distrito
+        public Cuentas Cuenta { get; set; }
+        public Distritos Distrito { get; set; }
     }
 
     public class Cuentas
@@ -71,7 +73,7 @@ namespace Web_Red_de_Esperanza.Models
         public string Contraseña { get; set; }
 
         // Propiedades de navegación inversa
-        public ICollection<Desaparecidos> DesaparecidosPublicados { get; set; }
+       //public ICollection<Desaparecidos> desaparecidos { get; set; }
     }
 
     public class Distritos
@@ -86,13 +88,13 @@ namespace Web_Red_de_Esperanza.Models
         public string nombre_distrito { get; set; }
 
         // Propiedades de navegación inversa
-        public ICollection<Desaparecidos> Desaparecidos { get; set; }
+        //public ICollection<Desaparecidos> Desaparecidos { get; set; }
     }
 
     public class RedDeEsperanzaContext : DbContext
     {
         public DbSet<Desaparecidos> Desaparecidos { get; set; }
-        public DbSet<Cuentas> Cuentas { get; set; }
+        public DbSet<Cuentas> Cuenta { get; set; }
         public DbSet<Distritos> Distritos { get; set; }
 
         public RedDeEsperanzaContext(DbContextOptions<RedDeEsperanzaContext> options) : base(options) { }
@@ -101,29 +103,30 @@ namespace Web_Red_de_Esperanza.Models
         {
             // Configuración para Desaparecidos
             modelBuilder.Entity<Desaparecidos>()
+                .ToTable("Desaparecidos") // Asegurar el nombre correcto de la tabla
                 .HasKey(d => d.Id_publicacionDesa);
 
             modelBuilder.Entity<Desaparecidos>()
-                .HasOne(d => d.Cuenta)
-                .WithMany(c => c.DesaparecidosPublicados)
-                .HasForeignKey(d => d.id_cuenta)
-                .OnDelete(DeleteBehavior.Cascade);
+                .HasOne(d => d.Cuenta);
+            //.WithMany(c => c.desaparecidos)
+            //.HasForeignKey(d => d.id_cuenta)
+            //.OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<Desaparecidos>()
-                .HasOne(d => d.Distrito)
-                .WithMany(d => d.Desaparecidos)
-                .HasForeignKey(d => d.id_distrito)
-                .OnDelete(DeleteBehavior.Cascade);
+                .HasOne(d => d.Distrito);
+                //.WithMany(d => d.Desaparecidos)
+                //.HasForeignKey(d => d.id_distrito)
+                //.OnDelete(DeleteBehavior.Cascade);
 
             // Configuración para Cuentas
             modelBuilder.Entity<Cuentas>()
+                .ToTable("Cuentas") // Asegurar el nombre correcto de la tabla
                 .HasKey(c => c.id_cuenta);
 
             // Configuración para Distritos
             modelBuilder.Entity<Distritos>()
+                .ToTable("Distritos") // Asegurar el nombre correcto de la tabla
                 .HasKey(d => d.id_distrito);
         }
     }
 }
-
-

@@ -10,6 +10,6 @@ namespace Web_Red_de_Esperanza.Models
         public string Usuario { get; set; }
         public string Contraseña { get; set; }
 
-         public ICollection<Desaparecidos> DesaparecidosPublicados { get; set; }
+
     }
 }

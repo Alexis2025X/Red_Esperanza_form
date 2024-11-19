@@ -79,21 +79,53 @@ namespace Web_Red_de_Esperanza.Controllers
                 WhatsApp = desaparecidos.WhatsApp,
                 Fecha_publicacion = desaparecidos.Fecha_publicacion
             };
-
+            //Id_cuenta
             _context.desaparecidos.Add(nuevoDesaparecido);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction(nameof(GetDesaparecidos), new { id = nuevoDesaparecido.Id_publicacionDesa }, nuevoDesaparecido);
         }
 
-        // DELETE: api/desaparecidos/5
+        // PUT: api/desaparecidos/5
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Putdesaparecidos(int id, Desaparecidos desaparecidos)
+        {
+            if (id != desaparecidos.Id_publicacionDesa)
+            {
+                return BadRequest();
+            }
+
+            _context.Entry(desaparecidos).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!DesaparecidosExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return NoContent();
+        }
+
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteDesaparecidos(int id)
         {
-            var desaparecidos = await _context.desaparecidos.FindAsync(id);
+            var desaparecidos = await _context.desaparecidos
+                .FirstOrDefaultAsync(d => d.Id_publicacionDesa == id); // Sin Include
+
             if (desaparecidos == null)
             {
-                return NotFound();
+                return NotFound(new { mensaje = "No se encontró el registro." });
             }
 
             _context.desaparecidos.Remove(desaparecidos);
@@ -101,10 +133,13 @@ namespace Web_Red_de_Esperanza.Controllers
 
             return NoContent();
         }
+
+
         //Cuentaid_cuenta
         private bool DesaparecidosExists(int id)
         {
             return _context.desaparecidos.Any(e => e.Id_publicacionDesa == id);
         }
     }
+
 }
