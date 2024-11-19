@@ -46,7 +46,7 @@ namespace Web_Red_de_Esperanza.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Putcuentas(int id, cuentas cuentas)
         {
-            if (id != cuentas.Id_cuenta)
+            if (id != cuentas.id_cuenta)
             {
                 return BadRequest();
             }
@@ -80,7 +80,7 @@ namespace Web_Red_de_Esperanza.Controllers
             _context.cuentas.Add(cuentas);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("Getcuentas", new { id = cuentas.Id_cuenta }, cuentas);
+            return CreatedAtAction("Getcuentas", new { id = cuentas.id_cuenta }, cuentas);
         }
 
         // DELETE: api/cuentas/5
@@ -101,7 +101,7 @@ namespace Web_Red_de_Esperanza.Controllers
 
         private bool cuentasExists(int id)
         {
-            return _context.cuentas.Any(e => e.Id_cuenta == id);
+            return _context.cuentas.Any(e => e.id_cuenta == id);
         }
     }
 }

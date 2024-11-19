@@ -37,7 +37,7 @@ namespace Web_Red_de_Esperanza.Models
             modelBuilder.Entity<Desaparecidos>().HasKey(e => e.Id_publicacionDesa);
             //CUENTAS
            base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<cuentas>().HasKey(e => e.Id_cuenta);
+            modelBuilder.Entity<cuentas>().HasKey(e => e.id_cuenta);
         }
 
       

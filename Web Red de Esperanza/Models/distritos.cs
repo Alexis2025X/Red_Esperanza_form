@@ -2,10 +2,10 @@
 
 namespace Web_Red_de_Esperanza.Models
 {
-    public class Distritos
+    public class Distrito
     {
         [Key]
-        public int Id_distrito { get; set; }
-        public required string distrito { get; set; }
+        public int id_distrito { get; set; }
+        public required string nombre_distrito { get; set; }
     }
 }
