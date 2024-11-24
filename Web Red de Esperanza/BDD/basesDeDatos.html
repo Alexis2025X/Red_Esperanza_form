@@ -1,0 +1,116 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <h5>
+        Nombre de base: red_esperanza
+
+        CREACION DE BASES
+
+        CREATE TABLE [dbo].[ayudas] (
+        [id_ayuda]   INT           NOT NULL,
+        [tipo_ayuda] VARCHAR (255) NOT NULL,
+        PRIMARY KEY CLUSTERED ([id_ayuda] ASC)
+        );
+
+        CREATE TABLE [dbo].[cuentas] (
+        [id_cuenta]  INT          IDENTITY (1, 1) NOT NULL,
+        [Nombre]     VARCHAR (75) NOT NULL,
+        [Usuario]    VARCHAR (75) NOT NULL,
+        [Contraseña] VARCHAR (10) NOT NULL,
+        PRIMARY KEY CLUSTERED ([id_cuenta] ASC)
+        );
+        CREATE TABLE [dbo].[distritos] (
+        [id_distrito]     INT           NOT NULL,
+        [nombre_distrito] VARCHAR (255) NOT NULL,
+        PRIMARY KEY CLUSTERED ([id_distrito] ASC)
+        );
+
+
+        CREATE TABLE [dbo].[desaparecidos] (
+        [Id_publicacionDesa]  INT             IDENTITY (1, 1) NOT NULL,
+        [Nombre]              VARCHAR (255)   NOT NULL,
+        [Apellido]            VARCHAR (255)   NOT NULL,
+        [Edad]                INT             NOT NULL,
+        [Fecha_Desaparicion]  DATE            NOT NULL,
+        [Lugar_Desaparicion]  VARCHAR (255)   NOT NULL,
+        [Descripción_persona] VARCHAR (255)   NOT NULL,
+        [Telefono]            VARCHAR (255)   NOT NULL,
+        [WhatsApp]            VARCHAR (255)   NULL,
+        [Distrito_id]         INT             NOT NULL,
+        [Fecha_publicacion]   DATE            NOT NULL,
+        [Publicado_por]       INT             NOT NULL,
+        [Imagen]              VARBINARY (MAX) NULL,
+        PRIMARY KEY CLUSTERED ([Id_publicacionDesa] ASC),
+        FOREIGN KEY ([Distrito_id]) REFERENCES [dbo].[distritos] ([id_distrito]),
+        FOREIGN KEY ([Publicado_por]) REFERENCES [dbo].[cuentas] ([id_cuenta])
+        );
+
+        CREATE TABLE [dbo].[necesitados] (
+        [Id_publicacionNese]    INT             IDENTITY (1, 1) NOT NULL,
+        [Nombre_Nece]           VARCHAR (255)   NOT NULL,
+        [Apellido]              VARCHAR (255)   NOT NULL,
+        [Edad]                  INT             NOT NULL,
+        [Direccion]             VARCHAR (255)   NOT NULL,
+        [Distrito_id]           INT             NOT NULL,
+        [Ayuda_id]              INT             NOT NULL,
+        [Situacion_descripcion] VARCHAR (255)   NOT NULL,
+        [Fecha_publicacion]     DATE            NOT NULL,
+        [Telefono]              VARCHAR (75)    NULL,
+        [WhatsApp]              VARCHAR (75)    NULL,
+        [publicado_por]         INT             NOT NULL,
+        [Imagen]                VARBINARY (MAX) NULL,
+        PRIMARY KEY CLUSTERED ([Id_publicacionNese] ASC),
+        FOREIGN KEY ([Distrito_id]) REFERENCES [dbo].[distritos] ([id_distrito]),
+        FOREIGN KEY ([Ayuda_id]) REFERENCES [dbo].[ayudas] ([id_ayuda]),
+        FOREIGN KEY ([publicado_por]) REFERENCES [dbo].[cuentas] ([id_cuenta])
+        );
+
+    </h5>
+    <h4>
+        DATOS A INGRESAR
+
+        INSERT INTO [dbo].[distritos] ([id_distrito], [nombre_distrito]) VALUES (1, N'Ahuachapan Sur')
+        INSERT INTO [dbo].[distritos] ([id_distrito], [nombre_distrito]) VALUES (2, N'San Salvador Norte')
+        INSERT INTO [dbo].[distritos] ([id_distrito], [nombre_distrito]) VALUES (3, N'San Salvador Oeste')
+        INSERT INTO [dbo].[distritos] ([id_distrito], [nombre_distrito]) VALUES (4, N'San Salvador Este')
+        INSERT INTO [dbo].[distritos] ([id_distrito], [nombre_distrito]) VALUES (5, N'San Salvador Centro')
+        INSERT INTO [dbo].[distritos] ([id_distrito], [nombre_distrito]) VALUES (6, N'San Salvador Sur')
+        INSERT INTO [dbo].[distritos] ([id_distrito], [nombre_distrito]) VALUES (7, N'La Libertad Norte')
+        INSERT INTO [dbo].[distritos] ([id_distrito], [nombre_distrito]) VALUES (8, N'La Libertad Centro')
+        INSERT INTO [dbo].[distritos] ([id_distrito], [nombre_distrito]) VALUES (9, N'La Libertad Oeste')
+        INSERT INTO [dbo].[distritos] ([id_distrito], [nombre_distrito]) VALUES (10, N'La Libertad Este')
+        INSERT INTO [dbo].[distritos] ([id_distrito], [nombre_distrito]) VALUES (11, N'La Libertad Costa')
+        INSERT INTO [dbo].[distritos] ([id_distrito], [nombre_distrito]) VALUES (12, N'La Libertad Sur')
+        INSERT INTO [dbo].[distritos] ([id_distrito], [nombre_distrito]) VALUES (13, N'Chalatenango Norte')
+        INSERT INTO [dbo].[distritos] ([id_distrito], [nombre_distrito]) VALUES (14, N'Chalatenango Centro')
+        INSERT INTO [dbo].[distritos] ([id_distrito], [nombre_distrito]) VALUES (15, N'Sonsonate Norte')
+        INSERT INTO [dbo].[distritos] ([id_distrito], [nombre_distrito]) VALUES (16, N'Sonsonate Oeste')
+        INSERT INTO [dbo].[distritos] ([id_distrito], [nombre_distrito]) VALUES (17, N'Sonsonate Centro')
+        INSERT INTO [dbo].[distritos] ([id_distrito], [nombre_distrito]) VALUES (18, N'Sonsonate Este')
+        INSERT INTO [dbo].[distritos] ([id_distrito], [nombre_distrito]) VALUES (19, N'Cabañas Este')
+        INSERT INTO [dbo].[distritos] ([id_distrito], [nombre_distrito]) VALUES (20, N'Morazán Sur')
+        INSERT INTO [dbo].[distritos] ([id_distrito], [nombre_distrito]) VALUES (21, N'La Union Norte')
+        INSERT INTO [dbo].[distritos] ([id_distrito], [nombre_distrito]) VALUES (22, N'La Union Sur')
+        INSERT INTO [dbo].[distritos] ([id_distrito], [nombre_distrito]) VALUES (23, N'San Miguel Centro')
+        INSERT INTO [dbo].[distritos] ([id_distrito], [nombre_distrito]) VALUES (24, N'San Miguel Norte')
+        INSERT INTO [dbo].[distritos] ([id_distrito], [nombre_distrito]) VALUES (25, N'San Miguel Oeste')
+
+
+        INSERT INTO [dbo].[ayudas] ([id_ayuda], [tipo_ayuda]) VALUES (1, N'Bono de Alimentos')
+        INSERT INTO [dbo].[ayudas] ([id_ayuda], [tipo_ayuda]) VALUES (2, N'Subsidio de Vivienda')
+        INSERT INTO [dbo].[ayudas] ([id_ayuda], [tipo_ayuda]) VALUES (3, N'Beca Educativa')
+        INSERT INTO [dbo].[ayudas] ([id_ayuda], [tipo_ayuda]) VALUES (4, N'Programa de Empleo Temporal')
+        INSERT INTO [dbo].[ayudas] ([id_ayuda], [tipo_ayuda]) VALUES (5, N'Asistencia Médica Gratuita')
+        INSERT INTO [dbo].[ayudas] ([id_ayuda], [tipo_ayuda]) VALUES (6, N'Subsidio de Transporte')
+        INSERT INTO [dbo].[ayudas] ([id_ayuda], [tipo_ayuda]) VALUES (7, N'Programa de Capacitación Laboral')
+        INSERT INTO [dbo].[ayudas] ([id_ayuda], [tipo_ayuda]) VALUES (8, N'Ayuda a Víctimas de Violencia')
+        INSERT INTO [dbo].[ayudas] ([id_ayuda], [tipo_ayuda]) VALUES (9, N'Fondo de Emergencia')
+        INSERT INTO [dbo].[ayudas] ([id_ayuda], [tipo_ayuda]) VALUES (10, N'Programa de Inclusión Social')
+    </h4>
+
+</body>
+</html>
