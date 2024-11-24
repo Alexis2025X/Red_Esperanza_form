@@ -91,6 +91,9 @@
 
 
     <script>
+        
+        const nombreAlmacenado = localStorage.getItem('nombre');
+
         const crear = document.getElementById("btnCrear_cuenta");
 
         crear.addEventListener("click", guardarCuenta);
@@ -98,17 +101,17 @@
         var url;
 
         async function guardarCuenta() {
-           try {
-            confirmacion = false;
+            try {
+                confirmacion = false;
                 const respuesta = await fetch('https://localhost:7253/api/cuentas', {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json"
                     }
                 }), cuentas = await respuesta.json();
-                console.log(cuentas);
+            
                 cuentas.forEach(cuentas => {
-                    if (cuentas.usuario == txtUsuarioCuenta.value ) {
+                    if (cuentas.usuario == txtUsuarioCuenta.value) {
 
                         confirmacion = true;
                     }
@@ -148,10 +151,10 @@
                     }
                 }
             } catch {
-                console.error("Error al crear la cuenta ")
+
                 alertify.error("Error al crear la cuenta");
             }
-        
+        }
 
         function limpieza() {
             txtUsuarioCuenta.value = "";

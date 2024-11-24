@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.TagHelpers;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Drawing;
 using static System.Net.Mime.MediaTypeNames;
 
@@ -21,5 +22,7 @@ namespace Web_Red_de_Esperanza.Models
         public DateTime Fecha_publicacion { get; set; }
         public int Publicado_por { get; set; }
         public byte[]? imagen { get; set; }
+
     }
+
 }

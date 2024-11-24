@@ -40,8 +40,50 @@
     </nav>
 
     <!-- tarjetas -->
+    <center>
+        <div class="container col-md-4 col-sm-6">
 
+            <div class="card" style="width: 20rem; margin-top: 25vh; margin: 25% auto; background-color: rgb(7, 33, 69); color: white; ">
+                <div class="card-body" style="display: grid; justify-content: center; align-items: center;">
 
+                    <h5 class=" nombre card-title">Ingrese su nombre:</h5>
+                    <Input type="text" maxlength="75" style=" font-family: Roboto, sans-serif, Arial; font-weight: bold; color: black; text-align: center;" id="txtNombreCuenta" name="txtNombreCuenta">
+                    <style>
+                        /* Estilo para quitar el borde del input */
+                        #txtNombreCuenta {
+                            background-color: rgb(3, 133, 135);
+                            border: none; /* Quitar el borde */
+                            outline: none; /* Quitar el borde al hacer clic */
+                        }
+                    </style>
+
+                    <h5 class=" user card-title">Cree un usuario:</h5>
+                    <Input type="text" maxlength="75" style=" font-family: Roboto, sans-serif, Arial; font-weight: bold; color: black; text-align: center;" id="txtUsuarioCuenta" name="txtUsuarioCuenta">
+                    <style>
+                        /* Estilo para quitar el borde del input */
+                        #txtUsuarioCuenta {
+                            background-color: rgb(3, 133, 135);
+                            border: none; /* Quitar el borde */
+                            outline: none; /* Quitar el borde al hacer clic */
+                        }
+                    </style>
+                    <h5 class=" contraseña card-title">Cree una contraseña:</h5>
+                    <Input type="text" maxlength="10" style=" font-family: Roboto, sans-serif, Arial; font-weight: bold; color: black; text-align: center;" id="txtContraseñaCuenta" name="txtContraseñaCuenta">
+                    <style>
+                        #txtContraseñaCuenta {
+                            background-color: rgb(3, 133, 135);
+                            border: none; /* Quitar el borde */
+                            outline: none; /* Quitar el borde al hacer clic */
+                        }
+                    </style>
+                    <br>
+
+                    <button type="button" id="btnCrear_cuenta" name="btnCrear_cuenta" class="btn-primary" style="background-color: rgb(4, 111, 212); border-style: none; border-radius: 45vh; color: white; justify-items: center;">   Crear   </button>
+
+                </div>
+            </div>
+        </div>
+    </center>
     <!-- JavaScript -->
     <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.14.0/build/alertify.min.js"></script>
 
@@ -51,9 +93,8 @@
 
         crear.addEventListener("click", guardarCuenta);
 
-        
+        var url;
 
-        var confirmacion;
         async function guardarCuenta() {
             try {
                 confirmacion = false;
@@ -63,7 +104,7 @@
                         "Content-Type": "application/json"
                     }
                 }), cuentas = await respuesta.json();
-                console.log(cuentas);
+                
                 cuentas.forEach(cuentas => {
                     if (cuentas.usuario == txtUsuarioCuenta.value) {
 
@@ -76,7 +117,7 @@
                 } else {
                     if (confirmacion == true) {
                         alertify.error("El usuario ya existe");
-                    } else { 
+                    } else {
                         let datos = {
                             nombre: txtNombreCuenta.value,
                             usuario: txtUsuarioCuenta.value,
@@ -104,10 +145,10 @@
                         limpieza();
                     }
                 }
-                } catch (e) {
-                     console.error("Error al crear la cuenta " + e)
-                    alertify.error("Error al crear la cuenta");
-        }
+            } catch {
+               
+                alertify.error("Error al crear la cuenta");
+            }
         }
 
         function limpieza() {

@@ -24,6 +24,9 @@ namespace Web_Red_de_Esperanza.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Desaparecidos>>> Getdesaparecidos()
         {
+            
+
+
             return await _context.desaparecidos.ToListAsync();
         }
 

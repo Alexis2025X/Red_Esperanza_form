@@ -51,75 +51,12 @@
     </style>
     <!-- tarjetas -->
 
-    <div class="row m-0 border-0 bd-example m-0 border-0 justify-content-center" id="bodyNecesitados">
-        <div class="col-sm-6 col-md-4 ">
-            <div class="card" style="width: 18rem; background-color: #072145; color: white; margin: 0.5rem auto;">
-                <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"></rect><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
-                <div class="card-body">
-                    <h5 class="card-title" style="background-color: #038587; color: white;">Ayudemos a: </h5>
-                    <h5 class="card-title" style="background-color: #038587; color: white;">Nombre persona necesitada </h5>
-                </div>
-                <div class="card-body">
-                    <p>Descripción:</p>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <p>Creacion del anuncio: </p> <span id="Fecha_Creacion"></span>
-                    <p>Estado: </p> <span id="Fecha_Creacion"></span>
-                    <p>publicacido por: </p> <span id="Fecha_Creacion"></span>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-6 col-md-4 ">
-            <div class="card" style="width: 18rem; background-color: #072145; color: white; margin: 0.5rem auto;">
-                <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"></rect><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
-                <div class="card-body">
-                    <h5 class="card-title" style="background-color: #038587; color: white;">Ayudemos a: </h5>
-                    <h5 class="card-title" style="background-color: #038587; color: white;">Nombre persona necesitada </h5>
-                </div>
-                <div class="card-body">
-                    <p>Descripción:</p>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <p>Creacion del anuncio: </p> <span id="Fecha_Creacion"></span>
-                    <p>Estado: </p> <span id="Fecha_Creacion"></span>
-                    <p>publicacido por: </p> <span id="Fecha_Creacion"></span>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-6 col-md-4 ">
-            <div class="card" style="width: 18rem; background-color: #072145; color: white; margin: 0.5rem auto;">
-                <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"></rect><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
-                <div class="card-body">
-                    <h5 class="card-title" style="background-color: #038587; color: white;">Ayudemos a: </h5>
-                    <h5 class="card-title" style="background-color: #038587; color: white;">Nombre persona necesitada </h5>
-                </div>
-                <div class="card-body">
-                    <p>Descripción:</p>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <p>Creacion del anuncio: </p> <span id="Fecha_Creacion"></span>
-                    <p>Estado: </p> <span id="Fecha_Creacion"></span>
-                    <p>publicacido por: </p> <span id="Fecha_Creacion"></span>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-sm-6 col-md-4 ">
-            <div class="card" style="width: 18rem; background-color: #072145; color: white; margin: 0.5rem auto;">
-                <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"></rect><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
-                <div class="card-body">
-                    <h5 class="card-title" style="background-color: #038587; color: white;">Ayudemos a: </h5>
-                    <h5 class="card-title" style="background-color: #038587; color: white;">Nombre persona necesitada </h5>
-                </div>
-                <div class="card-body">
-                    <p>Descripción:</p>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <p>Creacion del anuncio: </p> <span id="Fecha_Creacion"></span>
-                    <p>Estado: </p> <span id="Fecha_Creacion"></span>
-                    <p>publicacido por: </p> <span id="Fecha_Creacion"></span>
-                </div>
-            </div>
-        </div>
-    </div>
+    <div class="row m-0 border-0 bd-example m-0 border-0 justify-content-center" id="bodyNecesitados"></div>
 
     <script>
+        const nombreAlmacenado = localStorage.getItem('nombre');
+
+      
         //AGREGAR AL OTRO ARCHIVO
         txtBuscar.addEventListener('keyup', e => {
             mostrarNecesitados(txtBuscar.value);
@@ -127,15 +64,14 @@
         //------
         let bodyNecesitados = document.getElementById("bodyNecesitados");
         let btnBuscar = document.querySelector("#btnBuscar");
-        //btnBuscar.addEventListener("click", buscarNecesitados);
-
+      
         mostrarNecesitados();
 
         async function mostrarNecesitados(buscar= '') {
-            console.log(buscar)
+            
         let url = `/api/Necesitados/${buscar}`
         //AGREGAR AL OTRO ARCHIVO
-        console.log("Mostrando data")
+       
         bodyNecesitados.innerHTML = '';
             const respuesta = await fetch(url, //------------
                 {
@@ -144,83 +80,95 @@
                     "Content-Type": "application/json"
                 }
             }), necesitados = await respuesta.json();
+            const localidades = [
+                'Ahuachapan Sur',
+                'San Salvador Norte',
+                'San Salvador Oeste',
+                'San Salvador Este',
+                'San Salvador Centro',
+                'San Salvador Sur',
+                'La Libertad Norte',
+                'La Libertad Centro',
+                'La Libertad Oeste',
+                'La Libertad Este',
+                'La Libertad Costa',
+                'La Libertad Sur',
+                'Chalatenango Norte',
+                'Chalatenango Centro',
+                'Sonsonate Norte',
+                'Sonsonate Oeste',
+                'Sonsonate Centro',
+                'Sonsonate Este',
+                'Cabañas Este',
+                'Morazán Sur',
+                'La Union Norte',
+                'La Union Sur',
+                'San Miguel Centro',
+                'San Miguel Norte',
+                'San Miguel Oeste'
+            ];
+            const ayudasCiudadanas = [
+                'Bono de Alimentos',
+                'Subsidio de Vivienda',
+                'Beca Educativa',
+                'Programa de Empleo Temporal',
+                'Asistencia Médica Gratuita',
+                'Subsidio de Transporte',
+                'Programa de Capacitación Laboral',
+                'Ayuda a Víctimas de Violencia',
+                'Fondo de Emergencia',
+                'Programa de Inclusión Social'
+            ];
+
+            const respuestaCuenta = await fetch('https://localhost:7253/api/cuentas',
+                {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                }), cuentas = await respuestaCuenta.json();
+
+            let anio;
+            let mes; 
+            let dia; 
+          
+            let user;
             necesitados.forEach(necesitados => {
+               
+
+                cuentas.forEach(cuenta => {
+                    if (cuenta.id_cuenta == necesitados.publicado_por) {
+                        user = cuenta.usuario;
+                    }
+                })
+                let fecha_publicacion = necesitados.fecha_publicacion;
+                const fechaOriginal = fecha_publicacion;
+
+                const fechaFormateada = new Date(fechaOriginal).toISOString().split('T')[0];
 
                 bodyNecesitados.innerHTML += `
-                            <div class="col-sm-6 col-md-4 ">
-                                  <div class="card" style="width: 18rem; background-color: #072145; color: white; margin: 0.5rem auto;">
-                                    <img src="data:image/png;base64,${necesitados.imagen}"class="img - thumbnail rounded"/>
-                                    <div class="card-body">
-                                      <h5 class="card-title" style="background-color: #038587; color: white;">Ayudemos a: <br>
+<div class="col-sm-6 col-md-4 ">
+    <div class="card" style="width: 18rem; background-color: #072145; color: white; margin: 0.5rem auto;">
+        <img src="data:image/png;base64,${necesitados.imagen}"class="img - thumbnail rounded"/>
+        <div class="card-body">
+                <h5 class="card-title" style="background-color: #038587; color: white;">Ayudemos a: <br>
                                       ${necesitados.nombre_nece} ${necesitados.apellido} </h5>
-
-                                    <div class="card-body">
-                                    <p>Edad: ${necesitados.edad}</p>
-                                    <p>Distrito: ${necesitados.distrito_id} </p>
-                                    <p>Direccion: ${necesitados.direccion} </p>
-                                      <p>Descripcion: <br></p>
-                                      <p class="card-text">${necesitados.situacion_descripcion}</p>  <p>Creacion del anuncio:<br> ${necesitados.fecha_publicacion}  </p>
-                                      <p>Tel: ${necesitados.telefono} <br> WhatsApp: ${necesitados.whatsApp}</p>
-                                      <p>Publicado por: ${necesitados.publicado_por} </p>
-                                       <div class="card-body" id="conten-btn">
-                                         
-                                        </div>
-                                    </div>
-                                  </div>
-</div>
-`
+        <div class="card-body">
+             <p>Edad: ${necesitados.edad}</p>
+             <p>Distrito: ${localidades[parseInt(necesitados.distrito_id)]}</p>
+             <p>Direccion: ${necesitados.direccion}  </p>
+             <p>Descripcion: <br></p>
+             <p class="card-text">${necesitados.situacion_descripcion}</p>  <p>Creacion del anuncio:<br> ${fechaFormateada}   </p>
+             <p>Tel: ${necesitados.telefono} <br> WhatsApp: ${necesitados.whatsApp}</p>
+             <p>Ayuda con: ${ayudasCiudadanas[parseInt(necesitados.ayuda_id)]} <br></p>
+             <p>Publicado por: ${user} <br></p>
+        </div>
+    </div>
+</div>` 
 
             });
         }
-/*        async function buscarNecesitado(event) {
-            event.preventDefault();
-            console.log("Buscando");
-            let txtbuscarNecesitado = document.getElementById("txtBuscar");
-            let txtBuscar = txtbuscarNecesitado.value;
 
-            bodyNecesitados.innerHTML = '';
-            const respuesta = await fetch("https://localhost:7253/api/necesitados", {
-                method: "GET",
-                headers: {
-                    "Content-Type": "application/json"
-                }
-            }), necesitados = await respuesta.json();
-
-
-            necesitados.forEach(necesitados => {
-                if (necesitados.nombre_nece == txtBuscar) {
-                    console.log("encontrado");
-                    bodyNecesitados.innerHTML += `
-<div class="col-sm-6 col-md-4 ">
-                  <div class="card" style="width: 18rem; background-color: #072145; color: white; margin: 0.5rem auto;">
-                    <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"></rect><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
-                    <div class="card-body">
-                      <h5 class="card-title" style="background-color: #038587; color: white;">Ayudemos a: <br>
-                      ${necesitados.nombre_nece} ${necesitados.apellido} </h5>
-
-                    <div class="card-body">
-                    <p>Edad: ${necesitados.edad}</p>
-                    <p>Distrito: ${necesitados.distrito_id} </p>
-                    <p>Direccion: ${necesitados.direccion} </p>
-                      <p>Descripcion: <br></p>
-                      <p class="card-text">${necesitados.situacion_descripcion}</p>  <p>Creacion del anuncio: ${necesitados.fecha_publicacion}  </p>
-                      <p>Estado: ${necesitados.asistido_id} </p>
-                      <p>Tel: ${necesitados.telefono} <br> WhatsApp: ${necesitados.whatsApp}</p>
-                      <p>Publicado por: ${necesitados.publicado_por.Usuario} </p>
-                    </div>
-                  </div>
-</div>
-`
-                } else {
-                    console.log("No encontrado");
-                    bodyNecesitados.innerHTML = ' <div style="display: flex; justify-content: center; margin-top: 25%;"><h3 style="color: wheat;">Persona necesitada no encontrada</h3></div>'
-                    setTimeout(mostrarNecesitados, 5000);
-                }
-
-            })
-        }
-
-*/
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

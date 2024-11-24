@@ -27,6 +27,10 @@ namespace Web_Red_de_Esperanza.Controllers
             return await _context.cuentas.ToListAsync();
         }
 
+
+
+
+
         // GET: api/cuentas/5
         [HttpGet("{id}")]
         public async Task<ActionResult<cuentas>> Getcuentas(int id)
