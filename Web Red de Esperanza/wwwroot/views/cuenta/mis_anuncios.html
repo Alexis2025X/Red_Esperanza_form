@@ -47,20 +47,21 @@
             </li>
         </ul>
     </nav>
-    <style>
-        #btnBuscar{
-            border:none;
-        }#txtBuscar{
-            border:none;
-        }
-        .navbar ul #misanuncios a::before {
-        }
 
-    </style>
     <!-- tarjetas -->
 
     <div class="row m-0 border-0 bd-example m-0 border-0 justify-content-center">
         <style>
+            #btnBuscar {
+                border: none;
+            }
+
+            #txtBuscar {
+                border: none;
+            }
+
+            .navbar ul #misanuncios a::before {
+            }
 
             #containerImgNece {
                 width: 100%;
@@ -142,7 +143,8 @@
                     <div class="col-sm-6 col-md-4" style="width: 100%; height:200px; ">
                         <center id="containerImgNece"></center>
                     </div>
-                        <input type="file" id="fileimagenNese" accept="image/*" style="max-width: 100%;">
+                   <center> <h5>Necesitados</h5> </center>
+                    <input type="file" id="fileimagenNese" accept="image/*" style="max-width: 100%;">
 
                     <h5 class="card-title" style=" color: white;">
                         Ayudemos a:
@@ -160,26 +162,25 @@
                         Edad:
                     </h5>
                     <input type="number" id="txtEdadNecesitado" class="card-title" min="0" style="background-color: #038587; color: white;" placeholder="Edad">
-                    <p>
-                        Distrito: <select name="miCombobox" id="txtDistritoNecesitado" style="background: #038587; color: white; ">
-                            
-                        </select>
-                    </p>
-                    <p>Direccion:</p>
+                    <h5> Distrito: </h5>
+                    <select name="miCombobox" id="txtDistritoNecesitado" style="background: #038587; color: white; padding-top: 5px; padding-bottom: 5px; "></select>
+                    <h5>Dirección:</h5>
                     <input type="text" id="txtDireccionNecesitado" class="card-title" style="background-color: #038587; color: white;" placeholder="Dirección">
 
-                    <strong>Descripcion: </strong>
+                    <h5>Descripción: </h5>
                     <textarea type="text" id="txtDescripcionNecesitados" class="card-title" maxlength="220" style="background-color: #038587; color: white; max-height:20vh; min-height:10vh; " placeholder="Descripcion de la situacion"></textarea>
+                    <!--AQUIIII-->
+                    <h5>Tipo de ayuda: </h5>
+                    
+                    <select name="miCombobox" id="txtAyudaNecesitado" style="background: #038587; color: white; font-size: 15px; padding-top: 5px; padding-bottom: 5px; "></select>
+ 
+                    <h5 style=" padding-top: 7px;">Teléfono:</h5>
+                    <input type="text" id="txtTelefonoNecesitado" class="card-title" style="background-color: #038587; color: white;" placeholder="Numero telefonico">
+                    <br> 
+                    <h5>WhatsApp: </h5> 
+                    <input id="txtWhatsAppNecesitado" type="text" class="card-title" style="background-color: #038587; color: white;" placeholder="Numero de WhatsApp">
 
-                    <p>
-                        Tipo de ayuda: <select name="miCombobox" id="txtAyudaNecesitado" style="background: #038587; color: white; ">
-                        </select>
-                    </p>
-                    <p>
-                        Tel:  <input type="text" id="txtTelefonoNecesitado" class="card-title" style="background-color: #038587; color: white;" placeholder="Numero telefonico">
-                        <br> WhatsApp: <input id="txtWhatsAppNecesitado" type="text" class="card-title" style="background-color: #038587; color: white;" placeholder="Numero de WhatsApp">
 
-                    </p>
                     <input id="btnPublicarNecesitado" class="btn btn-primary" type="submit" value="Publicar">
 
                 </div>
@@ -267,39 +268,46 @@
             <div class="card" style="width: 18rem; background-color: #072145; color: white; margin: 0.5rem auto;">
 
                 <div class="card-body">
+
                     <div class="col-sm-6 col-md-4" style="width: 100%; height: 200px;">
 
-                        <center  style="width: 100%; height: 200px;" id="containerImgDesa"></center>
+                        <center style="width: 100%; height: 200px;" id="containerImgDesa"></center>
                     </div>
-                    <input type="file" id="fileimagenDesa" style="max-width:100%;" />
+                    <center> <h5>Desaparecidos</h5> </center>
+                    <input type="file" id="fileimagenDesa" style="max-width:100%;"/>
 
                     <h5 class="card-title" style=" color: white;">
                         Encontremos a:
                     </h5>
-
                     <input type="text" id="txtNombreDesaparecido" class="card-title" style="background-color: #038587; color: white;" placeholder="Nombre">
                     <input type="text" id="txtApellidoDesaparecido" class="card-title" style="background-color: #038587; color: white;" placeholder="Apellido">
 
-                    <h5>Fecha de desaparicion</h5>
-                    <input type="date" id="fecha_desaparicion" style=" background-color: rgb(3, 133, 135); " />
-                    <h5 class="card-title" style=" color: white;">
+                    <h5>Fecha de desaparición</h5>
+                    <input type="date" id="fecha_desaparicion" style="background-color: rgb(3, 133, 135); " />
+
+                    <h5 class="card-title" style=" color: white; padding-top: 10px;">
                         Edad:
                     </h5>
                     <input type="number" id="txtEdadDesaparecido" class="card-title" min="0" style="background-color: #038587; color: white;" placeholder="Edad">
-                    <p>
-                        Visto antes: <select name="miCombobox" id="txtVistoAntesDesaparecido" style="background: #038587; color: white; ">
-                           
-                        </select>
-                    </p>
-                    Lugar desaparicion:
-                    <textarea type="text" id="txtLugarDesaparecido" class="card-title" maxlength="220" style="background-color: #038587; color: white; max-height:7vh; min-height:5vh; " placeholder="Descripcion de la situacion"></textarea>
-                    <p>Descripcion: <br></p>
-                    <textarea type="text" id="txtDescripcionDesaparecido" class="card-title" maxlength="220" style="background-color: #038587; color: white; max-height:20vh; min-height:10vh; " placeholder="Descripcion de la situacion"></textarea>
-                    <p>
-                        Tel:  <input type="text" id="txtTelefonoDesaparecido" class="card-title" style="background-color: #038587; color: white;" placeholder="Numero telefonico">
-                        <br> WhatsApp: <input id="txtWhatsAppDesaparecido" type="text" class="card-title" style="background-color: #038587; color: white;" placeholder="Numero de WhatsApp">
+                    <!--AQUIIII-->
+                    <h5>Distrito al que pertenece:</h5>
+                    <select name="miCombobox" id="txtVistoAntesDesaparecido" style="background: #038587; color: white; padding-top: 5px; padding-bottom: 5px; "> </select>
 
-                    </p>
+                   <h5 style="padding-top: 10px;"> Lugar de desaparición: </h5>
+
+                    <textarea type="text" id="txtLugarDesaparecido" class="card-title" maxlength="220" style="background-color: #038587; color: white; max-height:7vh; min-height:5vh; " placeholder="Lugar"></textarea>
+
+                    <h5>Descripción: </h5>
+                    <textarea type="text" id="txtDescripcionDesaparecido" class="card-title" maxlength="220" style="background-color: #038587; color: white; max-height:20vh; min-height:10vh; " placeholder="Descripción de la situacion"></textarea>
+                    <h5>
+                        Teléfono:
+                    </h5>  
+                        <input type="text" id="txtTelefonoDesaparecido" class="card-title" style="background-color: #038587; color: white;" placeholder="Numero telefonico">
+                        <br>
+                    <h5>WhatsApp:</h5>
+                    <input id="txtWhatsAppDesaparecido" type="text" class="card-title" style="background-color: #038587; color: white;" placeholder="Numero de WhatsApp">
+
+
                     <input id="btnPublicarDesaparecido" class="btn btn-primary" type="submit" value="Publicar">
                 </div>
             </div>
@@ -672,7 +680,7 @@
 
         //Creacion de anuncio de desaparecidos
         async function agregarDesaparecido() {
-          /*  try {*/
+            try {
                 let validacion = validarDatosDesaparecidos();
                 if (validacion == false) {
                     alertify.error("Ingresa todos los valores");
@@ -728,7 +736,7 @@
                     const imagen_desa = localStorage.getItem('imagenDesa');
                     let imagenDesa = imagen_desa.split(",")[1]
 
-                   
+
                     if (btnAgregarDesaparecido.value == 'Publicar') {
                         method = "POST",
                             url = 'https://localhost:7253/api/desaparecidos';
@@ -755,8 +763,10 @@
                         });
                         let desaparecidos = await respuesta.json();
                     } else {
+                        //Editar
                         let editar = localStorage.getItem("edicion_publicacion");
-                     
+                        url = `https://localhost:7253/api/desaparecidos/${parseInt(editar, 10)}`;
+
                         method = "PUT";
                         let datos = {
                             "id_publicacionNese": parseInt(editar),
@@ -773,34 +783,40 @@
                             "publicado_por": parseInt(nombreAlmacenado),
                             "imagen": imagenDesa
                         };
-                      
-                        const respuesta = await fetch('https://localhost:7253/api/desaparecidos/' + editar, {
+
+                        const respuesta = await fetch(url, {
                             method,
                             headers: {
                                 "Content-Type": "application/json"
                             },
                             body: JSON.stringify(datos)
-                        }), desaparecidos = await respuesta.json();
+                        });
+                        let desaparecidos = await respuesta.json();
                     }
-                 
-                    
-                 
+
+
+
                     localStorage.removeItem("edicion_publicacion");
-                    
-                        alertify.success("Publicación realizada");
-                        mostrarDesaparecidos();
-                        mostrarNecesitados();
-                    
-                       
-                    
+
+                    alertify.success("Publicación realizada");
+                    mostrarDesaparecidos();
+                    mostrarNecesitados();
+
+
+
                     let btnedicion = document.getElementById('btnPublicarDesaparecido');
                     btnedicion.value = 'Publicar';
                 }
-           /* } catch (e) {
+            } catch (e) {
                 alertify.error('Ocurrio un error.' + e);
                 console.log("Ocurrio un error " + e)
-            }   */
+            }
         }
+
+        //
+
+        //----------------------------------
+
         //mostrar datos de desaparecidos
 
 
@@ -863,27 +879,35 @@
             Desaparecidos.forEach(Desaparecidos => {
               
                 if (parseInt(Desaparecidos.publicado_por) == nombreAlmacenado) {
+                    let fecha_publicacion = Desaparecidos.fecha_publicacion;
+                    const fechaOriginal = fecha_publicacion;
+
+                    const fechaFormateada = new Date(fechaOriginal).toISOString().split('T')[0];
+
+                    let fecha = Desaparecidos.fecha_Desaparicion;
+
+                    const Fecha_desaparicion = fecha;
+
+                    const fecha_desaparicion_Formateada = new Date(Fecha_desaparicion).toISOString().split('T')[0];
                     conenedorAnuncios.innerHTML += `
-<div class="col-sm-6 col-md-4 ">
-        <div class="card" style="width: 18rem; background-color: #072145; color: white; margin: 0.5rem auto;">
-                <img src="data:image/png;base64,${Desaparecidos.imagen}"class="img - thumbnail rounded"/>
-        <div class="card-body">
-            <h5 class="card-title" style="background-color: #038587; color: white;">Ayudenos a encontrar a: ${Desaparecidos.nombre} ${Desaparecidos.apellido} </h5>
-        </div>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item" style="background-color: #072145; color: white;">Edad: ${Desaparecidos.edad}</li>
-                    <li class="list-group-item" style="background-color: #072145; color: white;">Fecha de desaparición: ${Desaparecidos.fecha_Desaparicion}</li>
-                    <li class="list-group-item" style="background-color: #072145; color: white;">Visto por ultima vez en: ${Desaparecidos.lugar_Desaparicion}</li>
-                </ul>
-            <div class="card-body">
-                        <p>Descripción: ${Desaparecidos.descripción_persona}</p>
-                        <p>Si sabe algo contactelos por medio de:<p>
-                        <p>Telefono: ${Desaparecidos.telefono} </p>
-                        <p>WhatsApp: ${Desaparecidos.whatsApp} </p>
-                        <p>Distrito: ${localidades[parseInt(Desaparecidos.distrito_id)]} 
-                        </p >
-            <div class="card-body" id="conten-btn">
+                  <div class="col-sm-6 col-md-4 ">
+                  <div class="card" style="width: 18rem; background-color: #072145; color: white; margin: 0.5rem auto;">
+                   <img src="data:image/png;base64,${Desaparecidos.imagen}"class="img - thumbnail rounded"/>
+                  <div class="card-body">
+                  <h5 class="card-title" style="background-color: #038587; color: white;">
+                  Ayudenos a encontrar a: ${Desaparecidos.nombre} ${Desaparecidos.apellido} </h5></div>
+                  <div class="card-body">
+                  <p class="list-group-item" style="background-color: #072145; color: white;"><strong>Edad:</strong> ${Desaparecidos.edad}</p>
+                  <p class="list-group-item" style="background-color: #072145; color: white;"><strong>Fecha de desaparición:</strong> ${fecha_desaparicion_Formateada}</p>
+                  <p class="list-group-item" style="background-color: #072145; color: white;"> <strong>Visto por ultima vez en:</strong> ${Desaparecidos.lugar_Desaparicion}</p>
+                  <p><strong>Descripción: </strong>${Desaparecidos.descripción_persona}</p>
+                  <p><strong>Si sabe algo contactelos por medio de:</strong><p>
+                  <p><strong>Telefono:</strong> ${Desaparecidos.telefono} </p>
+                  <p><strong>WhatsApp</strong>: ${Desaparecidos.whatsApp} </p>
+                  <p>Distrito: ${localidades[parseInt(Desaparecidos.distrito_id)]} </p>
+                <div class="card-body" id="conten-btn">
                 <input class="btn btn-danger" id="${Desaparecidos.id_publicacionDesa}" type="submit" name="desa" onclick="eliminarPublicacion(event)" class="delete" value="Eliminar">
+               
             </div>
         </div>
     </div>
@@ -953,21 +977,26 @@
             necesitados.forEach(necesitados => {
                
                 if (parseInt(necesitados.publicado_por) == nombreAlmacenado) {
+                    let fecha_publicacion = necesitados.fecha_publicacion;
+                    const fechaOriginal = fecha_publicacion;
+
+                    const fechaFormateada = new Date(fechaOriginal).toISOString().split('T')[0];
                     conenedorAnuncios.innerHTML += `
 <div class="col-sm-6 col-md-4 ">
         <div class="card" style="width: 18rem; background-color: #072145; color: white; margin: 0.5rem auto;">
-            <img src="data:image/png;base64,${necesitados.imagen}"class="img - thumbnail rounded"/>
-                <div class="card-body">
-                    <h5 class="card-title" style="background-color: #038587; color: white;">Ayudemos a: <br>
+                    <img src="data:image/png;base64,${necesitados.imagen}"class="img - thumbnail rounded"/>
+            <div class="card-body">
+                <h5 class="card-title" style="background-color: #038587; color: white;">Ayudemos a: <br>
                                       ${necesitados.nombre_nece} ${necesitados.apellido} </h5>
-                    <div class="card-body">
-                        <p>Edad: ${necesitados.edad}</p>
-                        <p>Distrito: ${localidades[parseInt(necesitados.distrito_id)]}</p>
-                        <p>Direccion: ${necesitados.direccion}  </p>
-                        <p>Descripcion: <br></p>
-                        <p class="card-text">${necesitados.situacion_descripcion}</p>  <p>Creacion del anuncio:<br> ${necesitados.fecha_publicacion}  </p>
-                        <p>Tel: ${necesitados.telefono} <br> WhatsApp: ${necesitados.whatsApp}</p>
-                        <p>Ayuda con: ${ayudasCiudadanas[parseInt(necesitados.ayuda_id)]} <br></p>
+             <div class="card-body">
+             <p><strong>Edad:</strong> ${necesitados.edad}</p>
+             <p><strong>Distrito:</strong> ${localidades[parseInt(necesitados.distrito_id)]}</p>
+             <p><strong>Direccion: </strong>${necesitados.direccion}  </p>
+             <p><strong>Descripcion:</strong> <br></p>
+             <p class="card-text">${necesitados.situacion_descripcion}</p>  
+             <p><strong>Creacion del anuncio: </strong><br> ${fechaFormateada}   </p>
+             <p><strong>Teléfono:</strong> ${necesitados.telefono} <br> WhatsApp: ${necesitados.whatsApp}</p>
+             <p><strong>Ayuda con:</strong> ${ayudasCiudadanas[parseInt(necesitados.ayuda_id)]} <br></p>
                     <div class="card-body" id="conten-btn">
                 <input class="btn  btn-danger" id='${necesitados.id_publicacionNese}' type="submit" name="nece" onclick="eliminarPublicacion(event)" class="delete" value="Eliminar">
             </div>
@@ -1091,7 +1120,25 @@
         
     }
 
-                  
+        function limpiar_nece() {
+            txtNombreNecesitado.value = "";
+            txtApellidoNecesitado.value = "";
+            txtEdadNecesitado.value = "";
+            txtDireccionNecesitado.value = "";
+            txtDescripcionNecesitados.value = "";
+            txtTelefonoNecesitado.value = "";
+            txtWhatsAppNecesitado.value = "";
+        }
+        function limpiar_desa() {
+            txtNombreDesaparecido.value = "";
+            txtApellidoDesaparecido.value = "";
+            txtEdadDesaparecido.value = "";
+            fecha_desaparicion.value = "";
+            txtLugarDesaparecido.value = "";
+            txtDescripcionDesaparecido.value = "";
+            txtTelefonoDesaparecido.value = "";
+            txtWhatsAppDesaparecido.value = "";
+        }
 
     </script>
 
