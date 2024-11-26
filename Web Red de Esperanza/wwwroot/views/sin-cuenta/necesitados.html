@@ -117,27 +117,11 @@
                 'Programa de Inclusión Social'
             ];
 
-            const respuestaCuenta = await fetch('https://localhost:7253/api/cuentas',
-                {
-                    method: "GET",
-                    headers: {
-                        "Content-Type": "application/json"
-                    }
-                }), cuentas = await respuestaCuenta.json();
 
-            let anio;
-            let mes;
-            let dia;
-
-            let user;
             necesitados.forEach(necesitados => {
 
 
-                cuentas.forEach(cuenta => {
-                    if (cuenta.id_cuenta == necesitados.publicado_por) {
-                        user = cuenta.usuario;
-                    }
-                })
+                
                 let fecha_publicacion = necesitados.fecha_publicacion;
                 const fechaOriginal = fecha_publicacion;
 
@@ -152,14 +136,14 @@
                                       ${necesitados.nombre_nece} ${necesitados.apellido} </h5>
         <div class="card-body">
              <p><strong>Edad:</strong> ${necesitados.edad}</p>
-             <p><strong>Distrito:</strong> ${localidades[parseInt(necesitados.distrito_id)]}</p>
+             <p><strong>Distrito:</strong> ${localidades[parseInt(necesitados.distrito_id)-1]}</p>
              <p><strong>Direccion: </strong>${necesitados.direccion}  </p>
              <p><strong>Descripcion:</strong> <br></p>
              <p class="card-text">${necesitados.situacion_descripcion}</p>  
              <p><strong>Creacion del anuncio: </strong><br> ${fechaFormateada}   </p>
              <p><strong>Teléfono:</strong> ${necesitados.telefono} <br> WhatsApp: ${necesitados.whatsApp}</p>
-             <p><strong>Ayuda con:</strong> ${ayudasCiudadanas[parseInt(necesitados.ayuda_id)]} <br></p>
-             <p><strong>Publicado por: </strong> ${user} <br></p>
+             <p><strong>Ayuda con:</strong> ${ayudasCiudadanas[parseInt(necesitados.ayuda_id)-1]} <br></p>
+             <p><strong>Publicado por: </strong>${necesitados.cuenta.usuario} <br></p>
         </div>
     </div>
 </div>`

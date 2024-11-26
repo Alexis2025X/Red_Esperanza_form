@@ -24,10 +24,10 @@ namespace Web_Red_de_Esperanza.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Desaparecidos>>> Getdesaparecidos()
         {
-            
 
+            return await _context.desaparecidos.Include(m => m.cuenta).ToListAsync();
 
-            return await _context.desaparecidos.ToListAsync();
+           // return await _context.desaparecidos.ToListAsync();
         }
 
         //GET: api/Desaparecidos/buscar

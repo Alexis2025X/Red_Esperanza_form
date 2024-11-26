@@ -39,6 +39,20 @@ namespace Web_Red_de_Esperanza.Models
             //CUENTAS
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<cuentas>().HasKey(e => e.Id_cuenta);
+
+            //relacionando cuentas con necesitados
+            modelBuilder.Entity<Necesitado>()
+               .HasOne(m => m.cuenta)
+               .WithMany(a => a.necesitados)
+               .HasForeignKey(m => m.publicado_por)
+               .OnDelete(DeleteBehavior.Cascade);
+            //relacionando cuentas con desaparecidos
+
+            modelBuilder.Entity<Desaparecidos>()
+               .HasOne(m => m.cuenta)
+               .WithMany(a => a.desaparecidos)
+               .HasForeignKey(m => m.Publicado_por)
+               .OnDelete(DeleteBehavior.Cascade);
         }
 
 

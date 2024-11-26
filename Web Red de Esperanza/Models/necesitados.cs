@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Drawing;
 
 namespace Web_Red_de_Esperanza.Models
@@ -20,5 +21,8 @@ namespace Web_Red_de_Esperanza.Models
         public int publicado_por { get; set; }
         public byte[]? imagen { get; set; }
 
+        //relacionando
+        [ForeignKey("publicado_por")]
+        public cuentas? cuenta { get; set; }
     }
 }

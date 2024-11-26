@@ -670,6 +670,7 @@
                         alertify.success("Publicación realizada");
                         mostrarDesaparecidos();
                         mostrarNecesitados();
+                        limpiar_nece();
                     }
 
                 }
@@ -763,6 +764,8 @@
                             body: JSON.stringify(datos)
                         });
                         let desaparecidos = await respuesta.json();
+
+                        limpiar_desa();
                     } else {
                         //Editar
                         let editar = localStorage.getItem("edicion_publicacion");
@@ -905,7 +908,7 @@
                   <p><strong>Si sabe algo contactelos por medio de:</strong><p>
                   <p><strong>Telefono:</strong> ${Desaparecidos.telefono} </p>
                   <p><strong>WhatsApp</strong>: ${Desaparecidos.whatsApp} </p>
-                  <p><strong>Distrito: </strong>${localidades[parseInt(Desaparecidos.distrito_id)]} </p>
+                  <p><strong>Distrito: </strong>${localidades[parseInt(Desaparecidos.distrito_id)-1]} </p>
                 <div class="card-body" id="conten-btn">
                 <input class="btn btn-danger" id="${Desaparecidos.id_publicacionDesa}" type="submit" name="desa" onclick="eliminarPublicacion(event)" class="delete" value="Eliminar">
                 <input id="${Desaparecidos.id_publicacionDesa}"  name="desa" onclick = "editarPublicacion(event)"  class="btn btn-primary"  type="submit" value="Editar">
@@ -992,13 +995,13 @@
                                       ${necesitados.nombre_nece} ${necesitados.apellido} </h5>
              <div class="card-body">
              <p><strong>Edad:</strong> ${necesitados.edad}</p>
-             <p><strong>Distrito:</strong> ${localidades[parseInt(necesitados.distrito_id)]}</p>
+             <p><strong>Distrito:</strong> ${localidades[parseInt(necesitados.distrito_id)-1]}</p>
              <p><strong>Direccion: </strong>${necesitados.direccion}  </p>
              <p><strong>Descripcion:</strong> <br></p>
              <p class="card-text">${necesitados.situacion_descripcion}</p>  
              <p><strong>Creacion del anuncio: </strong><br> ${fechaFormateada}   </p>
              <p><strong>Teléfono:</strong> ${necesitados.telefono} <br> WhatsApp: ${necesitados.whatsApp}</p>
-             <p><strong>Ayuda con:</strong> ${ayudasCiudadanas[parseInt(necesitados.ayuda_id)]} <br></p>
+             <p><strong>Ayuda con:</strong> ${ayudasCiudadanas[parseInt(necesitados.ayuda_id)-1]} <br></p>
                     <div class="card-body" id="conten-btn">
                 <input class="btn  btn-danger" id='${necesitados.id_publicacionNese}' type="submit" name="nece" onclick="eliminarPublicacion(event)" class="delete" value="Eliminar">
             </div>

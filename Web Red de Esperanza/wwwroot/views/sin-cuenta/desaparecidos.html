@@ -104,22 +104,12 @@
                     'San Miguel Norte',
                     'San Miguel Oeste'
                 ];
-                const respuestaCuenta = await fetch('https://localhost:7253/api/cuentas',
-                    {
-                        method: "GET",
-                        headers: {
-                            "Content-Type": "application/json"
-                        }
-                    }), cuentas = await respuestaCuenta.json();
+               
 
-                let user;
+                
                 Desaparecidos.forEach(Desaparecidos => {
 
-                    cuentas.forEach(cuenta => {
-                        if (cuenta.id_cuenta == Desaparecidos.publicado_por) {
-                            user = cuenta.usuario;
-                        }
-                    })
+                    
                     let fecha_publicacion = Desaparecidos.fecha_publicacion;
                     const fechaOriginal = fecha_publicacion;
 
@@ -147,9 +137,9 @@
                   <p><strong>Si sabe algo contactelos por medio de:</strong><p>
                   <p><strong>Telefono:</strong> ${Desaparecidos.telefono} </p>
                   <p><strong>WhatsApp</strong>: ${Desaparecidos.whatsApp} </p>
-                  <p><strong>Distrito:</strong> ${localidades[parseInt(Desaparecidos.distrito_id)]} </p >
+                  <p><strong>Distrito:</strong> ${localidades[parseInt(Desaparecidos.distrito_id)-1]} </p >
                   <p><strong>Fecha publicacion:</strong> ${fechaFormateada}</p>
-                  <p><strong>Publicado por:</strong> ${user}</p>              
+                  <p><strong>Publicado por:</strong> ${Desaparecidos.cuenta.usuario}</p>              
             </div>
       </div>
 </div>`});

@@ -23,6 +23,9 @@ namespace Web_Red_de_Esperanza.Models
         public int Publicado_por { get; set; }
         public byte[]? imagen { get; set; }
 
+        //relacionando
+        [ForeignKey("Publicado_por")]
+        public cuentas? cuenta { get; set; }
     }
 
 }

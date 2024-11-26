@@ -24,7 +24,8 @@ namespace Web_Red_de_Esperanza.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Necesitado>>> Getnecesitados()
         {
-            return await _context.necesitados.ToListAsync();
+            return await _context.necesitados.Include(m => m.cuenta).ToListAsync();
+           // return await _context.necesitados.ToListAsync();
         }
         //GET: api/Desaparecidos/buscar
         [HttpGet("{buscar}")]
