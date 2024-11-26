@@ -41,8 +41,8 @@
             </li>
             <li class="nav-item">
                 <form class="d-flex" role="search">
-                    <input id="txtBuscar" class="form-control me-2" type="search" placeholder="Buscar anuncio" aria-label="Search">
-                    <button id="btnBuscar" class="btn btn-outline-success" type="submit" style="background-color: blue; color: white;">Buscar</button>
+                    <input id="txtBuscar" class="form-control me-2" type="search" placeholder="Limpiar anuncio" aria-label="Search">
+                    <button id="btnBuscar" class="btn btn-outline-success" type="submit" style="background-color: blue; color: white;">Limpiar</button>
                 </form>
             </li>
         </ul>
@@ -539,14 +539,13 @@
 
         //Creacion de anuncio de necesitados
         async function agregarNecesitado() {
-            try {
+           /* try {*/
                 let validacion = validarDatosNecesitados()
 
                 if (validacion == false) {
                     alertify.error('Agregue todos los campos.');
                 } else {
 
-                    alertify.success("Comenzando la publicacion");
                     //obteniendo el id del distrito
                     const selectElement = document.getElementById("txtDistritoNecesitado");
                     const ayudasCiudadanas = [
@@ -626,57 +625,85 @@
 
                     const imagen_nece = localStorage.getItem('imgenNece');
                     let imagenNece = imagen_nece.split(",")[1]
-                    let datos = {
-                        "nombre_nece": txtNombreNecesitado.value,
-                        "apellido": txtApellidoNecesitado.value,
-                        "edad": parseInt(txtEdadNecesitado.value),
-                        "direccion": txtDireccionNecesitado.value,
-                        "distrito_id": localidadesNece,
-                        "ayuda_id": tipo_ayuda,
-                        "situacion_descripcion": txtDescripcionNecesitados.value,
-                        "fecha_publicacion": anio + "-" + mes + "-" + dia,
-                        "telefono": txtTelefonoNecesitado.value,
-                        "whatsApp": txtWhatsAppNecesitado.value,
-                        "publicado_por": parseInt(nombreAlmacenado),
-                        "imagen": imagenNece
-                    }
+                    
 
 
                     
                     if (btnAgregarNecesitado.value == "Publicar") {
                         method = 'POST';
                         url = 'https://localhost:7253/api/necesitados';
-
+                        let datos = {
+                            "nombre_nece": txtNombreNecesitado.value,
+                            "apellido": txtApellidoNecesitado.value,
+                            "edad": parseInt(txtEdadNecesitado.value),
+                            "direccion": txtDireccionNecesitado.value,
+                            "distrito_id": localidadesNece,
+                            "ayuda_id": tipo_ayuda,
+                            "situacion_descripcion": txtDescripcionNecesitados.value,
+                            "fecha_publicacion": anio + "-" + mes + "-" + dia,
+                            "telefono": txtTelefonoNecesitado.value,
+                            "whatsApp": txtWhatsAppNecesitado.value,
+                            "publicado_por": parseInt(nombreAlmacenado),
+                            "imagen": imagenNece
+                        }
+                        const respuesta = await fetch(url, {
+                            method,
+                            headers: {
+                                "Content-Type": "application/json"
+                            },
+                            body: JSON.stringify(datos)
+                        }), necesitados = await respuesta.json();
+                        btnAgregarNecesitado.value = "Publicar";
+                        if (necesitados && necesitados?.id_publicacionNese > 0) {
+                            alertify.success("Publicación realizada");
+                            mostrarDesaparecidos();
+                            mostrarNecesitados();
+                            limpiar_nece();
+                        }
+                        
                     } else if (btnAgregarNecesitado.value == "Actualizar") {
                         
-                        const registro_modificar = localStorage.getItem('registro_modificar');
-                        
+                        let editar = localStorage.getItem("edicion_publicacion");
                         method = `PUT`;
-                        url = `https://localhost:7253/api/necesitados/${parseInt(registro_modificar
-                        )}`;
-                    }
-                    const respuesta = await fetch(url, {
-                        method,
-                        headers: {
-                            "Content-Type": "application/json"
-                        },
-                        body: JSON.stringify(datos)
-                    }), necesitados = await respuesta.json();
+                        url = `https://localhost:7253/api/necesitados/${parseInt(editar,10)}`;
 
-
-                  
-                    btnAgregarNecesitado.value = "Publicar";
-                    if (necesitados && necesitados?.id_publicacionNese > 0) {
-                        alertify.success("Publicación realizada");
+                        let datos = {
+                            "id_publicacionNese": parseInt(editar),
+                            "nombre_nece": txtNombreNecesitado.value,
+                            "apellido": txtApellidoNecesitado.value,
+                            "edad": parseInt(txtEdadNecesitado.value),
+                            "direccion": txtDireccionNecesitado.value,
+                            "distrito_id": localidadesNece,
+                            "ayuda_id": tipo_ayuda,
+                            "situacion_descripcion": txtDescripcionNecesitados.value,
+                            "fecha_publicacion": txtNombreDesaparecido.name,
+                            "telefono": txtTelefonoNecesitado.value,
+                            "whatsApp": txtWhatsAppNecesitado.value,
+                            "publicado_por": parseInt(nombreAlmacenado),
+                            "imagen": imagenNece
+                        }
+                        const respuesta = await fetch(url, {
+                            method,
+                            headers: {
+                                "Content-Type": "application/json"
+                            },
+                            body: JSON.stringify(datos)
+                        });
+                        alertify.success("Actualización de publicación realizada");
                         mostrarDesaparecidos();
                         mostrarNecesitados();
                         limpiar_nece();
                     }
+                    
+
+
+                  
+                   
 
                 }
-            } catch (e) {
+           /* } catch (e) {
                 alertify.error("A ocurrido un error");
-            }
+            }*/
         }
 
         //Creacion de anuncio de desaparecidos
@@ -764,7 +791,7 @@
                             body: JSON.stringify(datos)
                         });
                         let desaparecidos = await respuesta.json();
-
+                        alertify.success("Publicación realizada");
                         limpiar_desa();
                     } else {
                         //Editar
@@ -783,7 +810,7 @@
                             "telefono": txtTelefonoDesaparecido.value,
                             "whatsApp": txtWhatsAppDesaparecido.value,
                             "distrito_id": localidadesDesa,
-                            "fecha_publicacion": anio + "-" + mes + "-" + dia,
+                            "fecha_publicacion": fecha_desaparicion.name,
                             "publicado_por": parseInt(nombreAlmacenado),
                             "imagen": imagenDesa
                         };
@@ -795,21 +822,21 @@
                             },
                             body: JSON.stringify(datos)
                         });
-                        let desaparecidos = await respuesta.json();
+                        alertify.success("Actualización de publicación realizada");
                     }
 
 
 
                     localStorage.removeItem("edicion_publicacion");
 
-                    alertify.success("Publicación realizada");
+                    
                     mostrarDesaparecidos();
                     mostrarNecesitados();
 
 
 
-                    let btnEdicion = document.getElementById('btnPublicarDesaparecido');
-                    btnEdicion.value = 'Publicar';
+                    limpiar_desa();
+                    btnPublicarDesaparecido.value = 'Publicar';
                 }
             } catch (e) {
                 alertify.error('Ocurrio un error.' + e);
@@ -892,7 +919,7 @@
 
                     const Fecha_desaparicion = fecha;
 
-                    const fecha_desaparicion_Formateada = new Date(Fecha_desaparicion).toISOString().split('T')[0];
+                    const fecha_desaparicion_Formateada = new Date(Fecha_desaparicion).toISOString().split('T')[0].split("-").reverse().join("/");
                     conenedorAnuncios.innerHTML += `
                   <div class="col-sm-6 col-md-4 ">
                   <div class="card" style="width: 18rem; background-color: #072145; color: white; margin: 0.5rem auto;">
@@ -1004,6 +1031,7 @@
              <p><strong>Ayuda con:</strong> ${ayudasCiudadanas[parseInt(necesitados.ayuda_id)-1]} <br></p>
                     <div class="card-body" id="conten-btn">
                 <input class="btn  btn-danger" id='${necesitados.id_publicacionNese}' type="submit" name="nece" onclick="eliminarPublicacion(event)" class="delete" value="Eliminar">
+                <input name="nece" onclick = "editarPublicacion(event)" class="btn btn-primary" id="${necesitados.id_publicacionNese}" type="submit" value="Editar">
             </div>
           </div>
         </div>
@@ -1053,9 +1081,9 @@
             let id = e.target.id;
             let baseSelect = e.target.name;
 
-            localStorage.setItem("edicion_publicacion", id);
+          localStorage.setItem("edicion_publicacion", id);
         
-            localStorage.setItem('registro_modificar',id);
+         //   localStorage.setItem('registro_modificar',id);
            
             if (confirm(`Esta seguro de editar la publicacion`)) {
                 id_edicion = id;
@@ -1079,17 +1107,19 @@
                           
                      
                         if (Desaparecidos.id_publicacionDesa == id) {
-                           
+                            console.log(Desaparecidos);
                             txtNombreDesaparecido.value = Desaparecidos.nombre;
                             txtApellidoDesaparecido.value = Desaparecidos.apellido;
                             txtEdadDesaparecido.value = Desaparecidos.edad;
-                            fecha_desaparicion.Date = Desaparecidos.fecha_Desaparicion;
+                            fecha_desaparicion.value = Desaparecidos.fecha_Desaparicion.split('T')[0];
+                            fecha_desaparicion.name = Desaparecidos.fecha_publicacion.split('T')[0];
                             txtLugarDesaparecido.value = Desaparecidos.lugar_Desaparicion;
                             txtDescripcionDesaparecido.value = Desaparecidos.descripción_persona;
                             txtTelefonoDesaparecido.value = Desaparecidos.telefono;
                             txtWhatsAppDesaparecido.value = Desaparecidos.whatsApp;
                             containerDesa.innerHTML = `<img src=data:image/jpeg;base64,${Desaparecidos.imagen} alt="Imagen seleccionada" id="imagenDesa">`;
-                            txtVistoAntesDesaparecido.selectElement = Desaparecidos.distrito_id;
+                            txtVistoAntesDesaparecido.selectedIndex = Desaparecidos.distrito_id -1;
+                           
                             
                         }
                     })
@@ -1112,10 +1142,12 @@
                             txtDescripcionNecesitados.value = necesitados.situacion_descripcion;
                             txtTelefonoNecesitado.value = necesitados.telefono;
                             txtWhatsAppNecesitado.value = necesitados.whatsApp;
+                            txtNombreDesaparecido.name = necesitados.fecha_publicacion;
                             btnAgregarNecesitado.value = "Actualizar";
                             containerNece.innerHTML = `<img src="data:image/jpeg;base64,${necesitados.imagen}" alt="Imagen seleccionada" id="imagenNece">`;
-                            txtAyudaNecesitado.selectElement = necesitados.ayuda_id;
-                            txtDistritoNecesitado.selectElement = necesitados.distrito_id;
+                            txtAyudaNecesitado.selectedIndex = necesitados.ayuda_id -1;
+                            txtDistritoNecesitado.selectedIndex = necesitados.distrito_id -1;
+                            console.log();
                         }
                     })
                     
@@ -1133,6 +1165,8 @@
             txtDescripcionNecesitados.value = "";
             txtTelefonoNecesitado.value = "";
             txtWhatsAppNecesitado.value = "";
+            txtAyudaNecesitado.selectedIndex = 0;
+            txtDistritoNecesitado.selectedIndex = 0;
         }
         function limpiar_desa() {
             txtNombreDesaparecido.value = "";
@@ -1143,6 +1177,7 @@
             txtDescripcionDesaparecido.value = "";
             txtTelefonoDesaparecido.value = "";
             txtWhatsAppDesaparecido.value = "";
+            txtVistoAntesDesaparecido.selectedIndex = 0;
         }
 
     </script>

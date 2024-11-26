@@ -62,7 +62,7 @@
       
         mostrarDesaparecidos();
 
-        async function mostrarDesaparecidos(buscar= '') {
+        async function mostrarDesaparecidos(buscar = '') {
             /*console.log(buscar)*/
             let url = `/api/Desaparecidos/${buscar}`
             //AGREGAR AL OTRO ARCHIVO
@@ -74,6 +74,7 @@
                     "Content-Type": "application/json"
                 }
             }), Desaparecidos = await respuesta.json();
+            console.log(Desaparecidos);
             const localidades = [
                 'Ahuachapan Sur',
                 'San Salvador Norte',
@@ -108,13 +109,13 @@
                 let fecha_publicacion = Desaparecidos.fecha_publicacion;
                 const fechaOriginal = fecha_publicacion;
 
-                const fechaFormateada = new Date(fechaOriginal).toISOString().split('T')[0];
+                const fechaFormateada = new Date(fechaOriginal).toISOString().split('T')[0].split("-").reverse().join("/");
 
                 let fecha = Desaparecidos.fecha_Desaparicion;
 
                 const Fecha_desaparicion = fecha;
 
-                const fecha_desaparicion_Formateada = new Date(Fecha_desaparicion).toISOString().split('T')[0];
+                const fecha_desaparicion_Formateada = new Date(Fecha_desaparicion).toISOString().split('T')[0].split("-").reverse().join("/");
 
 
                 bodyDesaparecidos.innerHTML += `
@@ -134,7 +135,7 @@
                   <p><strong>Telefono:</strong> ${Desaparecidos.telefono} </p>
                   <p><strong>WhatsApp</strong>: ${Desaparecidos.whatsApp} </p>
                   <p><strong>Distrito:</strong> ${localidades[parseInt(Desaparecidos.distrito_id)-1]} </p >
-                  <p><strong>Fecha publicacion:</strong> ${fechaFormateada}</p>
+                  <p><strong>Creacion del anuncio:</strong> ${fechaFormateada}</p>
                   <p><strong>Publicado por:</strong> ${Desaparecidos.cuenta.usuario}</p>              
             </div>
       </div>

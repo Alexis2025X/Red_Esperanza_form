@@ -34,7 +34,7 @@ namespace Web_Red_de_Esperanza.Controllers
         [HttpGet("{buscar}")]
         public async Task<ActionResult<IEnumerable<Desaparecidos>>> BuscarDesaparecidos(string buscar)
         {
-            var consulta = _context.desaparecidos.AsQueryable();
+            var consulta = _context.desaparecidos.Include(m => m.cuenta).AsQueryable();
             if (buscar != "")
             {
                 consulta = consulta.Where(d => d.Nombre.Contains(buscar));

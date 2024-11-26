@@ -31,7 +31,7 @@ namespace Web_Red_de_Esperanza.Controllers
         [HttpGet("{buscar}")]
         public async Task<ActionResult<IEnumerable<Necesitado>>> BuscarNecesitados(string buscar)
         {
-            var consulta = _context.necesitados.AsQueryable();
+            var consulta = _context.necesitados.Include(m => m.cuenta).AsQueryable();
             if (buscar != "")
             {
                 consulta = consulta.Where(d => d.Nombre_nece.Contains(buscar));

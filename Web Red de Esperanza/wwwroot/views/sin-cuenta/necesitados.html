@@ -125,7 +125,7 @@
                 let fecha_publicacion = necesitados.fecha_publicacion;
                 const fechaOriginal = fecha_publicacion;
 
-                const fechaFormateada = new Date(fechaOriginal).toISOString().split('T')[0];
+                const fechaFormateada = new Date(fechaOriginal).toISOString().split('T')[0].split("-").reverse().join("/");
 
                 bodyNecesitados.innerHTML += `
 <div class="col-sm-6 col-md-4 ">
