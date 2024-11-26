@@ -741,6 +741,7 @@
                         method = "POST",
                             url = 'https://localhost:7253/api/desaparecidos';
                         let datos = {
+
                             nombre: txtNombreDesaparecido.value,
                             apellido: txtApellidoDesaparecido.value,
                             edad: txtEdadDesaparecido.value,
@@ -765,14 +766,14 @@
                     } else {
                         //Editar
                         let editar = localStorage.getItem("edicion_publicacion");
-                        url = `https://localhost:7253/api/desaparecidos/${parseInt(editar, 10)}`;
+                        let url = `https://localhost:7253/api/desaparecidos/${parseInt(editar, 10)}`;
 
                         method = "PUT";
                         let datos = {
-                            "id_publicacionNese": parseInt(editar),
+                            "id_publicacionDesa": parseInt(editar),
                             "nombre": txtNombreDesaparecido.value,
                             "apellido": txtApellidoDesaparecido.value,
-                            "edad": txtEdadDesaparecido.value,
+                            "edad": parseInt(txtEdadDesaparecido.value),
                             "fecha_Desaparicion": fecha_desaparicion.value,
                             "lugar_Desaparicion": txtLugarDesaparecido.value,
                             "descripción_persona": txtDescripcionDesaparecido.value,
@@ -804,8 +805,8 @@
 
 
 
-                    let btnedicion = document.getElementById('btnPublicarDesaparecido');
-                    btnedicion.value = 'Publicar';
+                    let btnEdicion = document.getElementById('btnPublicarDesaparecido');
+                    btnEdicion.value = 'Publicar';
                 }
             } catch (e) {
                 alertify.error('Ocurrio un error.' + e);
@@ -904,9 +905,10 @@
                   <p><strong>Si sabe algo contactelos por medio de:</strong><p>
                   <p><strong>Telefono:</strong> ${Desaparecidos.telefono} </p>
                   <p><strong>WhatsApp</strong>: ${Desaparecidos.whatsApp} </p>
-                  <p>Distrito: ${localidades[parseInt(Desaparecidos.distrito_id)]} </p>
+                  <p><strong>Distrito: </strong>${localidades[parseInt(Desaparecidos.distrito_id)]} </p>
                 <div class="card-body" id="conten-btn">
                 <input class="btn btn-danger" id="${Desaparecidos.id_publicacionDesa}" type="submit" name="desa" onclick="eliminarPublicacion(event)" class="delete" value="Eliminar">
+                <input id="${Desaparecidos.id_publicacionDesa}"  name="desa" onclick = "editarPublicacion(event)"  class="btn btn-primary"  type="submit" value="Editar">
                
             </div>
         </div>
