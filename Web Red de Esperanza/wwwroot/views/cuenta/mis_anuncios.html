@@ -41,7 +41,7 @@
             </li>
             <li class="nav-item">
                 <form class="d-flex" role="search">
-                    <input id="txtBuscar" class="form-control me-2" type="search" placeholder="Limpiar anuncio" aria-label="Search">
+                    <input id="txtBuscar" class="form-control me-2" type="search" placeholder="Buscar anuncio" aria-label="Search">
                     <button id="btnBuscar" class="btn btn-outline-success" type="submit" style="background-color: blue; color: white;">Limpiar</button>
                 </form>
             </li>
@@ -692,9 +692,11 @@
                         alertify.success("Actualización de publicación realizada");
                         mostrarDesaparecidos();
                         mostrarNecesitados();
+                       
                         limpiar_nece();
                     }
                     
+                    btnPublicarNecesitado.value = "Publicar";
 
 
                   
@@ -1027,7 +1029,8 @@
              <p><strong>Descripcion:</strong> <br></p>
              <p class="card-text">${necesitados.situacion_descripcion}</p>  
              <p><strong>Creacion del anuncio: </strong><br> ${fechaFormateada}   </p>
-             <p><strong>Teléfono:</strong> ${necesitados.telefono} <br> WhatsApp: ${necesitados.whatsApp}</p>
+             <p><strong>Teléfono:</strong> ${necesitados.telefono}
+             <br><strong> WhatsApp:</strong> ${necesitados.whatsApp}</p>
              <p><strong>Ayuda con:</strong> ${ayudasCiudadanas[parseInt(necesitados.ayuda_id)-1]} <br></p>
                     <div class="card-body" id="conten-btn">
                 <input class="btn  btn-danger" id='${necesitados.id_publicacionNese}' type="submit" name="nece" onclick="eliminarPublicacion(event)" class="delete" value="Eliminar">
@@ -1070,6 +1073,7 @@
                 if (datos && datos.length > 0) {
                   
                 } else {
+                    alertify.success("Publicación eliminada con exito");
                     mostrarDesaparecidos();
                     mostrarNecesitados();
                 }
@@ -1167,6 +1171,7 @@
             txtWhatsAppNecesitado.value = "";
             txtAyudaNecesitado.selectedIndex = 0;
             txtDistritoNecesitado.selectedIndex = 0;
+            containerNece.innerHTML = '';
         }
         function limpiar_desa() {
             txtNombreDesaparecido.value = "";
@@ -1178,6 +1183,7 @@
             txtTelefonoDesaparecido.value = "";
             txtWhatsAppDesaparecido.value = "";
             txtVistoAntesDesaparecido.selectedIndex = 0;
+            containerDesa.innerHTML = '';
         }
 
     </script>

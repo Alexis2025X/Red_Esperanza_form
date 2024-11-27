@@ -16,6 +16,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <!--Para la icono de la contraseña-->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.14.0/build/css/alertify.min.css" />
 
     <title>Document</title>
 </head>
@@ -69,8 +72,31 @@
                             outline: none; /* Quitar el borde al hacer clic */
                         }
                     </style>
+                    <!--AQUI-->
                     <h5 class=" contraseña card-title">Cree una contraseña:</h5>
-                    <Input type="text" maxlength="10" style=" font-family: Roboto, sans-serif, Arial; font-weight: bold; color: black; text-align: center;" id="txtContraseñaCuenta" name="txtContraseñaCuenta">
+                    <Input type="password" maxlength="10" style=" font-family: Roboto, sans-serif, Arial; font-weight: bold; color: black; text-align: center;" id="txtContraseñaCuenta" name="txtContraseñaCuenta">
+
+                    <i class='bx bx-show-alt' style="color: black; background-color: red; width: 0px; font-size: 30px; transform: translateX(160px) translateY(-28px); cursor: pointer;"></i>
+                    <script>
+                        //llamamos al input y al icon
+                        const txtContraseñaCuenta = document.getElementById("txtContraseñaCuenta")
+                        let icon = document.querySelector(".bx");
+
+                        //cada vez que le demos click al icono...
+                        icon.addEventListener("click", e => {
+                            if (txtContraseñaCuenta.type === "password") {
+                                txtContraseñaCuenta.type = "text";
+                                icon.classList.remove('bx-show-alt');
+                                icon.classList.add('bx-hide');
+                            }
+                            else {
+                                txtContraseñaCuenta.type = "password"
+                                icon.classList.add('bx-show-alt');
+                                icon.classList.remove('bx-hide');
+                            }
+                        })
+                    </script>
+
                     <style>
                         #txtContraseñaCuenta {
                             background-color: rgb(3, 133, 135);
