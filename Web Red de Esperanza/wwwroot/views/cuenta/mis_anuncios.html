@@ -436,9 +436,6 @@
 
         //mostrar_imagen
         function mostrarImg(e) {
-
-
-
             if (e.target.id == "fileimagenNese") {
                 const input = this;
                 let containerNece = document.getElementById("containerImgNece");
@@ -1167,7 +1164,7 @@
             txtWhatsAppNecesitado.value = "";
             txtAyudaNecesitado.selectedIndex = 0;
             txtDistritoNecesitado.selectedIndex = 0;
-            containerNece.innerHTML = '';
+            containerImgNece.innerHTML = '';
         }
         function limpiar_desa() {
             txtNombreDesaparecido.value = "";
@@ -1179,7 +1176,7 @@
             txtTelefonoDesaparecido.value = "";
             txtWhatsAppDesaparecido.value = "";
             txtVistoAntesDesaparecido.selectedIndex = 0;
-            containerDesa.innerHTML = '';
+            containerImgDesa.innerHTML = '';
         }
 
     </script>
