@@ -270,10 +270,9 @@
         }
 
         function eventEdit() {
-          
+            let btnEditar = document.getElementById("btnEditar")
             if (btnEditar.value == "Editar") {
 
-            
                 btnEditar.value = "Cancelar"
                 inhabilitar(true);
                 
@@ -297,6 +296,7 @@
                 txtNombre.disabled = true;
                 txtUser.disabled = true;
                 icon.disabled = true;
+              
                 icon.removeEventListener("click", vistaContra)
             } else {
                 let icon = document.querySelector(".bx");
@@ -304,6 +304,7 @@
                 txtNombre.disabled = false;
                 txtUser.disabled = false;
                 icon.disabled = false;
+               
                 icon.addEventListener("click", vistaContra)
             }
         }

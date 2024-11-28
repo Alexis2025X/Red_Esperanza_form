@@ -1080,77 +1080,88 @@
 
           localStorage.setItem("edicion_publicacion", id);
         
-         //   localStorage.setItem('registro_modificar',id);
-           
-            if (confirm(`Esta seguro de editar la publicacion`)) {
-                id_edicion = id;
-                base_seleccionada = baseSelect;
-               
-                var url;
-                if (baseSelect == "desa") {
-                    
-                    let btnedicion = document.getElementById('btnPublicarDesaparecido');
-                    btnedicion.value = 'Actualizar';
-                    let containerDesa = document.getElementById("containerImgDesa");
-                  
-                    
-                    const respuestaDesa = await fetch(`https://localhost:7253/api/desaparecidos`, {
-                        method: "GET",
-                        headers: {
-                            "Content-Type": "application/json"
-                        }
-                    }), desaparecidos = await respuestaDesa.json();
-                    desaparecidos.forEach(Desaparecidos => {
-                          
-                     
-                        if (Desaparecidos.id_publicacionDesa == id) {
-                            console.log(Desaparecidos);
-                            txtNombreDesaparecido.value = Desaparecidos.nombre;
-                            txtApellidoDesaparecido.value = Desaparecidos.apellido;
-                            txtEdadDesaparecido.value = Desaparecidos.edad;
-                            fecha_desaparicion.value = Desaparecidos.fecha_Desaparicion.split('T')[0];
-                            fecha_desaparicion.name = Desaparecidos.fecha_publicacion.split('T')[0];
-                            txtLugarDesaparecido.value = Desaparecidos.lugar_Desaparicion;
-                            txtDescripcionDesaparecido.value = Desaparecidos.descripción_persona;
-                            txtTelefonoDesaparecido.value = Desaparecidos.telefono;
-                            txtWhatsAppDesaparecido.value = Desaparecidos.whatsApp;
-                            containerDesa.innerHTML = `<img src=data:image/jpeg;base64,${Desaparecidos.imagen} alt="Imagen seleccionada" id="imagenDesa">`;
-                            txtVistoAntesDesaparecido.selectedIndex = Desaparecidos.distrito_id -1;
-                           
-                            
-                        }
-                    })
-                } else if (baseSelect == "nece") {
-                    let containerNece = document.getElementById("containerImgNece");
-                    let btnedicion = document.getElementById('btnPublicarNecesitado');
-                    btnedicion.value = 'Actualizar';
-                    const respuestaNese = await fetch(`https://localhost:7253/api/necesitados`, {
-                        method: "GET",
-                        headers: {
-                            "Content-Type": "application/json"
-                        }
-                    }), necesitados = await respuestaNese.json();
-                    necesitados.forEach(necesitados => {
-                        if (id == necesitados.id_publicacionNese) {
-                            txtNombreNecesitado.value = necesitados.nombre_nece;
-                            txtApellidoNecesitado.value = necesitados.apellido;
-                            txtEdadNecesitado.value = parseInt(necesitados.edad);
-                            txtDireccionNecesitado.value = necesitados.direccion;
-                            txtDescripcionNecesitados.value = necesitados.situacion_descripcion;
-                            txtTelefonoNecesitado.value = necesitados.telefono;
-                            txtWhatsAppNecesitado.value = necesitados.whatsApp;
-                            txtNombreDesaparecido.name = necesitados.fecha_publicacion;
-                            btnAgregarNecesitado.value = "Actualizar";
-                            containerNece.innerHTML = `<img src="data:image/jpeg;base64,${necesitados.imagen}" alt="Imagen seleccionada" id="imagenNece">`;
-                            txtAyudaNecesitado.selectedIndex = necesitados.ayuda_id -1;
-                            txtDistritoNecesitado.selectedIndex = necesitados.distrito_id -1;
-                            console.log();
-                        }
-                    })
-                    
+            //   localStorage.setItem('registro_modificar',id);
+            alertify.confirm("¿Esta seguro de editar la publicación?",
+                async function () {
+                    id_edicion = id;
+                    base_seleccionada = baseSelect;
 
-                }
+                    var url;
+                    if (baseSelect == "desa") {
+
+                        let btnedicion = document.getElementById('btnPublicarDesaparecido');
+                        btnedicion.value = 'Actualizar';
+                        let containerDesa = document.getElementById("containerImgDesa");
+
+
+                        const respuestaDesa = await fetch(`https://localhost:7253/api/desaparecidos`, {
+                            method: "GET",
+                            headers: {
+                                "Content-Type": "application/json"
+                            }
+                        }), desaparecidos = await respuestaDesa.json();
+                        desaparecidos.forEach(Desaparecidos => {
+
+
+                            if (Desaparecidos.id_publicacionDesa == id) {
+                                console.log(Desaparecidos);
+                                txtNombreDesaparecido.value = Desaparecidos.nombre;
+                                txtApellidoDesaparecido.value = Desaparecidos.apellido;
+                                txtEdadDesaparecido.value = Desaparecidos.edad;
+                                fecha_desaparicion.value = Desaparecidos.fecha_Desaparicion.split('T')[0];
+                                fecha_desaparicion.name = Desaparecidos.fecha_publicacion.split('T')[0];
+                                txtLugarDesaparecido.value = Desaparecidos.lugar_Desaparicion;
+                                txtDescripcionDesaparecido.value = Desaparecidos.descripción_persona;
+                                txtTelefonoDesaparecido.value = Desaparecidos.telefono;
+                                txtWhatsAppDesaparecido.value = Desaparecidos.whatsApp;
+                                containerDesa.innerHTML = `<img src=data:image/jpeg;base64,${Desaparecidos.imagen} alt="Imagen seleccionada" id="imagenDesa">`;
+                                txtVistoAntesDesaparecido.selectedIndex = Desaparecidos.distrito_id - 1;
+
+
+                            }
+                        })
+                    } else if (baseSelect == "nece") {
+                        let containerNece = document.getElementById("containerImgNece");
+                        let btnedicion = document.getElementById('btnPublicarNecesitado');
+                        btnedicion.value = 'Actualizar';
+                        const respuestaNese = await fetch(`https://localhost:7253/api/necesitados`, {
+                            method: "GET",
+                            headers: {
+                                "Content-Type": "application/json"
+                            }
+                        }), necesitados = await respuestaNese.json();
+                        necesitados.forEach(necesitados => {
+                            if (id == necesitados.id_publicacionNese) {
+                                txtNombreNecesitado.value = necesitados.nombre_nece;
+                                txtApellidoNecesitado.value = necesitados.apellido;
+                                txtEdadNecesitado.value = parseInt(necesitados.edad);
+                                txtDireccionNecesitado.value = necesitados.direccion;
+                                txtDescripcionNecesitados.value = necesitados.situacion_descripcion;
+                                txtTelefonoNecesitado.value = necesitados.telefono;
+                                txtWhatsAppNecesitado.value = necesitados.whatsApp;
+                                txtNombreDesaparecido.name = necesitados.fecha_publicacion;
+                                btnAgregarNecesitado.value = "Actualizar";
+                                containerNece.innerHTML = `<img src="data:image/jpeg;base64,${necesitados.imagen}" alt="Imagen seleccionada" id="imagenNece">`;
+                                txtAyudaNecesitado.selectedIndex = necesitados.ayuda_id - 1;
+                                txtDistritoNecesitado.selectedIndex = necesitados.distrito_id - 1;
+                                console.log();
+                            }
+                        })
+
+
+                    }
+                },
+                function () {
+                    alertify.error('Operación cancelada');
+                });
+           
+           /* if (confirm(`Esta seguro de editar la publicacion`)) {
+               
+                //Cierre del If principal
             }
+            else {
+
+            }*/
         
     }
 
