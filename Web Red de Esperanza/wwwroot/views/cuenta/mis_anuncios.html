@@ -19,7 +19,7 @@
 
     <title>Document</title>
 </head>
-<body id="body" class="m-0 border-0 bd-example m-0 border-0" style="background-color: #015a95; font-family: Roboto, sans-serif, Arial;">
+<body id="body" class="m-0 border-0 bd-example m-0 border-0" style="background-color: #015a95; font-family: Roboto, sans-serif, Arial; min-width: 326px">
 
     <nav class="navbar justify-content-center" data-bs-theme="White" style="background-color: rgb(4, 4, 117);">
         <ul class="nav justify-content-center menu-nav" style="background-color: rgb(4, 4, 117);">
@@ -136,14 +136,16 @@
                 outline: none; /* Quitar el borde al hacer clic */
             }
         </style>
-        <div class="col-sm-6 col-md-4 " style="position: static;">
+        <!--Creacion de anuncio de necesitados-->
+
+        <div class="col-sm-6 col-md-4" style="margin:20px; ">
             <div class="card" style="width: 18rem; background-color: #072145; color: white; margin: 0.5rem auto;">
 
                 <div class="card-body">
                     <div class="col-sm-6 col-md-4" style="width: 100%; height:200px; ">
                         <center id="containerImgNece"></center>
                     </div>
-                   <center> <h5>Necesitados</h5> </center>
+                    <center> <h5>Necesitados</h5> </center>
                     <input type="file" id="fileimagenNese" accept="image/*" style="max-width: 100%;">
 
                     <h5 class="card-title" style=" color: white;">
@@ -171,13 +173,13 @@
                     <textarea type="text" id="txtDescripcionNecesitados" class="card-title" maxlength="220" style="background-color: #038587; color: white; max-height:20vh; min-height:10vh; " placeholder="Descripcion de la situacion"></textarea>
                     <!--AQUIIII-->
                     <h5>Tipo de ayuda: </h5>
-                    
+
                     <select name="miCombobox" id="txtAyudaNecesitado" style="background: #038587; color: white; font-size: 15px; padding-top: 5px; padding-bottom: 5px; "></select>
- 
+
                     <h5 style=" padding-top: 7px;">Teléfono:</h5>
                     <input type="text" id="txtTelefonoNecesitado" class="card-title" style="background-color: #038587; color: white;" placeholder="Numero telefonico">
-                    <br> 
-                    <h5>WhatsApp: </h5> 
+                    <br>
+                    <h5>WhatsApp: </h5>
                     <input id="txtWhatsAppNecesitado" type="text" class="card-title" style="background-color: #038587; color: white;" placeholder="Numero de WhatsApp">
 
 
@@ -263,7 +265,7 @@
             }
         </style>
 
-        <div class="col-sm-6 col-md-6 " style="position: static;">
+        <div class="col-sm-6 col-md-4 " style=" margin: 20px;">
 
             <div class="card" style="width: 18rem; background-color: #072145; color: white; margin: 0.5rem auto;">
 
@@ -274,10 +276,10 @@
                         <center style="width: 100%; height: 200px;" id="containerImgDesa"></center>
                     </div>
                     <center> <h5>Desaparecidos</h5> </center>
-                    <input type="file" id="fileimagenDesa" style="max-width:100%;"/>
+                    <input type="file" id="fileimagenDesa" style="max-width:100%;" />
 
                     <h5 class="card-title" style=" color: white;">
-                        Encontremos a:
+                        Ayudenos a encontrar a:
                     </h5>
                     <input type="text" id="txtNombreDesaparecido" class="card-title" style="background-color: #038587; color: white;" placeholder="Nombre">
                     <input type="text" id="txtApellidoDesaparecido" class="card-title" style="background-color: #038587; color: white;" placeholder="Apellido">
@@ -293,7 +295,7 @@
                     <h5>Distrito al que pertenece:</h5>
                     <select name="miCombobox" id="txtVistoAntesDesaparecido" style="background: #038587; color: white; padding-top: 5px; padding-bottom: 5px; "> </select>
 
-                   <h5 style="padding-top: 10px;"> Lugar de desaparición: </h5>
+                    <h5 style="padding-top: 10px;"> Lugar de desaparición: </h5>
 
                     <textarea type="text" id="txtLugarDesaparecido" class="card-title" maxlength="220" style="background-color: #038587; color: white; max-height:7vh; min-height:5vh; " placeholder="Lugar"></textarea>
 
@@ -301,9 +303,9 @@
                     <textarea type="text" id="txtDescripcionDesaparecido" class="card-title" maxlength="220" style="background-color: #038587; color: white; max-height:20vh; min-height:10vh; " placeholder="Descripción de la situacion"></textarea>
                     <h5>
                         Teléfono:
-                    </h5>  
-                        <input type="text" id="txtTelefonoDesaparecido" class="card-title" style="background-color: #038587; color: white;" placeholder="Numero telefonico">
-                        <br>
+                    </h5>
+                    <input type="text" id="txtTelefonoDesaparecido" class="card-title" style="background-color: #038587; color: white;" placeholder="Numero telefonico">
+                    <br>
                     <h5>WhatsApp:</h5>
                     <input id="txtWhatsAppDesaparecido" type="text" class="card-title" style="background-color: #038587; color: white;" placeholder="Numero de WhatsApp">
 
@@ -846,13 +848,6 @@
             }
         }
 
-        //
-
-        //----------------------------------
-
-        //mostrar datos de desaparecidos
-
-
         //AGREGAR AL OTRO ARCHIVO
         txtBuscar.addEventListener('keyup', e => {
             mostrarDesaparecidos(txtBuscar.value);
@@ -923,17 +918,18 @@
 
                     const fecha_desaparicion_Formateada = new Date(Fecha_desaparicion).toISOString().split('T')[0].split("-").reverse().join("/");
                     conenedorAnuncios.innerHTML += `
-                  <div class="col-sm-6 col-md-4 ">
+                    <!--PONERLON EN LOS DEMÁS-->
+                  <div class="col-sm-6 col-md-4 "  style=" margin-left:20px; margin-right:20px">
                   <div class="card" style="width: 18rem; background-color: #072145; color: white; margin: 0.5rem auto;">
                    <img src="data:image/png;base64,${Desaparecidos.imagen}"class="img - thumbnail rounded"/>
                   <div class="card-body">
                   <h5 class="card-title" style="background-color: #038587; color: white;">
-                  Ayudenos a encontrar a: ${Desaparecidos.nombre} ${Desaparecidos.apellido} </h5></div>
-                  <div class="card-body">
-                  <p class="list-group-item" style="background-color: #072145; color: white;"><strong>Edad:</strong> ${Desaparecidos.edad}</p>
+                  Ayudenos a encontrar a: ${Desaparecidos.nombre} ${Desaparecidos.apellido} </h5>
+                  <p><strong>Edad:</strong> ${Desaparecidos.edad}</p>
                   <p class="list-group-item" style="background-color: #072145; color: white;"><strong>Fecha de desaparición:</strong> ${fecha_desaparicion_Formateada}</p>
                   <p class="list-group-item" style="background-color: #072145; color: white;"> <strong>Visto por ultima vez en:</strong> ${Desaparecidos.lugar_Desaparicion}</p>
-                  <p><strong>Descripción: </strong>${Desaparecidos.descripción_persona}</p>
+                  <p><strong>Descripción: </strong></p>
+                  <p class="card-text">${Desaparecidos.descripción_persona}</p>
                   <p><strong>Si sabe algo contactelos por medio de:</strong><p>
                   <p><strong>Telefono:</strong> ${Desaparecidos.telefono} </p>
                   <p><strong>WhatsApp</strong>: ${Desaparecidos.whatsApp} </p>
@@ -1016,22 +1012,22 @@
 
                     const fechaFormateada = new Date(fechaOriginal).toISOString().split('T')[0];
                     conenedorAnuncios.innerHTML += `
-<div class="col-sm-6 col-md-4 ">
-        <div class="card" style="width: 18rem; background-color: #072145; color: white; margin: 0.5rem auto;">
-                    <img src="data:image/png;base64,${necesitados.imagen}"class="img - thumbnail rounded"/>
-            <div class="card-body">
+  <div class="col-sm-6 col-md-4 "  style=" margin-left:20px; margin-right:20px">
+    <div class="card" style="width: 18rem; background-color: #072145; color: white; margin: 0.5rem auto;">
+        <img src="data:image/png;base64,${necesitados.imagen}"class="img - thumbnail rounded"/>
+        <div class="card-body">
                 <h5 class="card-title" style="background-color: #038587; color: white;">Ayudemos a: <br>
-                                      ${necesitados.nombre_nece} ${necesitados.apellido} </h5>
-             <div class="card-body">
+                ${necesitados.nombre_nece} ${necesitados.apellido}</h5>
+        
              <p><strong>Edad:</strong> ${necesitados.edad}</p>
-             <p><strong>Distrito:</strong> ${localidades[parseInt(necesitados.distrito_id)-1]}</p>
+             <p><strong>Distrito:</strong> ${localidades[parseInt(necesitados.distrito_id) - 1]}</p>
              <p><strong>Direccion: </strong>${necesitados.direccion}  </p>
              <p><strong>Descripcion:</strong> <br></p>
-             <p class="card-text">${necesitados.situacion_descripcion}</p>  
-             <p><strong>Creacion del anuncio: </strong><br> ${fechaFormateada}   </p>
-             <p><strong>Teléfono:</strong> ${necesitados.telefono}
-             <br><strong> WhatsApp:</strong> ${necesitados.whatsApp}</p>
-             <p><strong>Ayuda con:</strong> ${ayudasCiudadanas[parseInt(necesitados.ayuda_id)-1]} <br></p>
+             <p class="card-text">${necesitados.situacion_descripcion}</p>
+             <p><strong>Ayuda con:</strong> ${ayudasCiudadanas[parseInt(necesitados.ayuda_id) - 1]}</p>
+             <p><strong>Si quiere ayudar a esta persona puede contactarlos por medio de:</strong><p>
+             <p><strong>Teléfono:</strong> ${necesitados.telefono}  </p>
+              <p><strong>WhatsApp:</strong>${necesitados.whatsApp}</p>
                     <div class="card-body" id="conten-btn">
                 <input class="btn  btn-danger" id='${necesitados.id_publicacionNese}' type="submit" name="nece" onclick="eliminarPublicacion(event)" class="delete" value="Eliminar">
                 <input name="nece" onclick = "editarPublicacion(event)" class="btn btn-primary" id="${necesitados.id_publicacionNese}" type="submit" value="Editar">

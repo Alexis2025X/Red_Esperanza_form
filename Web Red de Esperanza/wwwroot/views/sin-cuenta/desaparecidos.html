@@ -12,7 +12,7 @@
     <!--<link rel="stylesheet" href="styles.css">-->
     <title>Desaparecidos</title>
 </head>
-<body class="m-0 border-0 bd-example m-0 border-0" style="background-color: #015a95; font-family: Roboto, sans-serif, Arial;">
+<body class="m-0 border-0 bd-example m-0 border-0" style="background-color: #015a95; font-family: Roboto, sans-serif, Arial; min-width: 326px">
     <nav class="navbar justify-content-center" data-bs-theme="White" style="background-color: rgb(4, 4, 117);">
         <ul class="nav justify-content-center menu-nav" style="background-color: rgb(4, 4, 117);">
             <li class="nav-item">
@@ -122,22 +122,21 @@
                     const fecha_desaparicion_Formateada = new Date(Fecha_desaparicion).toISOString().split('T')[0].split("-").reverse().join("/");
 
                     bodyDesaparecidos.innerHTML += `
-               <div class="col-sm-6 col-md-4 ">
+                 <div class="col-sm-6 col-md-4 "  style=" margin-left:20px; margin-right:20px">
                  <div class="card" style="width: 18rem; background-color: #072145; color: white; margin: 0.5rem auto;">
-                     <img src="data:image/png;base64,${Desaparecidos.imagen}"class="img - thumbnail rounded"/>
-                        <div class="card-body">
-                            <h5 class="card-title" style="background-color: #038587; color: white;">
-                            Ayudenos a encontrar a: ${Desaparecidos.nombre} ${Desaparecidos.apellido} </h5>
-                              </div>
+                  <img src="data:image/png;base64,${Desaparecidos.imagen}"class="img - thumbnail rounded"/>
                  <div class="card-body">
-                 <p class="list-group-item" style="background-color: #072145; color: white;"><strong>Edad:</strong> ${Desaparecidos.edad}</p>
+                 <h5 class="card-title" style="background-color: #038587; color: white;">
+                 Ayudenos a encontrar a: ${Desaparecidos.nombre} ${Desaparecidos.apellido} </h5>
+                 <p><strong>Edad:</strong> ${Desaparecidos.edad}</p>
                  <p class="list-group-item" style="background-color: #072145; color: white;"><strong>Fecha de desaparición:</strong> ${fecha_desaparicion_Formateada}</p>
                  <p class="list-group-item" style="background-color: #072145; color: white;"> <strong>Visto por ultima vez en:</strong> ${Desaparecidos.lugar_Desaparicion}</p>
-                   <p><strong>Descripción: </strong>${Desaparecidos.descripción_persona}</p>
-                  <p><strong>Si sabe algo contactelos por medio de:</strong><p>
-                  <p><strong>Telefono:</strong> ${Desaparecidos.telefono} </p>
-                  <p><strong>WhatsApp</strong>: ${Desaparecidos.whatsApp} </p>
-                  <p><strong>Distrito:</strong> ${localidades[parseInt(Desaparecidos.distrito_id)-1]} </p >
+                 <p><strong>Descripción: </strong></p>
+                 <p class="card-text">${Desaparecidos.descripción_persona}</p>
+                 <p><strong>Si sabe algo contactelos por medio de:</strong><p>
+                 <p><strong>Telefono:</strong> ${Desaparecidos.telefono} </p>
+                 <p><strong>WhatsApp</strong>: ${Desaparecidos.whatsApp} </p>
+                 <p><strong>Distrito: </strong>${localidades[parseInt(Desaparecidos.distrito_id) - 1]} </p>
                   <p><strong>Creacion del anuncio:</strong> ${fechaFormateada}</p>
                   <p><strong>Publicado por:</strong> ${Desaparecidos.cuenta.usuario}</p>              
             </div>
