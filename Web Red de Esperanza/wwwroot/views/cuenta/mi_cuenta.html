@@ -190,24 +190,29 @@
         async function eliminarCuenta() {
             const nombreAlmacenado = localStorage.getItem('nombre');
 
-            if (confirm(`La eliminacion de su cuenta es irreversible, desea continuar?`)) {
-
-                let respuesta = await fetch('https://localhost:7253/api/cuentas/' + nombreAlmacenado, {
-                    method: "DELETE",
-                    headers: {
-                        "Content-Type": "application/text"
+            alertify.confirm("Esta seguro de elimar su cuenta, esta accion es irreversible",
+                async function () {
+                    let respuesta = await fetch('https://localhost:7253/api/cuentas/' + nombreAlmacenado, {
+                        method: "DELETE",
+                        headers: {
+                            "Content-Type": "application/text"
+                        }
+                    }),
+                        datos = await respuesta.text();
+                    let link = "https://localhost:7253/views/sin-cuenta/iniciosesion.html";
+                    for (let i = 0; i < localStorage.length; i++) {
+                        localStorage.removeItem(localStorage.key(i));
                     }
-                }),
-                    datos = await respuesta.text();
-                let link = "https://localhost:7253/views/sin-cuenta/iniciosesion.html";
-                for (let i = 0; i < localStorage.length; i++) {
-                    localStorage.removeItem(localStorage.key(i));
-                }
-                window.open(link, '_self');
+                    window.open(link, '_self');
+                
+                },
+                function () {
+                    alertify.error('Se ha cancelado la eliminacion');
+                });     
             }
-        }
         async function guardarCuenta() {
             try {
+
                 var confirmacion;
                 const respuesta = await fetch('https://localhost:7253/api/cuentas', {
                     method: "GET",
@@ -215,7 +220,7 @@
                         "Content-Type": "application/json"
                     }
                 }), cuentas = await respuesta.json();
-               
+
                 const nombreAlmacenado = localStorage.getItem('nombre');
                 cuentas.forEach(cuentas => {
                     if (cuentas.usuario == txtUser.value && cuentas.id_cuenta != parseInt(nombreAlmacenado)) {
@@ -225,61 +230,63 @@
 
                     }
                 })
-
+                
 
                 if (txtContraseña.value == "" || txtUser.value == "" || txtNombre.value == "") {
-                    alert("Ingrese  datos");
+                    alert("Ingrese  datos validos");
+                } else if (txtContraseña.value.length <= 3) {
+                    alertify.error("La contraseña debe ser mayor a 3 digitos");
+                } else if (confirmacion == true) {
+                    alertify.error("El usuario ya existe");
                 } else {
-
-                    if (confirmacion == true) {
-                        alertify.error("El usuario ya existe");
-                    } else {
-                        const nombreAlmacenado = localStorage.getItem('nombre');
-                        let datos = {
-                            "id_cuenta": parseInt(nombreAlmacenado),
-                            "nombre": txtNombre.value,
-                            "usuario": txtUser.value,
-                            "contraseña": txtContraseña.value
-                        };
-                        
-
-                        method = "PUT";
-                        const respuesta = await fetch(`https://localhost:7253/api/cuentas/` + nombreAlmacenado, {
-                            method,
-                            headers: {
-                                'Content-Type': 'application/json'
-                            },
-                            body: JSON.stringify(datos)
-                        });
+                  
+                    const nombreAlmacenado = localStorage.getItem('nombre');
+                    let datos = {
+                        "id_cuenta": parseInt(nombreAlmacenado),
+                        "nombre": txtNombre.value,
+                        "usuario": txtUser.value,
+                        "contraseña": txtContraseña.value
+                    };
 
 
-                        alertify.success("Su cuenta ha sido actualizada");
-                        inhabilitar(true);
-                        mostrarDatos();
-                    }
+                    method = "PUT";
+                    const respuesta = await fetch(`https://localhost:7253/api/cuentas/` + nombreAlmacenado, {
+                        method,
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(datos)
+                    });
 
+                    btnEditar.innerText = "Editar"
+                    alertify.success("Su cuenta ha sido actualizada");
+                    inhabilitar(true);
+                    mostrarDatos();
                 }
 
+  
             } catch (e) {
                
                 alertify.error("Error al actualizar la cuenta");
                 mostrarDatos();
             }
-
+            
 
         }
 
         function eventEdit() {
-            let btnEditar = document.getElementById("btnEditar")
-            if (btnEditar.value == "Editar") {
 
-                btnEditar.value = "Cancelar"
-                inhabilitar(true);
-                
-            } else {
-             
+            let btnEditar = document.getElementById("btnEditar")
+            console.log(btnEditar);
+            if (btnEditar.innerText == "Editar") {
+                btnEditar.innerText = "Cancelar"
+                alertify.success("Edicion habilitada");
                 inhabilitar(false);
-                btnEditar.value = "Editar"
+
+            } else {
+                btnEditar.innerText = "Editar"
+                inhabilitar(true);
+                alertify.error("Edicion cancelada");
                 mostrarDatos()
             }
         }
@@ -290,12 +297,17 @@
             const txtContraseña = document.getElementById("txtContraseña");
             const txtNombre = document.getElementById("txtNombre");
             const txtUser = document.getElementById("txtUsuario");
+            const btnGuardar = document.getElementById("btnGuardar");
+            const btnEliminar = document.getElementById("btnEliminar");
+              
             if (valor == true) {
 
                 txtContraseña.disabled = true;
                 txtNombre.disabled = true;
                 txtUser.disabled = true;
                 icon.disabled = true;
+                btnGuardar.disabled = true;
+                btnEliminar.disabled = true;
               
                 icon.removeEventListener("click", vistaContra)
             } else {
@@ -304,7 +316,8 @@
                 txtNombre.disabled = false;
                 txtUser.disabled = false;
                 icon.disabled = false;
-               
+                btnGuardar.disabled = false;
+                btnEliminar.disabled = false;
                 icon.addEventListener("click", vistaContra)
             }
         }

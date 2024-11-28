@@ -147,7 +147,10 @@
 
                 if (txtNombreCuenta.value == "" || txtUsuarioCuenta.value == "" || txtContraseñaCuenta.value == "") {
                     alertify.error("Ingresa todos los datos");
-                } else {
+                } else if (txtContraseñaCuenta.value.length <= 3) {
+                    alertify.error("La contraseña debe ser mayor a 3 digitos");
+                }
+                else {
                     if (confirmacion == true) {
                         alertify.error("El usuario ya existe");
                     } else {

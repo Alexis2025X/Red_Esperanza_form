@@ -1042,35 +1042,40 @@
         async function eliminarPublicacion(e) {
             let id = e.target.id;
             let baseSelect = e.target.name;
-            
-            if (confirm(`Esta seguro de eliminar la publicacion`)) {
-                var url;
-                if (baseSelect == "desa") {
-                    url = `https://localhost:7253/api/desaparecidos/${id}`;
-                   
-
-                } else if (baseSelect == "nece") {
-                    url = `https://localhost:7253/api/necesitados/${id}`;
-                    
+            alertify.confirm("Seguro de eliminar esta publicación",
+                async function () {
+                    var url;
+                    if (baseSelect == "desa") {
+                        url = `https://localhost:7253/api/desaparecidos/${id}`;
 
 
-                }
+                    } else if (baseSelect == "nece") {
+                        url = `https://localhost:7253/api/necesitados/${id}`;
 
-                let respuesta = await fetch(url, {
-                    method: "DELETE",
-                    headers: {
-                        "Content-Type": "application/text"
+
+
                     }
-                }),
-                    datos = await respuesta.text();
-                if (datos && datos.length > 0) {
-                  
-                } else {
-                    alertify.success("Publicación eliminada con exito");
-                    mostrarDesaparecidos();
-                    mostrarNecesitados();
-                }
-            }
+
+                    let respuesta = await fetch(url, {
+                        method: "DELETE",
+                        headers: {
+                            "Content-Type": "application/text"
+                        }
+                    }),
+                        datos = await respuesta.text();
+                    if (datos && datos.length > 0) {
+
+                    } else {
+                        alertify.success("Publicación eliminada con exito");
+                        mostrarDesaparecidos();
+                        mostrarNecesitados();
+                    }
+                },
+                function () {
+                    alertify.error('Eliminacion cancelada');
+                });
+
+            
         }
             
 
