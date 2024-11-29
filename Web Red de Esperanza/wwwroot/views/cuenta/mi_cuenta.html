@@ -179,11 +179,18 @@
         btnCerrarSesion.addEventListener("click", cerrarSesion);
 
         function cerrarSesion() {
-            let link = "https://localhost:7253/views/sin-cuenta/iniciosesion.html";
+
             for (let i = 0; i < localStorage.length; i++) {
                 localStorage.removeItem(localStorage.key(i));
             }
-            window.open(link, '_self');
+            for (let i = 0; i < localStorage.length; i++) {
+                localStorage.removeItem(localStorage.key(i));
+            }
+            if (localStorage.length == 0) {
+                let link = "https://localhost:7253/views/sin-cuenta/iniciosesion.html";
+                window.open(link, '_self');
+            }
+            
         }
 
 
